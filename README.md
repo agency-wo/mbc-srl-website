@@ -63,6 +63,19 @@ riesportali in JPEG e aggiungili con la procedura sopra.
 
 ---
 
+## Anteprima cliente (Cloudflare Pages)
+Il sito è visibile in anteprima su **https://mbc-srl-preview.pages.dev** (non indicizzato dai motori
+di ricerca — header `X-Robots-Tag: noindex` aggiunto solo al deploy, non nel repo).
+Per aggiornare l'anteprima dopo nuovi commit:
+```bash
+STAGE=$(mktemp -d) && git archive HEAD | tar -x -C "$STAGE" \
+  && rm -rf "$STAGE/_tools" "$STAGE/README.md" "$STAGE/.gitignore" \
+  && printf '/*\n  X-Robots-Tag: noindex\n' > "$STAGE/_headers" \
+  && npx wrangler pages deploy "$STAGE" --project-name=mbc-srl-preview --branch=main --commit-dirty=true
+```
+Quando arriverà il dominio definitivo basterà collegarlo allo stesso progetto Cloudflare Pages
+(senza header noindex) oppure attivare GitHub Pages come da sezione seguente.
+
 ## Pubblicazione (GitHub Pages + Cloudflare)
 1. Crea un repository su GitHub e carica il contenuto di questa cartella (root del repo).
    Il file `.nojekyll` è già presente (evita che GitHub Pages ignori alcune cartelle).
