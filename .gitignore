@@ -13,3 +13,4 @@ Thumbs.db
 desktop.ini
 *.log
 /_tools/lh-*.json
+/.wrangler/
