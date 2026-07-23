@@ -1,0 +1,429 @@
+[
+  {
+    "slug": "bolla-glamping-luce-notturna",
+    "cat": "bolle",
+    "hero": true,
+    "widths": [
+      1200,
+      800
+    ],
+    "w": 1200,
+    "h": 1600,
+    "alt_it": "Bolla glamping trasparente illuminata di notte tra le montagne",
+    "alt_en": "Transparent glamping bubble lit up at night in the mountains"
+  },
+  {
+    "slug": "bolla-glamping-ora-blu",
+    "cat": "bolle",
+    "hero": true,
+    "widths": [
+      1200,
+      800
+    ],
+    "w": 1200,
+    "h": 1600,
+    "alt_it": "Cupola glamping all'ora blu con vetta alpina sullo sfondo",
+    "alt_en": "Glamping dome at blue hour with an alpine peak behind"
+  },
+  {
+    "slug": "bolla-glamping-notte-insegna",
+    "cat": "bolle",
+    "hero": true,
+    "widths": [
+      800
+    ],
+    "w": 800,
+    "h": 1067,
+    "alt_it": "Bolla glamping al crepuscolo con insegna e montagne",
+    "alt_en": "Glamping bubble at dusk with sign and mountains"
+  },
+  {
+    "slug": "bolla-glamping-notte-montagne",
+    "cat": "bolle",
+    "hero": true,
+    "widths": [
+      2400,
+      1800,
+      1200,
+      800
+    ],
+    "w": 2400,
+    "h": 3600,
+    "alt_it": "Cupola glamping illuminata di notte davanti alle Alpi",
+    "alt_en": "Illuminated glamping dome at night in front of the Alps"
+  },
+  {
+    "slug": "bolla-glamping-alba-oro",
+    "cat": "bolle",
+    "hero": true,
+    "widths": [
+      800
+    ],
+    "w": 800,
+    "h": 1067,
+    "alt_it": "Interno della bolla con letto e luce dorata del tramonto",
+    "alt_en": "Bubble interior with bed and golden sunset light"
+  },
+  {
+    "slug": "bolla-glamping-esterni-crepuscolo",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Bolla glamping al crepuscolo con montagne blu",
+    "alt_en": "Glamping bubble at dusk with blue mountains"
+  },
+  {
+    "slug": "bolla-glamping-tramonto-letto",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Bolla su pedana in legno con letto al tramonto",
+    "alt_en": "Bubble on a wooden deck with bed at sunset"
+  },
+  {
+    "slug": "bolla-glamping-insegna-spa",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Bolla glamping con insegna Glamping & Spa",
+    "alt_en": "Glamping bubble with a Glamping & Spa sign"
+  },
+  {
+    "slug": "bolla-glamping-giorno-bosco",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Bolla glamping di giorno immersa nel bosco alpino",
+    "alt_en": "Glamping bubble by day set in the alpine forest"
+  },
+  {
+    "slug": "bolla-glamping-insegna-notte",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 1067,
+    "alt_it": "Insegna del glamping illuminata di notte",
+    "alt_en": "Glamping sign illuminated at night"
+  },
+  {
+    "slug": "bolla-interni-letto-notte",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Interno della bolla con letto matrimoniale illuminato di notte",
+    "alt_en": "Bubble interior with an illuminated double bed at night"
+  },
+  {
+    "slug": "bolla-interni-bagno-notte",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Interno della bolla con zona lavabo e vista sulle montagne",
+    "alt_en": "Bubble interior with washbasin area and mountain view"
+  },
+  {
+    "slug": "bolla-interni-letto-candele",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Letto all'interno della bolla con candele accese",
+    "alt_en": "Bed inside the bubble with lit candles"
+  },
+  {
+    "slug": "bolla-interni-tavolo-cena",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Tavolo apparecchiato con vino all'interno della bolla",
+    "alt_en": "Table set with wine inside the bubble"
+  },
+  {
+    "slug": "bolla-interni-aperitivo",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Aperitivo servito nella bolla con tende chiare",
+    "alt_en": "Aperitif served in the bubble with light curtains"
+  },
+  {
+    "slug": "dettaglio-lavabo-pietra",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Dettaglio del lavabo in pietra con candela",
+    "alt_en": "Detail of the stone washbasin with a candle"
+  },
+  {
+    "slug": "dettaglio-candele-comodino",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Dettaglio di candele su comodino in legno",
+    "alt_en": "Detail of candles on a wooden nightstand"
+  },
+  {
+    "slug": "dettaglio-fiori",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Fioriture arancioni lungo la pedana in legno",
+    "alt_en": "Orange blooms along the wooden deck"
+  },
+  {
+    "slug": "vasca-idromassaggio-tramonto-montagne",
+    "cat": "idromassaggio",
+    "hero": true,
+    "widths": [
+      800
+    ],
+    "w": 800,
+    "h": 1067,
+    "alt_it": "Vasca idromassaggio da esterno con lettini al tramonto sulle Alpi",
+    "alt_en": "Outdoor hot tub with sun loungers at sunset over the Alps"
+  },
+  {
+    "slug": "vasca-idromassaggio-luci-crepuscolo",
+    "cat": "idromassaggio",
+    "hero": true,
+    "widths": [
+      800
+    ],
+    "w": 800,
+    "h": 1067,
+    "alt_it": "Vasca idromassaggio con luci e saune a botte al crepuscolo",
+    "alt_en": "Hot tub with string lights and barrel saunas at dusk"
+  },
+  {
+    "slug": "vasca-idromassaggio-notte",
+    "cat": "idromassaggio",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Vasca idromassaggio illuminata di notte con sauna a botte",
+    "alt_en": "Hot tub lit at night with a barrel sauna"
+  },
+  {
+    "slug": "vasca-idromassaggio-sauna-giorno",
+    "cat": "idromassaggio",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Vasca idromassaggio e sauna a botte su pedana di giorno",
+    "alt_en": "Hot tub and barrel sauna on a deck by day"
+  },
+  {
+    "slug": "vasca-idromassaggio-lettini",
+    "cat": "idromassaggio",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Vasca idromassaggio con lettini e sauna a botte",
+    "alt_en": "Hot tub with sun loungers and a barrel sauna"
+  },
+  {
+    "slug": "vasca-idromassaggio-luci",
+    "cat": "idromassaggio",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Vasca idromassaggio con luci sospese all'imbrunire",
+    "alt_en": "Hot tub with hanging lights at nightfall"
+  },
+  {
+    "slug": "sauna-botte-ingresso",
+    "cat": "sauna",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Ingresso della sauna a botte in legno con oblò",
+    "alt_en": "Entrance of the wooden barrel sauna with a porthole"
+  },
+  {
+    "slug": "sauna-botte-esterno-montagne",
+    "cat": "sauna",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Sauna a botte da esterno con vista sulle montagne",
+    "alt_en": "Outdoor barrel sauna with a mountain view"
+  },
+  {
+    "slug": "sauna-botte-vasca-giorno",
+    "cat": "sauna",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Sauna a botte e vasca esterna di giorno",
+    "alt_en": "Barrel sauna and outdoor tub by day"
+  },
+  {
+    "slug": "grotta-sale-lampada",
+    "cat": "benessere",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Lampada di sale in ambiente benessere in legno",
+    "alt_en": "Salt lamp in a wooden wellness room"
+  },
+  {
+    "slug": "grotta-sale-interni-botte",
+    "cat": "benessere",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Interno della grotta di sale nella botte in legno",
+    "alt_en": "Salt-room interior inside the wooden barrel"
+  },
+  {
+    "slug": "sauna-sale-interni",
+    "cat": "benessere",
+    "hero": false,
+    "widths": [
+      1600,
+      1000,
+      640
+    ],
+    "w": 1600,
+    "h": 2400,
+    "alt_it": "Interno della sauna con blocco di sale e oblò",
+    "alt_en": "Sauna interior with a salt block and porthole"
+  },
+  {
+    "slug": "attrezzature-fitness-pergola",
+    "cat": "fitness",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Tapis roulant professionale su pedana con pergola e montagne",
+    "alt_en": "Professional treadmill on a pergola deck with mountains"
+  },
+  {
+    "slug": "attrezzature-tapis-roulant-outdoor",
+    "cat": "fitness",
+    "hero": false,
+    "widths": [
+      1000,
+      640
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Attrezzatura fitness all'aperto con vista sulle Alpi",
+    "alt_en": "Outdoor fitness equipment with an Alpine view"
+  }
+]

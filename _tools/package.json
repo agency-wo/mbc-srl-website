@@ -1,0 +1,13 @@
+{
+  "name": "mbc-image-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local image processing pipeline for the MBC SRL website (not deployed).",
+  "type": "module",
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "puppeteer": "^25.3.0",
+    "sharp": "^0.34.1"
+  }
+}

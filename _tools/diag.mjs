@@ -1,0 +1,24 @@
+import puppeteer from "puppeteer";
+const browser = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
+const page = await browser.newPage();
+await page.setCacheEnabled(false);
+const errors = [];
+page.on("console", m => { if (m.type() === "error") errors.push("CONSOLE: " + m.text()); });
+page.on("pageerror", e => errors.push("PAGEERROR: " + e.message));
+page.on("requestfailed", r => errors.push("REQFAIL: " + r.url() + " " + (r.failure()?.errorText)));
+await page.goto("http://127.0.0.1:8099/", { waitUntil: "networkidle0" });
+await new Promise(r => setTimeout(r, 500));
+const info = await page.evaluate(() => {
+  const htmlHasJs = document.documentElement.classList.contains("js");
+  const first = document.querySelector(".stat.reveal");
+  const cs = first ? getComputedStyle(first) : null;
+  const statBand = document.querySelector(".stat-band");
+  const sbBg = statBand ? getComputedStyle(statBand).backgroundColor : null;
+  const cards = document.querySelectorAll(".card").length;
+  const revealTotal = document.querySelectorAll(".reveal").length;
+  const revealVisible = document.querySelectorAll(".reveal.is-visible").length;
+  return { htmlHasJs, firstOpacity: cs?.opacity, firstVisible: first?.classList.contains("is-visible"), sbBg, cards, revealTotal, revealVisible };
+});
+console.log(JSON.stringify(info, null, 2));
+console.log("ERRORS:", errors.length ? errors.join("\n") : "none");
+await browser.close();

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 120" role="img" aria-label="MBC SRL">
+  <g>
+    <circle cx="60" cy="60" r="42" fill="none" stroke="#BC6B3E" stroke-width="7"/>
+    <path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" fill="#2D4A3A"/>
+    <rect x="47" y="60" width="3.4" height="22" fill="#2D4A3A"/>
+    <rect x="69.6" y="60" width="3.4" height="22" fill="#2D4A3A"/>
+  </g>
+  <text x="132" y="74" font-family="'Fraunces','Cormorant Garamond',Georgia,serif" font-size="58" font-weight="600" letter-spacing="1" fill="#2D4A3A">MBC</text>
+  <text x="300" y="74" font-family="'Inter','Segoe UI',Arial,sans-serif" font-size="26" font-weight="500" letter-spacing="6" fill="#6B7269">SRL</text>
+</svg>

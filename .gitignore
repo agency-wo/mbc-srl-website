@@ -1,0 +1,14 @@
+# Source photos (client originals, high-res) — not deployed, not published
+/_source/
+
+# Tool working artifacts (scripts stay in the repo; outputs don't)
+/_tools/node_modules/
+/_tools/package-lock.json
+/_tools/sheets/
+/_tools/shots/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+desktop.ini
+*.log

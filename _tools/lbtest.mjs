@@ -1,0 +1,17 @@
+import puppeteer from "puppeteer";
+const b = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
+const p = await b.newPage();
+await p.setViewport({ width: 1440, height: 900 });
+await p.goto("http://127.0.0.1:8099/progetti/", { waitUntil: "networkidle0" });
+await p.evaluate(() => document.querySelector('[data-filter="bolle"]').click());
+const shown = await p.evaluate(() => [...document.querySelectorAll(".gallery-item")].filter(f => !f.hidden).length);
+const bolleOnly = await p.evaluate(() => [...document.querySelectorAll(".gallery-item")].filter(f => !f.hidden).every(f => f.getAttribute("data-cat") === "bolle"));
+await p.evaluate(() => document.querySelector('[data-filter="all"]').click());
+await p.evaluate(() => document.querySelector(".gallery-item").click());
+await new Promise(r => setTimeout(r, 500));
+const lbOpen = await p.evaluate(() => document.querySelector(".lightbox").classList.contains("is-open"));
+const lbSrc = await p.evaluate(() => document.querySelector(".lightbox__img").getAttribute("src"));
+await p.screenshot({ path: "shots/progetti-lightbox.jpg", quality: 82, type: "jpeg" });
+console.log("Bolle filter shown:", shown, "| allBolle:", bolleOnly, "| lightbox open:", lbOpen);
+console.log("lightbox src:", lbSrc);
+await b.close();
