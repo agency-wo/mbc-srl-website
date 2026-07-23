@@ -13,8 +13,8 @@ const SRC = join(ROOT, "_source", "photos");
 const OUT = join(ROOT, "assets", "img");
 mkdirSync(OUT, { recursive: true });
 
-const HERO_W = [2400, 1800, 1200, 800];
-const STD_W = [1600, 1000, 640];
+const HERO_W = [2400, 1800, 1200, 800, 360];
+const STD_W = [1600, 1000, 640, 360];
 
 // Curated set. cat: bolle | interni | idromassaggio | sauna | benessere | fitness
 const M = [

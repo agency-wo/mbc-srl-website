@@ -24,6 +24,7 @@ function header(cur, opts = {}) {
       <nav class="nav" aria-label="Main navigation">
         <ul class="nav-menu" id="nav-menu">
 ${items}
+          <li class="nav-cta-item"><a class="btn" href="/en/contact/">Get a quote</a></li>
         </ul>
         <div class="nav-side">
           <span class="lang" aria-label="Language">
@@ -47,13 +48,13 @@ const footer = `  <footer class="site-footer">
             <a href="#" aria-label="Facebook" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v6h3v-6h2.5l.5-3h-3V9c0-.6.4-1 1-1z"/></svg></a>
           </div>
         </div>
-        <div class="footer-col"><h4>Navigate</h4><ul>
+        <div class="footer-col"><h3>Navigate</h3><ul>
           <li><a href="/en/">Home</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/projects/">Projects</a></li><li><a href="/en/contact/">Contact</a></li>
         </ul></div>
-        <div class="footer-col"><h4>Solutions</h4><ul>
+        <div class="footer-col"><h3>Solutions</h3><ul>
           <li><a href="/en/projects/">Glamping bubbles</a></li><li><a href="/en/projects/">Turnkey projects</a></li><li><a href="/en/projects/">Saunas &amp; salt rooms</a></li><li><a href="/en/projects/">Hot tubs &amp; fitness</a></li>
         </ul></div>
-        <div class="footer-col footer-contact"><h4>Contact</h4><ul>
+        <div class="footer-col footer-contact"><h3>Contact</h3><ul>
           <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Italy · by appointment</li>
         </ul></div>
       </div>
@@ -69,7 +70,7 @@ function head({ title, desc, path, itAlt }) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.classList.add('js');</script>
   <title>${title}</title>
   <meta name="description" content="${desc}">
@@ -218,10 +219,18 @@ const fLabel = { all:"All", ...catLabel };
 const byCat = {}; man.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
 const cats = Object.keys(byCat); let ordered = [], i = 0, added = true;
 while (added) { added = false; for (const c of cats) { if (byCat[c][i]) { ordered.push(byCat[c][i]); added = true; } } i++; }
-const maxW = m => Math.max.apply(null, m.widths), minW = m => Math.min.apply(null, m.widths);
-const gItems = ordered.map(m => { const tw = minW(m), th = Math.round(tw * m.h / m.w);
-  return `        <figure class="gallery-item" data-cat="${m.cat}" data-full="/assets/img/${m.slug}-${maxW(m)}.jpg">
-          <picture><source type="image/webp" srcset="/assets/img/${m.slug}-${tw}.webp"><img src="/assets/img/${m.slug}-${tw}.jpg" width="${tw}" height="${th}" loading="lazy" decoding="async" alt="${m.alt_en.replace(/"/g,'&quot;')}"></picture>
+const THUMB_SIZES = "(max-width:520px) 46vw, (max-width:860px) 45vw, 30vw";
+const gItems = ordered.map(m => {
+  const ws = [...m.widths].sort((a, b) => a - b);
+  const [w1, w2] = ws;
+  const mids = ws.filter(w => w >= 1000);
+  const fullM = mids.length ? Math.min(...mids) : ws[ws.length - 1];
+  const full = ws[ws.length - 1];
+  const th = Math.round(w2 * m.h / m.w);
+  const webpS = `/assets/img/${m.slug}-${w1}.webp ${w1}w, /assets/img/${m.slug}-${w2}.webp ${w2}w`;
+  const jpgS = `/assets/img/${m.slug}-${w1}.jpg ${w1}w, /assets/img/${m.slug}-${w2}.jpg ${w2}w`;
+  return `        <figure class="gallery-item" data-cat="${m.cat}" data-full="/assets/img/${m.slug}-${full}.jpg" data-full-m="/assets/img/${m.slug}-${fullM}.jpg">
+          <picture><source type="image/webp" srcset="${webpS}" sizes="${THUMB_SIZES}"><img src="/assets/img/${m.slug}-${w2}.jpg" srcset="${jpgS}" sizes="${THUMB_SIZES}" width="${w2}" height="${th}" loading="lazy" decoding="async" alt="${m.alt_en.replace(/"/g,'&quot;')}"></picture>
           <figcaption>${m.alt_en}</figcaption></figure>`; }).join("\n");
 const gFilters = fOrder.map((f, idx) => `        <button class="filter${idx===0?' is-active':''}" data-filter="${f}" aria-pressed="${idx===0}">${fLabel[f]}</button>`).join("\n");
 write("en/projects/index.html", `${head({ title: "Projects & installations | Glamping bubbles, saunas & hot tubs — MBC SRL", desc: "MBC SRL projects: glamping bubbles, hot tubs, outdoor saunas and salt rooms. Browse the gallery of our wellness installations.", path: "/en/projects/", itAlt: "/progetti/" })}

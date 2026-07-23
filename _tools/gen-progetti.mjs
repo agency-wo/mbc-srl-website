@@ -15,15 +15,19 @@ const byCat = {}; man.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
 const cats = Object.keys(byCat); let ordered = []; let i = 0; let added = true;
 while (added) { added = false; for (const c of cats) { if (byCat[c][i]) { ordered.push(byCat[c][i]); added = true; } } i++; }
 
-const maxW = m => Math.max.apply(null, m.widths);
-const minW = m => Math.min.apply(null, m.widths);
+const THUMB_SIZES = "(max-width:520px) 46vw, (max-width:860px) 45vw, 30vw";
 
 const items = ordered.map(m => {
-  const full = `/assets/img/${m.slug}-${maxW(m)}.jpg`;
-  const tw = minW(m);                       // smallest available width for the thumb
-  const th = Math.round(tw * m.h / m.w);
-  return `        <figure class="gallery-item" data-cat="${m.cat}" data-full="${full}">
-          <picture><source type="image/webp" srcset="/assets/img/${m.slug}-${tw}.webp"><img src="/assets/img/${m.slug}-${tw}.jpg" width="${tw}" height="${th}" loading="lazy" decoding="async" alt="${m.alt_it.replace(/"/g,'&quot;')}"></picture>
+  const ws = [...m.widths].sort((a, b) => a - b);
+  const [w1, w2] = ws;                                  // two smallest (e.g. 360, 640)
+  const mids = ws.filter(w => w >= 1000);
+  const fullM = mids.length ? Math.min(...mids) : ws[ws.length - 1];  // mobile lightbox size
+  const full = ws[ws.length - 1];                                     // desktop lightbox size
+  const th = Math.round(w2 * m.h / m.w);
+  const webp = `/assets/img/${m.slug}-${w1}.webp ${w1}w, /assets/img/${m.slug}-${w2}.webp ${w2}w`;
+  const jpg  = `/assets/img/${m.slug}-${w1}.jpg ${w1}w, /assets/img/${m.slug}-${w2}.jpg ${w2}w`;
+  return `        <figure class="gallery-item" data-cat="${m.cat}" data-full="/assets/img/${m.slug}-${full}.jpg" data-full-m="/assets/img/${m.slug}-${fullM}.jpg">
+          <picture><source type="image/webp" srcset="${webp}" sizes="${THUMB_SIZES}"><img src="/assets/img/${m.slug}-${w2}.jpg" srcset="${jpg}" sizes="${THUMB_SIZES}" width="${w2}" height="${th}" loading="lazy" decoding="async" alt="${m.alt_it.replace(/"/g,'&quot;')}"></picture>
           <figcaption>${m.alt_it}</figcaption>
         </figure>`;
 }).join("\n");
@@ -49,6 +53,7 @@ const header = `  <header class="site-header">
           <li><a href="/chi-siamo/">Chi siamo</a></li>
           <li><a href="/progetti/" aria-current="page">Progetti</a></li>
           <li><a href="/contatti/">Contatti</a></li>
+          <li class="nav-cta-item"><a class="btn" href="/contatti/">Richiedi un preventivo</a></li>
         </ul>
         <div class="nav-side">
           <span class="lang" aria-label="Selezione lingua">
@@ -80,7 +85,7 @@ const footer = `  <footer class="site-footer">
           </div>
         </div>
         <div class="footer-col">
-          <h4>Naviga</h4>
+          <h3>Naviga</h3>
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/chi-siamo/">Chi siamo</a></li>
@@ -89,7 +94,7 @@ const footer = `  <footer class="site-footer">
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Soluzioni</h4>
+          <h3>Soluzioni</h3>
           <ul>
             <li><a href="/progetti/">Bolle per glamping</a></li>
             <li><a href="/progetti/">Chiavi in mano</a></li>
@@ -98,7 +103,7 @@ const footer = `  <footer class="site-footer">
           </ul>
         </div>
         <div class="footer-col footer-contact">
-          <h4>Contatti</h4>
+          <h3>Contatti</h3>
           <ul>
             <li><a href="tel:+393338641752">+39 333 864 1752</a></li>
             <li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li>
@@ -117,7 +122,7 @@ const html = `<!doctype html>
 <html lang="it">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.classList.add('js');</script>
   <title>Progetti e realizzazioni glamping | Bolle, saune e idromassaggio — MBC SRL</title>
   <meta name="description" content="Le realizzazioni MBC SRL: bolle per glamping, vasche idromassaggio, saune da esterno e grotte di sale. Sfoglia la galleria dei nostri progetti benessere.">

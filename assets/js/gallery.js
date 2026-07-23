@@ -28,18 +28,27 @@
 
   function visible() { return items.filter(function (f) { return !f.hidden; }); }
 
+  // pick the mid-size rendition on small screens, full-size on large
+  function fullSrc(fig) {
+    if (window.innerWidth < 700) {
+      var m = fig.getAttribute("data-full-m");
+      if (m) return m;
+    }
+    return fig.getAttribute("data-full");
+  }
+
   function show(i) {
     var list = visible();
     if (!list.length) return;
     current = (i + list.length) % list.length;
     var fig = list[current];
-    lbImg.src = fig.getAttribute("data-full");
+    lbImg.src = fullSrc(fig);
     lbImg.alt = fig.querySelector("img").alt;
     lbCap.textContent = fig.querySelector("img").alt;
     // preload neighbours
     [current + 1, current - 1].forEach(function (n) {
       var f = list[(n + list.length) % list.length];
-      if (f) { var im = new Image(); im.src = f.getAttribute("data-full"); }
+      if (f) { var im = new Image(); im.src = fullSrc(f); }
     });
   }
   function open(fig) {
