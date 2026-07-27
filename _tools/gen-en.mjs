@@ -14,6 +14,28 @@ const nav = [
 ];
 const LOGO = `<svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="42" class="lm-ring"/><path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" class="lm-fill"/><rect x="47" y="60" width="3.4" height="22" class="lm-fill"/><rect x="69.6" y="60" width="3.4" height="22" class="lm-fill"/></svg>`;
 
+/* ---- WhatsApp ---- */
+const WA_NUMBER = "393338641752";
+const WA_GLYPH = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/></svg>`;
+const waHref = msg => `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent(msg);
+const WA_MSG = {
+  home: "Hello, I'm writing from your website. I'd like information and a quote for your glamping bubbles.",
+  about: "Hello, I'm writing from your website. I'd like information and a quote for a turnkey wellness project.",
+  projects: "Hello, I'm writing from your website. I'd like information about one of the projects I saw in your gallery.",
+  legal: "Hello, I'm writing from your website. I'd like information about your wellness solutions.",
+};
+// `src` = data-wa-source key; pass null to omit the button entirely (contact page)
+function waFab(src) {
+  if (!src) return "";
+  return `  <!-- WhatsApp floating button -->
+  <a class="wa-fab" href="${waHref(WA_MSG[src] || WA_MSG.legal)}" target="_blank" rel="noopener noreferrer" data-wa-source="en-${src}">
+    ${WA_GLYPH}
+    <span class="wa-fab__label">Message us on WhatsApp &middot; +39 333 864 1752</span>
+    <span class="visually-hidden"> (opens in a new window)</span>
+  </a>
+`;
+}
+
 function header(cur, opts = {}) {
   const itHref = opts.itHref || nav.find(n => n.key === cur)?.it || "/";
   const enHref = opts.enHref || nav.find(n => n.key === cur)?.en || "/en/";
@@ -55,7 +77,7 @@ const footer = `  <footer class="site-footer">
           <li><a href="/en/projects/">Glamping bubbles</a></li><li><a href="/en/projects/">Turnkey projects</a></li><li><a href="/en/projects/">Saunas &amp; salt rooms</a></li><li><a href="/en/projects/">Hot tubs &amp; fitness</a></li>
         </ul></div>
         <div class="footer-col footer-contact"><h3>Contact</h3><ul>
-          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Italy · by appointment</li>
+          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Italy · by appointment</li>
         </ul></div>
       </div>
       <div class="footer-bottom">
@@ -168,6 +190,7 @@ ${header("home")}
       </div></section>
   </main>
 ${footer}
+${waFab("home")}
   <script src="/assets/js/main.js" defer></script>
 </body></html>`);
 
@@ -209,6 +232,7 @@ ${header("about")}
         <div class="btn-row reveal" data-delay="2" style="justify-content:center"><a class="btn btn--primary" href="/en/contact/">Contact us</a><a class="btn btn--light" href="/en/projects/">See the projects</a></div></div></section>
   </main>
 ${footer}
+${waFab("about")}
   <script src="/assets/js/main.js" defer></script>
 </body></html>`);
 
@@ -262,6 +286,7 @@ ${gItems}
     <p class="lightbox__cap"></p>
   </div>
 ${footer}
+${waFab("projects")}
   <script src="/assets/js/main.js" defer></script>
   <script src="/assets/js/gallery.js" defer></script>
 </body></html>`);
@@ -300,14 +325,15 @@ ${header("contact")}
         </form>
       </div>
       <aside class="contact-card">
+        <div class="info-item"><span class="ico">${WA_GLYPH}</span><div><h3>WhatsApp</h3><a href="${waHref(WA_MSG.legal)}" target="_blank" rel="noopener noreferrer" data-wa-source="en-contact-card">Message us on WhatsApp<span class="visually-hidden"> (opens in a new window)</span></a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 11.5a16 16 0 0 0 6 6l1-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span><div><h3>Phone</h3><a href="tel:+393338641752">+39 333 864 1752</a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><h3>Email</h3><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a> <span class="badge-soon">to be confirmed</span></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Where we are</h3><p>Italy · work across the country, by appointment</p></div></div>
-        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div><h3>WhatsApp</h3><p>Coming <span class="badge-soon">soon</span></p></div></div>
       </aside>
     </div></div></section>
   </main>
 ${footer}
+${waFab(null)}
   <script src="/assets/js/main.js" defer></script>
   <script src="/assets/js/contact.js" defer></script>
 </body></html>`);
@@ -324,6 +350,7 @@ ${header("", { solid: true, itHref: itAlt, enHref: "/en/" + pathSeg + "/" })}
     <section class="section"><div class="container prose">${bodyHtml}</div></section>
   </main>
 ${footer}
+${waFab("legal")}
   <script src="/assets/js/main.js" defer></script>
 </body></html>`;
 }
@@ -332,12 +359,14 @@ write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
    <h2>1. Data controller</h2><p>The data controller is <strong>MBC SRL</strong> — VAT 00000000000, phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
    <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. The site is static and does not store form data on its servers.</p>
    <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li></ul>
-   <h2>4. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
-   <h2>5. Cookies</h2><p>See our <a href="/en/cookie/">Cookie Policy</a>.</p>`));
+   <h2>4. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>
+   <h2>5. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
+   <h2>6. Cookies</h2><p>See our <a href="/en/cookie/">Cookie Policy</a>.</p>`));
 write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
   `<p class="foot-note">Last updated: 23 July 2026.</p>
    <h2>1. About cookies</h2><p>Cookies are small text files that sites store on your device to make pages work or to collect usage information.</p>
-   <h2>2. Cookies used by this site</h2><p>This site is static and, in its current configuration, <strong>installs no profiling or third-party cookies</strong>. Fonts are self-hosted and no calls are made to external services.</p>
+   <h2>2. Cookies used by this site</h2><p>This site is static and, in its current configuration, <strong>installs no profiling or third-party cookies</strong>. Fonts are self-hosted and no scripts, fonts or content are loaded from external services.</p>
+   <p>The WhatsApp button shown on the pages is a plain link: no request is made to WhatsApp until you deliberately open it.</p>
    <h2>3. Future services</h2><p>If tools such as maps, video or analytics are added, this policy will be updated and a consent banner shown as required by law.</p>
    <h2>4. Contact</h2><p>Questions? Write to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>. See also our <a href="/en/privacy/">Privacy Policy</a>.</p>`));
 

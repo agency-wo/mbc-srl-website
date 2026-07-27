@@ -94,9 +94,13 @@ Per riceverli via email automaticamente (gratis) con **Formspree**:
    `action="https://formspree.io/f/xxxx" method="POST"`.
 3. In `assets/js/contact.js` rimuovi il ramo `mailto:` (invio nativo del form) mantenendo la validazione.
 
-## Attivare WhatsApp (in futuro)
-Nella card contatti c'è già il blocco "WhatsApp — prossimamente": sostituiscilo con un link
-`https://wa.me/393338641752`.
+## WhatsApp
+Il pulsante flottante WhatsApp è **attivo** su tutte le pagine tranne `/contatti/` e `/en/contact/`
+(dove il modulo è già la call to action). Compare solo quando nessun altro CTA è visibile a schermo
+— logica in `assets/js/main.js` (IntersectionObserver su `.hero__btns`, `.cta-band`, `.site-footer`).
+Numero e messaggi precompilati si cambiano in un punto solo per lingua:
+`_tools/gen-progetti.mjs` (IT generato), `_tools/gen-en.mjs` (`WA_NUMBER` / `WA_MSG`, EN) e
+nelle 4 pagine IT scritte a mano (`index`, `chi-siamo`, `privacy`, `cookie`).
 
 ---
 

@@ -67,6 +67,26 @@
     revealCheck();
   }
 
+  /* WhatsApp FAB — visible only when no in-layout CTA is on screen.
+     Suppressors: the hero buttons (home only), the CTA band, and the footer.
+     Deliberately NOT tied to scroll position: the legal pages register no
+     scroll listener at all, and a scroll threshold is unreachable on short pages. */
+  var fab = document.querySelector(".wa-fab");
+  if (fab) {
+    var blockers = document.querySelectorAll(".hero__btns, .cta-band, .site-footer");
+    if (!("IntersectionObserver" in window) || !blockers.length) {
+      fab.classList.add("is-in");
+    } else {
+      var waIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.target.__waHit = e.isIntersecting; });
+        var blocked = false;
+        blockers.forEach(function (el) { if (el.__waHit) blocked = true; });
+        fab.classList.toggle("is-in", !blocked);
+      }, { threshold: 0 });
+      blockers.forEach(function (el) { waIo.observe(el); });
+    }
+  }
+
   /* Footer year */
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();

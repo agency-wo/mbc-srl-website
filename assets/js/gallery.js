@@ -57,12 +57,14 @@
     show(list.indexOf(fig));
     lb.classList.add("is-open");
     lb.setAttribute("aria-hidden", "false");
+    document.body.classList.add("lb-open");
     document.body.style.overflow = "hidden";
     lb.querySelector(".lb-close").focus();
   }
   function close() {
     lb.classList.remove("is-open");
     lb.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("lb-open");
     document.body.style.overflow = "";
     if (lastFocus) lastFocus.focus();
   }

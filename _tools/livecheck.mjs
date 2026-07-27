@@ -12,6 +12,17 @@ for (const path of pages) for (const w of [1440, 390]) {
   await p.goto(B + path, { waitUntil: "networkidle0", timeout: 90000 });
   const over = await p.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1);
   if (over) problems.push(`[${w}] ${path} OVERFLOW`);
+  // WhatsApp FAB: present on every route except the two contact pages.
+  // A position:fixed element can never trip the overflow check above, so assert it explicitly.
+  const wantsFab = !/contatti|\/contact\//.test(path);
+  const fab = await p.evaluate(() => {
+    const el = document.querySelector("a.wa-fab");
+    if (!el) return "MISSING";
+    if (el.parentElement !== document.body) return "NOT-BODY-CHILD";
+    return el.getAttribute("href").includes("wa.me/393338641752") ? "ok" : "BADHREF";
+  });
+  if (wantsFab && fab !== "ok") problems.push(`[${w}] ${path} WAFAB ${fab}`);
+  if (!wantsFab && fab !== "MISSING") problems.push(`[${w}] ${path} WAFAB unexpected on contact page`);
   await p.close();
 }
 console.log(problems.length ? "LIVE PROBLEMS:\n" + problems.join("\n") : "LIVE sweep: all 12 routes clean at 1440+390");
