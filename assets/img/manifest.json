@@ -431,6 +431,76 @@
     "alt_en": "Sauna interior with a salt block and porthole"
   },
   {
+    "slug": "produzione-artigiani-misura",
+    "cat": "produzione",
+    "hero": false,
+    "widths": [
+      1000,
+      640,
+      360
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Due artigiani prendono le misure di una sauna a botte in laboratorio",
+    "alt_en": "Two craftsmen measuring a barrel sauna in the workshop"
+  },
+  {
+    "slug": "produzione-telaio-acciaio",
+    "cat": "produzione",
+    "hero": false,
+    "widths": [
+      1000,
+      640,
+      360
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Cerchiature in acciaio della sauna a botte prima del rivestimento in legno",
+    "alt_en": "Steel ring frames of a barrel sauna before the timber cladding"
+  },
+  {
+    "slug": "produzione-panche-interne",
+    "cat": "produzione",
+    "hero": false,
+    "widths": [
+      1000,
+      640,
+      360
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Sauna a botte in costruzione con cerchiature in acciaio e panca già montata",
+    "alt_en": "Barrel sauna under construction with steel rings and a fitted bench"
+  },
+  {
+    "slug": "produzione-scocca-montaggio",
+    "cat": "produzione",
+    "hero": false,
+    "widths": [
+      1000,
+      640,
+      360
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Scocca della sauna a botte con telaio della porta e panche interne",
+    "alt_en": "Barrel sauna shell with door frame and interior benches"
+  },
+  {
+    "slug": "produzione-sauna-finita-porta",
+    "cat": "produzione",
+    "hero": false,
+    "widths": [
+      1000,
+      640,
+      360
+    ],
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Sauna a botte completata con porta a vetro, in laboratorio",
+    "alt_en": "Completed barrel sauna with glass door, in the workshop"
+  },
+  {
     "slug": "attrezzature-fitness-pergola",
     "cat": "fitness",
     "hero": false,

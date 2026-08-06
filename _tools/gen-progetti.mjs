@@ -18,14 +18,18 @@ const waFab = `  <!-- WhatsApp floating button -->
   </a>
 `;
 
-const catLabel = { bolle:"Bolle", interni:"Interni", idromassaggio:"Idromassaggio", sauna:"Saune", benessere:"Grotte di sale", fitness:"Fitness" };
-const filterOrder = ["all","bolle","interni","idromassaggio","sauna","benessere","fitness"];
+const catLabel = { bolle:"Bolle", interni:"Interni", idromassaggio:"Idromassaggio", sauna:"Saune", benessere:"Grotte di sale", produzione:"Produzione", fitness:"Fitness" };
+const filterOrder = ["all","bolle","interni","idromassaggio","sauna","benessere","produzione","fitness"];
 const filterLabel = { all:"Tutti", ...catLabel };
 
-// round-robin interleave by category for a lively default order
+// round-robin interleave by category for a lively default order.
+// `produzione` is appended AFTER the interleave: workshop shots are proof, not portfolio,
+// and interleaved they would land in the gallery's first visible row.
 const byCat = {}; man.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
-const cats = Object.keys(byCat); let ordered = []; let i = 0; let added = true;
+const cats = Object.keys(byCat).filter(c => c !== "produzione");
+let ordered = []; let i = 0; let added = true;
 while (added) { added = false; for (const c of cats) { if (byCat[c][i]) { ordered.push(byCat[c][i]); added = true; } } i++; }
+ordered = ordered.concat(byCat.produzione || []);
 
 const THUMB_SIZES = "(max-width:520px) 46vw, (max-width:860px) 45vw, 30vw";
 
@@ -63,6 +67,7 @@ const header = `  <header class="site-header">
         <ul class="nav-menu" id="nav-menu">
           <li><a href="/">Home</a></li>
           <li><a href="/chi-siamo/">Chi siamo</a></li>
+            <li><a href="/soluzioni/">Soluzioni</a></li>
           <li><a href="/progetti/" aria-current="page">Progetti</a></li>
           <li><a href="/contatti/">Contatti</a></li>
           <li class="nav-cta-item"><a class="btn" href="/contatti/">Richiedi un preventivo</a></li>
@@ -101,6 +106,7 @@ const footer = `  <footer class="site-footer">
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/chi-siamo/">Chi siamo</a></li>
+            <li><a href="/soluzioni/">Soluzioni</a></li>
             <li><a href="/progetti/">Progetti</a></li>
             <li><a href="/contatti/">Contatti</a></li>
           </ul>
@@ -108,10 +114,10 @@ const footer = `  <footer class="site-footer">
         <div class="footer-col">
           <h3>Soluzioni</h3>
           <ul>
-            <li><a href="/progetti/">Bolle per glamping</a></li>
-            <li><a href="/progetti/">Chiavi in mano</a></li>
-            <li><a href="/progetti/">Saune &amp; grotte di sale</a></li>
-            <li><a href="/progetti/">Idromassaggio &amp; fitness</a></li>
+            <li><a href="/soluzioni/#bolle">Bolle per glamping</a></li>
+            <li><a href="/soluzioni/#chiavi-in-mano">Chiavi in mano</a></li>
+            <li><a href="/soluzioni/#sauna">Saune &amp; grotte di sale</a></li>
+            <li><a href="/soluzioni/#idromassaggio">Idromassaggio &amp; fitness</a></li>
           </ul>
         </div>
         <div class="footer-col footer-contact">

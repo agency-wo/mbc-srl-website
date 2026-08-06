@@ -17,8 +17,8 @@ python -m http.server 8099
 
 ## Struttura
 ```
-index.html            Home (IT)          /chi-siamo/  /progetti/  /contatti/
-/en/…                 mirror inglese     /en/about/  /en/projects/  /en/contact/
+index.html            Home (IT)   /chi-siamo/  /soluzioni/  /progetti/  /contatti/
+/en/…                 mirror inglese  /en/about/  /en/solutions/  /en/projects/  /en/contact/
 /privacy/  /cookie/   pagine legali (IT) + /en/privacy/ /en/cookie/
 /assets/css/styles.css     tutto lo stile
 /assets/js/            main.js (header, menu, animazioni) · gallery.js (galleria+lightbox) · contact.js (form)
@@ -37,7 +37,7 @@ _tools/                script di generazione/QA (nel repo; node_modules e output
   ```bash
   cd _tools
   node process-images.mjs   # ottimizza le nuove foto in /assets/img (+ aggiorna manifest)
-  node gen-progetti.mjs      # rigenera /progetti/index.html
+  node gen-progetti.mjs      # rigenera /progetti/index.html (categorie chip: vedi catLabel/filterOrder)
   node gen-en.mjs            # rigenera le pagine /en/ (incl. /en/projects/)
   ```
   Per aggiungere foto: mettile in `_source/photos/`, poi aggiungi una voce nell'array `M`
@@ -100,7 +100,7 @@ Il pulsante flottante WhatsApp è **attivo** su tutte le pagine tranne `/contatt
 — logica in `assets/js/main.js` (IntersectionObserver su `.hero__btns`, `.cta-band`, `.site-footer`).
 Numero e messaggi precompilati si cambiano in un punto solo per lingua:
 `_tools/gen-progetti.mjs` (IT generato), `_tools/gen-en.mjs` (`WA_NUMBER` / `WA_MSG`, EN) e
-nelle 4 pagine IT scritte a mano (`index`, `chi-siamo`, `privacy`, `cookie`).
+nelle 5 pagine IT scritte a mano (`index`, `chi-siamo`, `soluzioni`, `privacy`, `cookie`).
 
 ---
 

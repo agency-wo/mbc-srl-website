@@ -16,7 +16,8 @@ mkdirSync(OUT, { recursive: true });
 const HERO_W = [2400, 1800, 1200, 800, 360];
 const STD_W = [1600, 1000, 640, 360];
 
-// Curated set. cat: bolle | interni | idromassaggio | sauna | benessere | fitness
+// Curated set. cat: bolle | interni | idromassaggio | sauna | benessere | produzione | fitness
+// Optional per-item `q` overrides the default encode quality (used for already-recompressed sources).
 const M = [
   // ---- BOLLE (glamping domes) ----
   { slug: "bolla-glamping-luce-notturna", src: "IMG_8387.JPG.jpeg", cat: "bolle", hero: true,
@@ -83,6 +84,17 @@ const M = [
     it: "Interno della grotta di sale nella botte in legno", en: "Salt-room interior inside the wooden barrel" },
   { slug: "sauna-sale-interni", src: "DSC09405.JPG.jpeg", cat: "benessere",
     it: "Interno della sauna con blocco di sale e oblò", en: "Sauna interior with a salt block and porthole" },
+  // ---- PRODUZIONE (own workshop: barrel-sauna build) ----
+  { slug: "produzione-artigiani-misura", src: "officina-01.jpeg", cat: "produzione", q: { webp: 80, jpeg: 86 },
+    it: "Due artigiani prendono le misure di una sauna a botte in laboratorio", en: "Two craftsmen measuring a barrel sauna in the workshop" },
+  { slug: "produzione-telaio-acciaio", src: "officina-02.jpeg", cat: "produzione", q: { webp: 80, jpeg: 86 },
+    it: "Cerchiature in acciaio della sauna a botte prima del rivestimento in legno", en: "Steel ring frames of a barrel sauna before the timber cladding" },
+  { slug: "produzione-panche-interne", src: "officina-03.jpeg", cat: "produzione", q: { webp: 80, jpeg: 86 },
+    it: "Sauna a botte in costruzione con cerchiature in acciaio e panca già montata", en: "Barrel sauna under construction with steel rings and a fitted bench" },
+  { slug: "produzione-scocca-montaggio", src: "officina-04.jpeg", cat: "produzione", q: { webp: 80, jpeg: 86 },
+    it: "Scocca della sauna a botte con telaio della porta e panche interne", en: "Barrel sauna shell with door frame and interior benches" },
+  { slug: "produzione-sauna-finita-porta", src: "officina-05.jpeg", cat: "produzione", q: { webp: 80, jpeg: 86 },
+    it: "Sauna a botte completata con porta a vetro, in laboratorio", en: "Completed barrel sauna with glass door, in the workshop" },
   // ---- FITNESS (gym equipment) ----
   { slug: "attrezzature-fitness-pergola", src: "WhatsApp Image 2026-07-22 at 19.00.35.jpeg", cat: "fitness",
     it: "Tapis roulant professionale su pedana con pergola e montagne", en: "Professional treadmill on a pergola deck with mountains" },
@@ -102,8 +114,8 @@ async function run() {
     if (usable.length === 0) usable.push(srcW);
     for (const w of usable) {
       const pipe = sharp(join(SRC, item.src), { failOn: "none" }).rotate().resize({ width: w, withoutEnlargement: true });
-      const info = await pipe.clone().webp({ quality: 72 }).toFile(join(OUT, `${item.slug}-${w}.webp`));
-      await pipe.clone().jpeg({ quality: 80, mozjpeg: true }).toFile(join(OUT, `${item.slug}-${w}.jpg`));
+      const info = await pipe.clone().webp({ quality: item.q?.webp ?? 72 }).toFile(join(OUT, `${item.slug}-${w}.webp`));
+      await pipe.clone().jpeg({ quality: item.q?.jpeg ?? 80, mozjpeg: true }).toFile(join(OUT, `${item.slug}-${w}.jpg`));
       if (w === usable[0]) { natW = info.width; natH = info.height; }
     }
     manifest.push({ slug: item.slug, cat: item.cat, hero: !!item.hero, widths: usable,

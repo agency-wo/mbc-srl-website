@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-const pages = ["/","/chi-siamo/","/progetti/","/contatti/","/privacy/","/cookie/"];
+const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/privacy/","/cookie/"];
 const b = await puppeteer.launch({ headless:"new", args:["--no-sandbox"] });
 let fails = [];
 for (const path of pages) {

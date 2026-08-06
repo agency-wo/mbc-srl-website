@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 const B = "https://mbc-srl-preview.pages.dev";
-const pages = ["/","/chi-siamo/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
+const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
 const b = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
 let problems = [];
 for (const path of pages) for (const w of [1440, 390]) {
@@ -25,7 +25,7 @@ for (const path of pages) for (const w of [1440, 390]) {
   if (!wantsFab && fab !== "MISSING") problems.push(`[${w}] ${path} WAFAB unexpected on contact page`);
   await p.close();
 }
-console.log(problems.length ? "LIVE PROBLEMS:\n" + problems.join("\n") : "LIVE sweep: all 12 routes clean at 1440+390");
+console.log(problems.length ? "LIVE PROBLEMS:\n" + problems.join("\n") : "LIVE sweep: all 14 routes clean at 1440+390");
 // screenshots
 let p = await b.newPage();
 await p.setViewport({ width: 1440, height: 900 });

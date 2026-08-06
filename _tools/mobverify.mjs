@@ -40,9 +40,9 @@ out.push(`desktop: nav CTA hidden: ${deskHidden} | lightbox full-size: ${deskLb}
 await p.close();
 
 /* 4) sweep 12 pages at 320 + 768 (overflow/console/404) */
-const pages = ["/","/chi-siamo/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
+const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
 let problems = [];
-for (const path of pages) for (const w of [320, 768]) {
+for (const path of pages) for (const w of [320, 768, 900, 844]) {
   const pg = await b.newPage(); await pg.setCacheEnabled(false);
   pg.on("pageerror", e => problems.push(`[${w}] ${path} JSERR ${e.message}`));
   pg.on("console", m => { if (m.type() === "error") problems.push(`[${w}] ${path} CONERR ${m.text()}`); });
@@ -53,7 +53,7 @@ for (const path of pages) for (const w of [320, 768]) {
   if (over) problems.push(`[${w}] ${path} OVERFLOW`);
   await pg.close();
 }
-out.push(problems.length ? "SWEEP PROBLEMS:\n" + problems.join("\n") : "sweep 12 pages @320+768: clean");
+out.push(problems.length ? "SWEEP PROBLEMS:\n" + problems.join("\n") : "sweep 14 pages @320+768+900x700+844x390: clean");
 
 console.log(out.join("\n"));
 await b.close();

@@ -56,7 +56,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 1rem); }
-:target, #main { scroll-margin-top: calc(var(--header-h) + 1rem); }
+#main { scroll-margin-top: calc(var(--header-h) + 1rem); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   font-family: var(--sans);
@@ -337,7 +337,9 @@ p { max-width: 68ch; }
 }
 @media (max-width: 860px) {
   :root { --header-h: 66px; }
-  .nav-menu { position: fixed; inset: 0; flex-direction: column; justify-content: center; gap: 1.6rem; background: var(--green); padding: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(100%); transition: transform .4s var(--ease); z-index: 90; }
+  /* `safe center` keeps the tail reachable when the menu overflows (5 items + CTA on a
+     landscape phone); overflow-y is the fallback for browsers that drop `safe`. */
+  .nav-menu { position: fixed; inset: 0; flex-direction: column; justify-content: safe center; gap: 1.6rem; background: var(--green); padding: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(100%); transition: transform .4s var(--ease); z-index: 90; overflow-y: auto; overscroll-behavior: contain; }
   .nav-menu a { color: #fff !important; font-family: var(--serif); font-size: 1.7rem; padding: .3rem .6rem; }
   .nav-menu a::after { display: none; }
   /* CTA inside the overlay menu (hidden on desktop) */
@@ -383,6 +385,20 @@ p { max-width: 68ch; }
   .footer-grid > .footer-col:nth-child(2) { grid-area: nav; }
   .footer-grid > .footer-col:nth-child(3) { grid-area: sol; }
   .footer-contact { grid-area: contact; }
+}
+
+/* Nav must survive 5 items: no wrapping inside the 76px header, and the overlay
+   menu must stay usable on a landscape phone (measured failures at 861px and 844x390). */
+.nav-menu a { white-space: nowrap; }
+@media (min-width: 861px) and (max-width: 1080px) { .nav-menu { gap: 1.15rem; } .nav { gap: 1.4rem; } }
+@media (max-width: 860px) and (max-height: 520px) {
+  .nav-menu { gap: 1rem; }
+  .nav-menu a { font-size: 1.35rem; }
+}
+@media (max-width: 860px) and (max-height: 400px) {
+  .nav-menu { gap: .6rem; padding-block: 1rem; }
+  .nav-menu a { font-size: 1.15rem; }
+  .nav-cta-item .btn { padding: .7em 1.6em !important; font-size: .95rem !important; }
 }
 
 /* ---------- Extras ---------- */
@@ -449,6 +465,68 @@ textarea { min-height: 140px; resize: vertical; }
 .value .vico svg { width: 1.2rem; height: 1.2rem; }
 .value p { font-size: .96rem; color: #4c554c; }
 @media (max-width: 860px) { .values { grid-template-columns: 1fr; gap: 1.6rem; } }
+
+/* ---------- Soluzioni: anchor jump row ---------- */
+.jump-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.6rem; }
+.jump { display: inline-flex; align-items: center; border: 1.5px solid var(--line); color: var(--green);
+  padding: .55em 1.15em; border-radius: 999px; font-weight: 600; font-size: .92rem;
+  transition: border-color .25s var(--ease), color .25s var(--ease); }
+.jump:hover { border-color: var(--terracotta); color: var(--terracotta-text); text-decoration: none; }
+@media (max-width: 860px) {
+  .jump-row { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    scroll-snap-type: x proximity; padding-bottom: .4rem;
+    margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .jump-row::-webkit-scrollbar { display: none; }
+  .jump { flex: none; scroll-snap-align: start; padding: .65em 1.25em; }
+}
+
+/* ---------- Feature split + stacked media (bolle) ---------- */
+.split--feature { grid-template-columns: 6fr 5fr; }
+.media-stack { position: relative; }
+.media-stack > picture img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);
+  aspect-ratio: 4/5; object-fit: cover; }
+/* NB: the inset must be a real element — picture{display:contents} cannot be positioned.
+   The media column sits LEFT, so this negative offset overlaps the column gap, never the viewport edge. */
+.media-stack__inset { position: absolute; right: -6%; bottom: -8%; width: 44%; }
+.media-stack__inset img { width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border: 6px solid var(--cream); border-radius: var(--radius-s); box-shadow: var(--shadow); }
+.section--tint .media-stack__inset img { border-color: var(--cream-2); }
+@media (max-width: 860px) {
+  .split--feature { grid-template-columns: 1fr; }
+  .media-stack > picture img { aspect-ratio: 4/3; max-height: 62vh; }
+  .media-stack__inset { position: static; width: 58%; margin: -2.6rem 0 0 auto; }
+}
+
+/* ---------- Capability band (chiavi in mano) — extends .cta-band ---------- */
+.cta-band--cap { text-align: left; }
+.cta-band--cap p { margin-inline: 0; }
+.cta-band--cap .section-head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.6rem, 3.5vw, 3rem); }
+.cap .cico { width: 2.9rem; height: 2.9rem; border-radius: 999px; background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.22); display: grid; place-items: center; color: #dfa781; }
+.cap .cico svg { width: 1.35rem; height: 1.35rem; }
+.cap h3 { color: #fff; font-size: 1.18rem; margin: .9rem 0 .45rem; }
+.cap p { color: rgba(255,255,255,.88); font-size: .97rem; margin: 0; max-width: 34ch; }
+.cap-foot { margin-top: clamp(2.2rem, 4vw, 3.2rem); padding-top: 1.8rem;
+  border-top: 1px solid rgba(255,255,255,.18); display: flex; flex-wrap: wrap; gap: 1.2rem;
+  align-items: center; justify-content: space-between; }
+.cap-foot p { font-family: var(--serif); font-size: clamp(1.15rem, 1.8vw, 1.5rem); color: #fff;
+  line-height: 1.25; max-width: 38ch; margin: 0; }
+@media (max-width: 860px) { .cap-grid { grid-template-columns: 1fr; gap: 1.8rem; } }
+
+/* ---------- Proof strip (produzione artigianale) ---------- */
+.proof-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(.6rem, 1.2vw, 1rem); }
+.proof-strip figure { margin: 0; border-radius: var(--radius-s); overflow: hidden; background: var(--cream-3); }
+.proof-strip img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: saturate(.92) contrast(1.04); }
+@media (max-width: 1024px) {
+  .proof-strip { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; scrollbar-width: none; gap: .6rem; padding-bottom: .4rem;
+    margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .proof-strip::-webkit-scrollbar { display: none; }
+  .proof-strip figure { flex: 0 0 min(62%, 280px); scroll-snap-align: start; }
+}
+/* workshop shots carry the same grade in the gallery as in the proof strip */
+.masonry .gallery-item[data-cat="produzione"] img { filter: saturate(.92) contrast(1.04); }
 
 /* ============================================================
    WhatsApp floating button
