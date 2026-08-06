@@ -1,4 +1,4 @@
-/* MBC SRL — global interactions: header, mobile nav, scroll-reveal */
+/* MBC SRL - global interactions: header, mobile nav, scroll-reveal */
 (function () {
   "use strict";
   var header = document.querySelector(".site-header");
@@ -39,20 +39,33 @@
     window.addEventListener("resize", function () { if (window.innerWidth > 860) closeNav(); });
   }
 
-  /* Scroll reveal — during scrolling, poll positions every frame for 500ms.
+  /* Scroll reveal - during scrolling, poll positions every frame for 500ms.
      Bulletproof against any scroll speed (incl. programmatic jumps); idles when still. */
   var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
   if (reveals.length) {
     var looping = false, stopAt = 0;
-    function revealCheck() {
+    /* Read pass then write pass: measuring and mutating in one loop forces a
+       layout per element. Elements crossing together are staggered by their
+       position within their own parent, so unrelated siblings never eat a slot. */
+    function revealCheck(stagger) {
       var vh = window.innerHeight || document.documentElement.clientHeight;
-      reveals = reveals.filter(function (el) {
-        if (el.getBoundingClientRect().top < vh * 0.9) { el.classList.add("is-visible"); return false; }
-        return true;
-      });
+      var hit = [], rest = [];
+      for (var i = 0; i < reveals.length; i++) {
+        (reveals[i].getBoundingClientRect().top < vh * 0.9 ? hit : rest).push(reveals[i]);
+      }
+      reveals = rest;
+      var seen = new Map();
+      for (var j = 0; j < hit.length; j++) {
+        var par = hit[j].parentNode, k = seen.get(par) || 0;
+        seen.set(par, k + 1);
+        // JS owns --d once it runs; the data-delay CSS values remain the no-JS fallback.
+        // Skipped on the initial/load pass so above-the-fold content never waits.
+        if (stagger === true) hit[j].style.setProperty("--d", Math.min(k, 3) * 80 + "ms");
+        hit[j].classList.add("is-visible");
+      }
     }
     function loop(ts) {
-      revealCheck();
+      revealCheck(true);
       if (reveals.length && ts < stopAt) requestAnimationFrame(loop);
       else looping = false;
     }
@@ -61,13 +74,43 @@
       stopAt = performance.now() + 500;
       if (!looping) { looping = true; requestAnimationFrame(loop); }
     }
-    window.addEventListener("scroll", pump, { passive: true });
-    window.addEventListener("resize", pump);
-    window.addEventListener("load", revealCheck);
-    revealCheck();
+    /* Primary path: IntersectionObserver computes visibility without ever forcing
+       layout. Reading geometry instead (getBoundingClientRect) un-skips every
+       content-visibility section synchronously, which put ~1s of Style & Layout on
+       the critical path. The rAF poll below is kept as a safety net: intersection
+       callbacks can be outrun by instant/programmatic jumps, so a scroll-idle sweep
+       catches any straggler. */
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        var seen = new Map();
+        for (var i = 0; i < entries.length; i++) {
+          if (!entries[i].isIntersecting) continue;
+          var el = entries[i].target, par = el.parentNode, k = seen.get(par) || 0;
+          seen.set(par, k + 1);
+          el.style.setProperty("--d", Math.min(k, 3) * 80 + "ms");
+          el.classList.add("is-visible");
+          io.unobserve(el);
+          var idx = reveals.indexOf(el);
+          if (idx > -1) reveals.splice(idx, 1);
+        }
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0 });
+      for (var n = 0; n < reveals.length; n++) io.observe(reveals[n]);
+
+      var idle;
+      window.addEventListener("scroll", function () {
+        clearTimeout(idle);
+        if (reveals.length) idle = setTimeout(function () { revealCheck(true); }, 250);
+      }, { passive: true });
+      window.addEventListener("load", function () { if (reveals.length) revealCheck(); });
+    } else {
+      window.addEventListener("scroll", pump, { passive: true });
+      window.addEventListener("resize", pump);
+      window.addEventListener("load", revealCheck);
+      requestAnimationFrame(function () { revealCheck(); });
+    }
   }
 
-  /* WhatsApp FAB — visible only when no in-layout CTA is on screen.
+  /* WhatsApp FAB - visible only when no in-layout CTA is on screen.
      Suppressors: the hero buttons (home only), the CTA band, and the footer.
      Deliberately NOT tied to scroll position: the legal pages register no
      scroll listener at all, and a scroll threshold is unreachable on short pages. */

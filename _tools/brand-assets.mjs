@@ -1,4 +1,4 @@
-// Session 4 — rasterize favicons and compose the OG share image.
+// Session 4 - rasterize favicons and compose the OG share image.
 import sharp from "sharp";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";

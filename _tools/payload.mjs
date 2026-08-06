@@ -22,5 +22,5 @@ await p.evaluate(async () => {
   }, 90); });
 });
 await new Promise(r => setTimeout(r, 1200));
-console.log(`${path} @390 dpr2 — requests: ${count} | total: ${(total/1048576).toFixed(2)} MB | images: ${(img/1048576).toFixed(2)} MB`);
+console.log(`${path} @390 dpr2 - requests: ${count} | total: ${(total/1048576).toFixed(2)} MB | images: ${(img/1048576).toFixed(2)} MB`);
 await b.close();

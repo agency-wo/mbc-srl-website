@@ -32,7 +32,7 @@ const hov = await p.evaluate(async () => {
     footerLink: getComputedStyle(document.querySelector(".footer-col a")).textDecorationLine
   };
 });
-// static check is weak for :hover — evaluate stylesheet rules directly instead
+// static check is weak for :hover - evaluate stylesheet rules directly instead
 const hoverRules = await p.evaluate(() => {
   let btnHoverNone = false, aHoverUnderline = false, navHoverNone = false;
   for (const sheet of document.styleSheets) for (const r of sheet.cssRules) {

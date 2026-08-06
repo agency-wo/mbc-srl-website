@@ -27,7 +27,7 @@ await p.close();
 p = await b.newPage(); await p.setViewport({ width: 1440, height: 900 });
 await p.goto(B + "/privacy/", { waitUntil: "networkidle0" });
 await new Promise(r => setTimeout(r, 1300));
-out.push(`privacy top: ${await vis(p)} (want shown — this is the old no-listener bug)`);
+out.push(`privacy top: ${await vis(p)} (want shown - this is the old no-listener bug)`);
 await p.close();
 
 /* 3) Mobile menu open -> FAB gone from layout AND tab order */

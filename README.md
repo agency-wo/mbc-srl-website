@@ -1,6 +1,6 @@
-# MBC SRL — Sito web
+# MBC SRL - Sito web
 
-Sito statico (HTML + CSS + JavaScript, nessun framework) per **MBC SRL** —
+Sito statico (HTML + CSS + JavaScript, nessun framework) per **MBC SRL** -
 bolle per glamping, saune, grotte di sale, vasche idromassaggio e attrezzature fitness.
 Bilingue **Italiano (predefinito)** + **Inglese** (`/en/`), pensato per hosting su
 **GitHub Pages + Cloudflare**.
@@ -26,7 +26,7 @@ index.html            Home (IT)   /chi-siamo/  /soluzioni/  /progetti/  /contatt
 /assets/img/           immagini web ottimizzate (webp + jpg) + manifest.json
 /assets/img/brand/     logo (svg) e favicon
 robots.txt · sitemap.xml · .nojekyll
-_source/               foto originali ad alta risoluzione (NON nel repo — vedi .gitignore)
+_source/               foto originali ad alta risoluzione (NON nel repo - vedi .gitignore)
 _tools/                script di generazione/QA (nel repo; node_modules e output esclusi)
 ```
 
@@ -65,7 +65,7 @@ riesportali in JPEG e aggiungili con la procedura sopra.
 
 ## Anteprima cliente (Cloudflare Pages)
 Il sito è visibile in anteprima su **https://mbc-srl-preview.pages.dev** (non indicizzato dai motori
-di ricerca — header `X-Robots-Tag: noindex` aggiunto solo al deploy, non nel repo).
+di ricerca - header `X-Robots-Tag: noindex` aggiunto solo al deploy, non nel repo).
 Per aggiornare l'anteprima dopo nuovi commit:
 ```bash
 STAGE=$(mktemp -d) && git archive HEAD | tar -x -C "$STAGE" \
@@ -97,7 +97,7 @@ Per riceverli via email automaticamente (gratis) con **Formspree**:
 ## WhatsApp
 Il pulsante flottante WhatsApp è **attivo** su tutte le pagine tranne `/contatti/` e `/en/contact/`
 (dove il modulo è già la call to action). Compare solo quando nessun altro CTA è visibile a schermo
-— logica in `assets/js/main.js` (IntersectionObserver su `.hero__btns`, `.cta-band`, `.site-footer`).
+- logica in `assets/js/main.js` (IntersectionObserver su `.hero__btns`, `.cta-band`, `.site-footer`).
 Numero e messaggi precompilati si cambiano in un punto solo per lingua:
 `_tools/gen-progetti.mjs` (IT generato), `_tools/gen-en.mjs` (`WA_NUMBER` / `WA_MSG`, EN) e
 nelle 5 pagine IT scritte a mano (`index`, `chi-siamo`, `soluzioni`, `privacy`, `cookie`).

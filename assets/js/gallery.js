@@ -1,4 +1,4 @@
-/* MBC SRL — Progetti gallery: category filter + accessible lightbox */
+/* MBC SRL - Progetti gallery: category filter + accessible lightbox */
 (function () {
   "use strict";
   var grid = document.querySelector("[data-gallery]");

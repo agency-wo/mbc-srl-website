@@ -1,4 +1,4 @@
-/* MBC SRL — contact form: validation + mailto fallback (no backend yet).
+/* MBC SRL - contact form: validation + mailto fallback (no backend yet).
    To connect a real backend later (Formspree / Cloudflare), set the form's
    action + method and remove the e.preventDefault mailto branch. */
 (function () {
@@ -31,7 +31,7 @@
     if (!ok) return;
 
     var f = form.elements;
-    var subject = "Richiesta dal sito — " + (f.oggetto.value || "Informazioni");
+    var subject = "Richiesta dal sito - " + (f.oggetto.value || "Informazioni");
     var body =
       "Nome: " + f.nome.value + "\n" +
       "Email: " + f.email.value + "\n" +

@@ -44,7 +44,7 @@ function header(cur, opts = {}) {
   const items = nav.map(n => `          <li><a href="${n.en}"${n.key === cur ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join("\n");
   return `  <header class="site-header${opts.solid ? " is-solid" : ""}">
     <div class="container">
-      <a class="logo" href="/en/" aria-label="MBC SRL — Home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
+      <a class="logo" href="/en/" aria-label="MBC SRL, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
       <nav class="nav" aria-label="Main navigation">
         <ul class="nav-menu" id="nav-menu">
 ${items}
@@ -65,7 +65,7 @@ const footer = `  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="logo" href="/en/" aria-label="MBC SRL — Home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
+          <a class="logo" href="/en/" aria-label="MBC SRL, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
           <p>Glamping bubbles, wellness paths and supplies for the wellness sector. Thirty years of experience, turnkey projects tailored to you.</p>
           <div class="socials">
             <a href="#" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -162,7 +162,7 @@ ${header("home")}
         <p class="lead" style="margin-inline:auto">Glamping bubbles, saunas, salt rooms, hot tubs and fitness: we supply the equipment or build the entire wellness path, turnkey.</p></div>
       <div class="cards">
         ${card("bolla-glamping-esterni-crepuscolo", "Glamping bubbles", "Transparent domes for living in nature with the comfort of a real room. From a single dome to a village.", "Glamping bubble at dusk among the mountains", "/en/solutions/#bolle", "Discover", "Discover the glamping bubbles")}
-        ${card("vasca-idromassaggio-sauna-giorno", "Turnkey glamping", "Complete wellness paths &mdash; with the electrics, climate control and plumbing included.", "Hot tub and barrel sauna on a deck with mountain view", "/en/solutions/#chiavi-in-mano", "What it covers", "What the turnkey option covers")}
+        ${card("vasca-idromassaggio-sauna-giorno", "Turnkey glamping", "Complete wellness paths, with the electrics, climate control and plumbing included.", "Hot tub and barrel sauna on a deck with mountain view", "/en/solutions/#chiavi-in-mano", "What it covers", "What the turnkey option covers")}
         ${card("sauna-botte-ingresso", "Outdoor saunas", "Wooden barrel saunas, built in our own workshop, for regenerating heat even at high altitude.", "Entrance of the wooden barrel sauna", "/en/solutions/#sauna", "Discover", "Discover the outdoor saunas")}
         ${card("grotta-sale-lampada", "Outdoor salt rooms", "Salt-clad rooms to breathe wellness, also as a barrel version installed on a deck.", "Salt lamp in a wooden wellness room", "/en/solutions/#sale", "Discover", "Discover the salt rooms")}
         ${card("vasca-idromassaggio-notte", "Hot tubs", "Panoramic outdoor hot tubs to relax immersed in the landscape, by day and under the stars.", "Hot tub lit at night with a barrel sauna", "/en/solutions/#idromassaggio", "Discover", "Discover the outdoor hot tubs")}
@@ -172,7 +172,7 @@ ${header("home")}
     <section class="section section--tint"><div class="container"><div class="split">
       <div class="split__media split__media--tall reveal">${pic("bolla-interni-letto-notte", [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, "Bubble interior with an illuminated double bed at night", 'loading="lazy"')}</div>
       <div class="split__body reveal" data-delay="1"><span class="eyebrow">About us</span><h2>Thirty years of wellness, now under the stars</h2>
-        <p>We started as wellness specialists — beauty centres, solariums and professional supplies. Today MBC SRL specialises in glamping domes and complete wellness paths, with the same craftsmanship as always.</p>
+        <p>We started as wellness specialists: beauty centres, solariums and professional supplies. Today MBC SRL specialises in glamping domes and complete wellness paths, with the same craftsmanship as always.</p>
         <ul class="ticks"><li>Three decades of experience in wellness</li><li>Equipment supply only, or a complete project</li><li>Dedicated support from design to installation</li></ul>
         <div class="btn-row mt-2"><a class="btn btn--ghost" href="/en/about/">Our story</a></div></div>
     </div></div></section>
@@ -204,7 +204,7 @@ function card(slug, title, text, alt, href = "/en/projects/", cta = "Discover", 
 }
 
 /* ---------------- ABOUT ---------------- */
-write("en/about/index.html", `${head({ title: "About us | 30 years in wellness — MBC SRL", desc: "MBC SRL: thirty years in the wellness sector, today specialising in glamping bubbles and turnkey wellness paths. Discover our story and the two options.", path: "/en/about/", itAlt: "/chi-siamo/" })}
+write("en/about/index.html", `${head({ title: "About us | 30 years in wellness | MBC SRL", desc: "MBC SRL: thirty years in the wellness sector, today specialising in glamping bubbles and turnkey wellness paths. Discover our story and the two options.", path: "/en/about/", itAlt: "/chi-siamo/" })}
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"About","item":"https://www.mbcsrl.it/en/about/"}]}</script>
 </head>
 <body class="has-hero">
@@ -218,17 +218,34 @@ ${header("about")}
       <div class="split__media split__media--tall reveal">${pic("grotta-sale-lampada", [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, "Salt lamp in a wooden wellness room", 'loading="lazy"')}</div>
       <div class="split__body reveal" data-delay="1"><span class="eyebrow">Our origins</span><h2>Born in the world of wellness</h2>
         <p>For over thirty years we've worked in the wellness sector: wellness centres, solariums and professional supplies for beauty. A journey that taught us what it truly means to care for people and spaces.</p>
-        <p>That know-how — made of materials, details and relationships — is today at the heart of every project.</p></div>
+        <p>That know-how, made of materials, details and relationships, is today at the heart of every project.</p></div>
     </div></div></section>
-    <section class="section section--tint"><div class="container"><div class="split split--rev">
-      <div class="split__media split__media--tall reveal">${pic("bolla-glamping-esterni-crepuscolo", [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, "Transparent glamping bubble at dusk among the mountains", 'loading="lazy"')}</div>
+    <section class="section section--tint"><div class="container"><div class="split split--feature">
+      <div class="split__media media-stack reveal">${pic("bolla-glamping-insegna-spa", [640, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1250, "Glamping bubble with a Glamping and Spa sign", 'loading="lazy"')}
+        <div class="media-stack__inset">${pic("bolla-glamping-alba-oro", [360, 800], "(max-width:860px) 58vw, 20vw", "", 800, 1067, "Bubble interior with bed and golden sunset light", 'loading="lazy"')}</div>
+      </div>
       <div class="split__body reveal" data-delay="1"><span class="eyebrow">The evolution</span><h2>Today, glamping dome specialists</h2>
         <p>We turned our wellness experience into a new specialisation: <strong>glamping bubbles</strong> and complete wellness paths. Transparent domes that become rooms immersed in nature, together with saunas, salt rooms and hot tubs.</p>
         <ul class="ticks"><li>Equipment supply only, for those who already have a project</li><li>Complete turnkey builds, from A to Z</li><li>Craftsmanship in every detail, inside and outside the bubble</li></ul></div>
     </div></div></section>
+    <section class="section section--green">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">The details</span>
+          <h2>The difference shows up close</h2>
+          <p>What guests remember isn't the dome: it's the right light in the evening, the stone basin, the flowers along the deck.</p>
+        </div>
+      </div>
+      <div class="proof-strip proof-strip--detail reveal">
+        <figure>${pic("dettaglio-lavabo-pietra", [640, 1000], "(max-width:1024px) 72vw, 33vw", "", 1000, 1250, "Detail of the stone washbasin with a candle", 'loading="lazy"')}</figure>
+        <figure>${pic("dettaglio-candele-comodino", [640, 1000], "(max-width:1024px) 72vw, 33vw", "", 1000, 1250, "Detail of candles on a wooden nightstand", 'loading="lazy"')}</figure>
+        <figure>${pic("dettaglio-fiori", [640, 1000], "(max-width:1024px) 72vw, 33vw", "", 1000, 1250, "Orange blooms along the wooden deck", 'loading="lazy"')}</figure>
+      </div>
+    </section>
+
     <section class="section"><div class="container"><div class="section-head center reveal"><span class="eyebrow">Two options, one level of care</span><h2>How we can work together</h2></div>
       <div class="duo">
-        <div class="feat reveal"><span class="tag">Option 1</span><h3>Equipment supply</h3><p>Buy individual bubbles and wellness equipment — also with spa and fitness area — and add them to your project. Ideal for those who already have a structure.</p></div>
+        <div class="feat reveal"><span class="tag">Option 1</span><h3>Equipment supply</h3><p>Buy individual bubbles and wellness equipment, also with spa and fitness area, and add them to your project. Ideal for those who already have a structure.</p></div>
         <div class="feat reveal" data-delay="1"><span class="tag">Option 2</span><h3>Turnkey project</h3><p>We design and build the entire wellness path: multiple bubbles, relax areas, saunas, hot tubs and services. From survey to installation, we handle it all.</p></div>
       </div></div></section>
     <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-notte-montagne", [1200, 1800], "100vw", "", 1800, 1200, "Illuminated glamping dome at night in front of the Alps", 'loading="lazy"')}</div>
@@ -245,7 +262,7 @@ const catLabel = { bolle:"Bubbles", interni:"Interiors", idromassaggio:"Hot tubs
 const fOrder = ["all","bolle","interni","idromassaggio","sauna","benessere","produzione","fitness"];
 const fLabel = { all:"All", ...catLabel };
 const byCat = {}; man.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
-// `produzione` appended after the interleave — see gen-progetti.mjs for the rationale
+// `produzione` appended after the interleave - see gen-progetti.mjs for the rationale
 const cats = Object.keys(byCat).filter(c => c !== "produzione");
 let ordered = [], i = 0, added = true;
 while (added) { added = false; for (const c of cats) { if (byCat[c][i]) { ordered.push(byCat[c][i]); added = true; } } i++; }
@@ -264,7 +281,7 @@ const gItems = ordered.map(m => {
           <picture><source type="image/webp" srcset="${webpS}" sizes="${THUMB_SIZES}"><img src="/assets/img/${m.slug}-${w2}.jpg" srcset="${jpgS}" sizes="${THUMB_SIZES}" width="${w2}" height="${th}" loading="lazy" decoding="async" alt="${m.alt_en.replace(/"/g,'&quot;')}"></picture>
           <figcaption>${m.alt_en}</figcaption></figure>`; }).join("\n");
 const gFilters = fOrder.map((f, idx) => `        <button class="filter${idx===0?' is-active':''}" data-filter="${f}" aria-pressed="${idx===0}">${fLabel[f]}</button>`).join("\n");
-write("en/projects/index.html", `${head({ title: "Projects & installations | Glamping bubbles, saunas & hot tubs — MBC SRL", desc: "MBC SRL projects: glamping bubbles, hot tubs, outdoor saunas and salt rooms. Browse the gallery of our wellness installations.", path: "/en/projects/", itAlt: "/progetti/" })}
+write("en/projects/index.html", `${head({ title: "Projects & installations | Glamping bubbles, saunas & hot tubs | MBC SRL", desc: "MBC SRL projects: glamping bubbles, hot tubs, outdoor saunas and salt rooms. Browse the gallery of our wellness installations.", path: "/en/projects/", itAlt: "/progetti/" })}
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://www.mbcsrl.it/en/projects/"}]}</script>
 </head>
 <body class="has-hero">
@@ -299,7 +316,7 @@ ${waFab("projects")}
 </body></html>`);
 
 /* ---------------- CONTACT ---------------- */
-write("en/contact/index.html", `${head({ title: "Contact | Get a quote — MBC SRL", desc: "Contact MBC SRL for glamping bubbles, saunas, salt rooms and hot tubs. Request a quote for your supply or turnkey project.", path: "/en/contact/", itAlt: "/contatti/" })}
+write("en/contact/index.html", `${head({ title: "Contact | Get a quote | MBC SRL", desc: "Contact MBC SRL for glamping bubbles, saunas, salt rooms and hot tubs. Request a quote for your supply or turnkey project.", path: "/en/contact/", itAlt: "/contatti/" })}
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.mbcsrl.it/en/contact/"}]}</script>
 </head>
 <body class="has-hero">
@@ -312,7 +329,7 @@ ${header("contact")}
     <section class="section"><div class="container"><div class="contact-grid">
       <div>
         <span class="eyebrow">Request a quote</span><h2 style="margin-bottom:1.4rem">Send us a message</h2>
-        <div class="form-success" aria-live="polite">Thank you! Your email client will open with the message ready — just press send. Alternatively, write to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</div>
+        <div class="form-success" aria-live="polite">Thank you! Your email client will open with the message ready: just press send. Alternatively, write to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</div>
         <form id="contact-form" novalidate>
           <div class="form-row">
             <div class="form-field"><label for="nome">Full name <span class="req">*</span></label><input type="text" id="nome" name="nome" autocomplete="name" required><span class="field-error">Please enter your name.</span></div>
@@ -356,12 +373,18 @@ const proofEn = [
   `          <figure><picture><source type="image/webp" srcset="/assets/img/${slug}-640.webp" sizes="(max-width:1024px) 62vw, 19vw"><img src="/assets/img/${slug}-640.jpg" width="640" height="853" loading="lazy" decoding="async" alt="${alt}"></picture></figure>`
 ).join("\n");
 
-// one product section: media LEFT by default, RIGHT when `rev`
-function solSection(id, cls, eyebrow, h2, body, ticks, ctaHref, ctaText, slug, alt, rev) {
+// one product section: media LEFT by default, RIGHT when `rev`.
+// `inset` (optional [slug, alt]) upgrades it to the .media-stack feature split.
+function solSection(id, cls, eyebrow, h2, body, ticks, ctaHref, ctaText, slug, alt, rev, inset) {
+  const media = inset
+    ? `<div class="split__media media-stack reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1250, alt, 'loading="lazy"')}
+            <div class="media-stack__inset">${pic(inset[0], [360, 640], "(max-width:860px) 58vw, 20vw", "", 640, 853, inset[1], 'loading="lazy"')}</div>
+          </div>`
+    : `<div class="split__media split__media--tall reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, alt, 'loading="lazy"')}</div>`;
   return `    <section class="section${cls}" id="${id}">
       <div class="container">
-        <div class="split${rev ? " split--rev" : ""}">
-          <div class="split__media split__media--tall reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, alt, 'loading="lazy"')}</div>
+        <div class="split${inset ? " split--feature" : ""}${rev ? " split--rev" : ""}">
+          ${media}
           <div class="split__body reveal" data-delay="1">
             <span class="eyebrow">${eyebrow}</span>
             <h2>${h2}</h2>
@@ -401,7 +424,7 @@ ${header("solutions")}
       <div class="container hero__inner">
         <span class="eyebrow" style="color:#dfa781">Solutions</span>
         <h1 class="hero__title">Glamping bubbles, saunas and outdoor wellness</h1>
-        <p class="hero__sub">Buy the equipment on its own &mdash; or let us build the whole glamping project turnkey, with the electrics, climate control and plumbing included.</p>
+        <p class="hero__sub">Buy the equipment on its own, or let us build the whole glamping project turnkey, with the electrics, climate control and plumbing included.</p>
         <div class="hero__btns btn-row">
           <a class="btn btn--primary" href="#bolle">Explore the bubbles ${arrow}</a>
           <a class="btn btn--light" href="/en/contact/">Get a quote</a>
@@ -414,7 +437,7 @@ ${header("solutions")}
         <div class="section-head center reveal">
           <span class="eyebrow">What we build</span>
           <h2>A solution for every outdoor space</h2>
-          <p class="lead" style="margin-inline:auto">Glamping bubbles, outdoor saunas, salt rooms, hot tubs and gym equipment. Pick a single product, or hand us the whole project &mdash; including the services that make it work.</p>
+          <p class="lead" style="margin-inline:auto">Glamping bubbles, outdoor saunas, salt rooms, hot tubs and gym equipment. Pick a single product, or hand us the whole project, including the services that make it work.</p>
           <div class="jump-row" style="justify-content:center">
             <a class="jump" href="#bolle">Bubbles</a>
             <a class="jump" href="#chiavi-in-mano">Turnkey</a>
@@ -432,7 +455,7 @@ ${header("solutions")}
         <div class="split split--feature">
           <div class="split__media media-stack reveal">
             ${pic("bolla-glamping-giorno-bosco", [640, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1250, "Glamping bubble by day set in the alpine forest", 'loading="lazy"')}
-            <div class="media-stack__inset">${pic("bolla-interni-aperitivo", [360, 640], "(max-width:860px) 58vw, 20vw", "", 640, 853, "Aperitif served in the bubble with light curtains", 'loading="lazy"')}</div>
+            <div class="media-stack__inset">${pic("bolla-interni-bagno-notte", [360, 640], "(max-width:860px) 58vw, 20vw", "", 640, 853, "Bubble interior with washbasin area and mountain view", 'loading="lazy"')}</div>
           </div>
           <div class="split__body reveal" data-delay="1">
             <span class="eyebrow">01 &middot; Bubbles</span>
@@ -459,7 +482,7 @@ ${header("solutions")}
         <div class="section-head reveal">
           <span class="eyebrow">Turnkey</span>
           <h2>Turnkey glamping: the bubble, and everything that makes it work</h2>
-          <p>A dome sitting on a lawn isn't a room yet. What makes the difference is the services behind it &mdash; and on our turnkey projects they're included.</p>
+          <p>A dome sitting on a lawn isn't a room yet. What makes the difference is the services behind it, and on our turnkey projects they're included.</p>
         </div>
         <div class="cap-grid">
           <div class="cap reveal">
@@ -488,7 +511,8 @@ ${header("solutions")}
 ${solSection("sauna", "", "02 &middot; Saunas", "Outdoor saunas: the wooden barrel sauna",
   "The barrel sauna is the most requested outdoor solution: the cylindrical shape cuts the volume you have to heat and the timber holds the warmth. We build them ourselves, on a steel ring frame.",
   ["Barrel saunas for private gardens, agriturismi and hospitality", "Glass door or porthole, benches and backrests already fitted", "Sizes and finishes adjustable, because we make them in-house", "Pairs with a hot tub for the hot-cold circuit"],
-  "#produzione", "We build them ourselves, in our workshop", "sauna-botte-esterno-montagne", "Outdoor barrel sauna with a mountain view", false)}
+  "#produzione", "We build them ourselves, in our workshop", "sauna-botte-esterno-montagne", "Outdoor barrel sauna with a mountain view", false,
+  ["sauna-sale-interni", "Sauna interior with a salt block and porthole"])}
 
     <section class="section section--tint" id="produzione">
       <div class="container">
@@ -543,7 +567,7 @@ ${waFab("solutions")}
 
 /* ---------------- PRIVACY & COOKIE (EN) ---------------- */
 function legal(pathSeg, title, itAlt, bodyHtml) {
-  return `${head({ title: title + " — MBC SRL", desc: title + " of the MBC SRL website.", path: "/en/" + pathSeg + "/", itAlt })}
+  return `${head({ title: title + " | MBC SRL", desc: title + " of the MBC SRL website.", path: "/en/" + pathSeg + "/", itAlt })}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -559,7 +583,7 @@ ${waFab("legal")}
 }
 write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
   `<p class="foot-note">Last updated: 23 July 2026 · <em>Template to be finalised with the controller's official details.</em></p>
-   <h2>1. Data controller</h2><p>The data controller is <strong>MBC SRL</strong> — VAT 00000000000, phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
+   <h2>1. Data controller</h2><p>The data controller is <strong>MBC SRL</strong>, VAT 00000000000, phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
    <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. The site is static and does not store form data on its servers.</p>
    <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li></ul>
    <h2>4. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>

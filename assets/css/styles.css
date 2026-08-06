@@ -1,5 +1,5 @@
 /* ============================================================
-   MBC SRL — Global stylesheet
+   MBC SRL - Global stylesheet
    Design system + components (photography-led, cream/green/terracotta)
    ============================================================ */
 
@@ -55,7 +55,8 @@
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 1rem); }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 1rem);
+  scrollbar-gutter: stable; } /* reserve the gutter so locking scroll (lightbox/menu) doesn't shift the page */
 #main { scroll-margin-top: calc(var(--header-h) + 1rem); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
@@ -90,7 +91,7 @@ p { max-width: 68ch; }
 .container--narrow { max-width: 900px; }
 .section { padding-block: var(--section-y); }
 /* skip layout/paint of below-fold sections until needed (big win on mobile CPUs).
-   NOTE: deliberately NOT applied to .site-footer — skipped rendering prevents
+   NOTE: deliberately NOT applied to .site-footer - skipped rendering prevents
    contrast tooling from resolving its dark background (false-positive failures),
    and the footer is small enough that the saving is negligible. */
 .section, .cta-band { content-visibility: auto; contain-intrinsic-size: auto 800px; }
@@ -117,7 +118,6 @@ p { max-width: 68ch; }
   font-family: var(--sans); font-weight: 600; font-size: .98rem;
   letter-spacing: .01em; padding: .92em 1.6em; border-radius: 999px;
   border: 1.5px solid transparent; transition: transform .25s var(--ease), background .25s, color .25s, border-color .25s;
-  will-change: transform;
 }
 .btn svg { width: 1.05em; height: 1.05em; }
 .btn--primary { background: var(--terracotta-d); color: #fff; }
@@ -145,7 +145,9 @@ p { max-width: 68ch; }
 .site-header {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
   height: var(--header-h); display: flex; align-items: center;
-  transition: background .35s var(--ease), box-shadow .35s, backdrop-filter .35s;
+  /* backdrop-filter is deliberately NOT transitioned: interpolating the blur radius
+     runs a full-width backdrop pass for 350ms at the exact moment the hero is flicked. */
+  transition: background .35s var(--ease), box-shadow .35s;
 }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .site-header.is-solid { background: rgba(246,241,231,.92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
@@ -265,7 +267,7 @@ p { max-width: 68ch; }
 .masonry figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(18,33,26,.6)); opacity: 0; transition: opacity .3s; }
 .masonry figure:hover img { transform: scale(1.05); }
 .masonry figure:hover::after { opacity: 1; }
-.masonry figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem; color: #fff; font-size: .9rem; z-index: 2; opacity: 0; transform: translateY(8px); transition: all .3s; }
+.masonry figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1rem; color: #fff; font-size: .9rem; z-index: 2; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s; }
 .masonry figure:hover figcaption { opacity: 1; transform: none; }
 /* touch devices have no hover: keep captions readable at all times */
 @media (hover: none) {
@@ -275,8 +277,11 @@ p { max-width: 68ch; }
 .gallery-item[hidden] { display: none; }
 
 /* ---------- Lightbox ---------- */
-.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(15,24,19,.94); display: none; align-items: center; justify-content: center; padding: clamp(1rem, 4vw, 3rem); }
-.lightbox.is-open { display: flex; }
+.lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(15,24,19,.94); display: none; align-items: center; justify-content: center; padding: clamp(1rem, 4vw, 3rem);
+  opacity: 0; transition: opacity .28s var(--ease), display .28s allow-discrete; }
+.lightbox.is-open { display: flex; opacity: 1; }
+/* fade IN from the discrete display change; unsupported browsers just get today's instant open */
+@starting-style { .lightbox.is-open { opacity: 0; } }
 .lightbox__img { max-width: min(1100px, 94vw); max-height: 84vh; border-radius: 10px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.7); }
 .lightbox__cap { position: absolute; bottom: 1.4rem; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.85); font-size: .92rem; padding-inline: 1rem; }
 .lb-btn { position: absolute; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25); color: #fff; width: 52px; height: 52px; border-radius: 999px; display: grid; place-items: center; transition: background .2s, transform .2s; }
@@ -306,14 +311,26 @@ p { max-width: 68ch; }
 .footer-bottom a { color: #8fa08f; } .footer-bottom a:hover { color: #fff; }
 
 /* ---------- Reveal on scroll (only when JS is active, so no-JS shows all) ---------- */
-.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0ms); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
-.js .reveal[data-delay="1"] { transition-delay: .08s; }
-.js .reveal[data-delay="2"] { transition-delay: .16s; }
-.js .reveal[data-delay="3"] { transition-delay: .24s; }
+/* --d is set by main.js (auto-stagger per parent); these stay as a no-JS-timing fallback */
+.js .reveal[data-delay="1"] { --d: .08s; }
+.js .reveal[data-delay="2"] { --d: .16s; }
+.js .reveal[data-delay="3"] { --d: .24s; }
+
+/* Photographs settle from a whisper of scale as they arrive. Scoped to .split__media only:
+   .card and .preview-grid already animate transform on hover, and .proof-strip is a scroll rail. */
+.js .split__media.reveal { transform: translateY(18px) scale(.985); }
+.js .split__media.reveal.is-visible { transform: none; }
+
+/* .js .reveal (2 classes) otherwise outranks .card (1) and clobbers the card's own
+   .35s lift + box-shadow fade, leaving an 800ms hover with a snapping shadow. */
+.js .card.reveal.is-visible:hover { transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .card, .card__media img, .masonry img, .btn { transition: none !important; }
+  .card, .card__media img, .masonry img, .btn,
+  .nav-menu, .masonry figcaption, .link-arrow svg, .preview-grid img,
+  .lightbox, .wa-fab, .wa-fab__label, .site-header, .filter, .jump { transition: none !important; }
 }
 
 /* ---------- Skip link & a11y ---------- */
@@ -339,7 +356,10 @@ p { max-width: 68ch; }
   :root { --header-h: 66px; }
   /* `safe center` keeps the tail reachable when the menu overflows (5 items + CTA on a
      landscape phone); overflow-y is the fallback for browsers that drop `safe`. */
-  .nav-menu { position: fixed; inset: 0; flex-direction: column; justify-content: safe center; gap: 1.6rem; background: var(--green); padding: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(100%); transition: transform .4s var(--ease); z-index: 90; overflow-y: auto; overscroll-behavior: contain; }
+  /* visibility (not just transform) so the closed menu's links leave the tab order;
+     it is transitioned so the panel stays painted through the closing slide. */
+  .nav-menu { position: fixed; inset: 0; flex-direction: column; justify-content: safe center; gap: 1.6rem; background: var(--green); padding: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(100%); visibility: hidden; transition: transform .4s var(--ease), visibility .4s; z-index: 90; overflow-y: auto; overscroll-behavior: contain; }
+  body.nav-open .nav-menu { visibility: visible; }
   .nav-menu a { color: #fff !important; font-family: var(--serif); font-size: 1.7rem; padding: .3rem .6rem; }
   .nav-menu a::after { display: none; }
   /* CTA inside the overlay menu (hidden on desktop) */
@@ -485,7 +505,7 @@ textarea { min-height: 140px; resize: vertical; }
 .media-stack { position: relative; }
 .media-stack > picture img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow);
   aspect-ratio: 4/5; object-fit: cover; }
-/* NB: the inset must be a real element — picture{display:contents} cannot be positioned.
+/* NB: the inset must be a real element - picture{display:contents} cannot be positioned.
    The media column sits LEFT, so this negative offset overlaps the column gap, never the viewport edge. */
 .media-stack__inset { position: absolute; right: -6%; bottom: -8%; width: 44%; }
 .media-stack__inset img { width: 100%; aspect-ratio: 3/4; object-fit: cover;
@@ -497,7 +517,7 @@ textarea { min-height: 140px; resize: vertical; }
   .media-stack__inset { position: static; width: 58%; margin: -2.6rem 0 0 auto; }
 }
 
-/* ---------- Capability band (chiavi in mano) — extends .cta-band ---------- */
+/* ---------- Capability band (chiavi in mano) - extends .cta-band ---------- */
 .cta-band--cap { text-align: left; }
 .cta-band--cap p { margin-inline: 0; }
 .cta-band--cap .section-head { margin-bottom: clamp(2rem, 4vw, 3rem); }
@@ -528,11 +548,25 @@ textarea { min-height: 140px; resize: vertical; }
 /* workshop shots carry the same grade in the gallery as in the proof strip */
 .masonry .gallery-item[data-cat="produzione"] img { filter: saturate(.92) contrast(1.04); }
 
+/* Detail triptych: the same component, full-bleed on green, ungraded, taller frames.
+   Sits directly in the section (not .container) so it runs edge to edge without 100vw math. */
+.proof-strip--detail { grid-template-columns: repeat(3, 1fr); gap: clamp(.5rem, 1vw, .9rem);
+  max-width: 1800px; margin-inline: auto; }
+.proof-strip--detail figure { border-radius: 0; background: var(--green-800); }
+.proof-strip--detail img { aspect-ratio: 4/5; filter: none; }
+@media (max-width: 1024px) {
+  .proof-strip--detail { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; scrollbar-width: none; gap: .5rem; padding-bottom: .4rem;
+    padding-inline: var(--gutter); margin-inline: 0; }
+  .proof-strip--detail::-webkit-scrollbar { display: none; }
+  .proof-strip--detail figure { flex: 0 0 min(72%, 320px); scroll-snap-align: start; border-radius: var(--radius-s); }
+}
+
 /* ============================================================
    WhatsApp floating button
    Kept at the END of the file on purpose: the :focus-visible rule
    below must beat the global `:focus-visible { border-radius: 4px }`
-   (equal specificity — source order decides).
+   (equal specificity - source order decides).
    ============================================================ */
 .wa-fab {
   position: fixed;
@@ -554,7 +588,7 @@ textarea { min-height: 140px; resize: vertical; }
 .wa-fab:hover { background: var(--terracotta-text); color: #fff; text-decoration: none; }
 .wa-fab svg { width: 24px; height: 24px; flex: none; }
 
-/* Label: real DOM text (so IT/EN can't drift) — collapsed by default */
+/* Label: real DOM text (so IT/EN can't drift) - collapsed by default */
 .wa-fab__label {
   max-width: 0;
   overflow: hidden;

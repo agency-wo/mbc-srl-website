@@ -54,7 +54,7 @@ const filters = filterOrder.map((f, idx) =>
 
 const header = `  <header class="site-header">
     <div class="container">
-      <a class="logo" href="/" aria-label="MBC SRL — Home">
+      <a class="logo" href="/" aria-label="MBC SRL, home">
         <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
           <circle cx="60" cy="60" r="42" class="lm-ring"/>
           <path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" class="lm-fill"/>
@@ -86,7 +86,7 @@ const footer = `  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="logo" href="/" aria-label="MBC SRL — Home">
+          <a class="logo" href="/" aria-label="MBC SRL, home">
             <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
               <circle cx="60" cy="60" r="42" class="lm-ring"/>
               <path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" class="lm-fill"/>
@@ -143,7 +143,7 @@ const html = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.classList.add('js');</script>
-  <title>Progetti e realizzazioni glamping | Bolle, saune e idromassaggio — MBC SRL</title>
+  <title>Progetti e realizzazioni glamping | Bolle, saune e idromassaggio | MBC SRL</title>
   <meta name="description" content="Le realizzazioni MBC SRL: bolle per glamping, vasche idromassaggio, saune da esterno e grotte di sale. Sfoglia la galleria dei nostri progetti benessere.">
   <link rel="canonical" href="https://www.mbcsrl.it/progetti/">
   <link rel="alternate" hreflang="it" href="https://www.mbcsrl.it/progetti/">
@@ -152,7 +152,7 @@ const html = `<!doctype html>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MBC SRL">
   <meta property="og:locale" content="it_IT">
-  <meta property="og:title" content="Progetti e realizzazioni — MBC SRL">
+  <meta property="og:title" content="Progetti e realizzazioni | MBC SRL">
   <meta property="og:description" content="Bolle per glamping, idromassaggio, saune e grotte di sale: sfoglia la galleria dei nostri progetti.">
   <meta property="og:url" content="https://www.mbcsrl.it/progetti/">
   <meta property="og:image" content="https://www.mbcsrl.it/assets/img/og-share.jpg">

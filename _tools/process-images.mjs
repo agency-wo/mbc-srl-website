@@ -1,4 +1,4 @@
-// Session 3 — Image processing pipeline for the MBC SRL site.
+// Session 3 - Image processing pipeline for the MBC SRL site.
 // Reads curated originals from _source/photos, outputs responsive WebP+JPEG
 // into /assets/img with semantic slugs, and writes /assets/img/manifest.json.
 import sharp from "sharp";
