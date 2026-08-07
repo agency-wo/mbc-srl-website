@@ -513,8 +513,15 @@ textarea { min-height: 140px; resize: vertical; }
 .section--tint .media-stack__inset img { border-color: var(--cream-2); }
 @media (max-width: 860px) {
   .split--feature { grid-template-columns: 1fr; }
-  .media-stack > picture img { aspect-ratio: 4/3; max-height: 62vh; }
-  .media-stack__inset { position: static; width: 58%; margin: -2.6rem 0 0 auto; }
+  /* One strong photograph per section on phones. The inset is desktop decoration:
+     at this width it rendered TALLER than the image it accents (273px vs 265px) and
+     hung 232px below it, inverting the hierarchy. Hidden rather than re-proportioned
+     so the section reads as one deliberate photograph. display:none also means the
+     lazy inset image is never fetched on mobile. */
+  .media-stack__inset { display: none; }
+  /* with the inset gone there is no reason for the stunted 4/3 that made room for it:
+     match the height of every other split on mobile */
+  .media-stack > picture img { aspect-ratio: 4/5; max-height: 62vh; }
 }
 
 /* ---------- Capability band (chiavi in mano) - extends .cta-band ---------- */
