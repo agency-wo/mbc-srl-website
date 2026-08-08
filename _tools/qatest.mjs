@@ -6,6 +6,10 @@ const out = [];
 let p = await b.newPage();
 await p.setViewport({ width: 390, height: 844, isMobile: true });
 await p.goto("http://127.0.0.1:8099/", { waitUntil: "networkidle0" });
+// scroll first: the header only gains .is-solid past 60px, and that state is
+// where the overlay used to collapse. Testing at scrollY 0 misses it entirely.
+await p.evaluate(() => scrollTo({ top: 400, behavior: "instant" }));
+await new Promise(r => setTimeout(r, 250));
 await p.click(".nav-toggle");
 await new Promise(r => setTimeout(r, 400));
 const opened = await p.evaluate(() => document.body.classList.contains("nav-open"));

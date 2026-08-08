@@ -145,12 +145,31 @@ p { max-width: 68ch; }
 .site-header {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
   height: var(--header-h); display: flex; align-items: center;
+  transition: box-shadow .35s;
+}
+/* The frosted background lives on a pseudo-element, NOT on .site-header itself.
+   A non-none backdrop-filter makes an element the containing block for its
+   position:fixed descendants, and .nav-menu (the mobile overlay) is one: with the
+   blur on the header, the overlay's `inset:0` resolved against the 66px header box
+   and the fullscreen menu collapsed into a strip. A pseudo-element has no
+   descendants, so the identical blur is inert here.
+   Load-bearing: .site-header must keep a non-auto z-index. That stacking context
+   is what stops z-index:-1 sinking behind the page content. */
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: transparent;
   /* backdrop-filter is deliberately NOT transitioned: interpolating the blur radius
-     runs a full-width backdrop pass for 350ms at the exact moment the hero is flicked. */
-  transition: background .35s var(--ease), box-shadow .35s;
+     runs a full-width backdrop pass for 350ms at the exact moment the hero is flicked.
+     It is applied only in .is-solid, where it flips instantly. */
+  transition: background .35s var(--ease);
 }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-.site-header.is-solid { background: rgba(246,241,231,.92); backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+.site-header.is-solid::before {
+  background: rgba(246,241,231,.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.site-header.is-solid { box-shadow: 0 1px 0 var(--line); }
 
 .logo { display: inline-flex; align-items: center; gap: .6rem; }
 .logo-mark { width: 40px; height: 40px; flex: none; }
@@ -330,7 +349,7 @@ p { max-width: 68ch; }
   .js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .card, .card__media img, .masonry img, .btn,
   .nav-menu, .masonry figcaption, .link-arrow svg, .preview-grid img,
-  .lightbox, .wa-fab, .wa-fab__label, .site-header, .filter, .jump { transition: none !important; }
+  .lightbox, .wa-fab, .wa-fab__label, .site-header, .site-header::before, .filter, .jump { transition: none !important; }
 }
 
 /* ---------- Skip link & a11y ---------- */
@@ -358,7 +377,11 @@ p { max-width: 68ch; }
      landscape phone); overflow-y is the fallback for browsers that drop `safe`. */
   /* visibility (not just transform) so the closed menu's links leave the tab order;
      it is transitioned so the panel stays painted through the closing slide. */
-  .nav-menu { position: fixed; inset: 0; flex-direction: column; justify-content: safe center; gap: 1.6rem; background: var(--green); padding: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(100%); visibility: hidden; transition: transform .4s var(--ease), visibility .4s; z-index: 90; overflow-y: auto; overscroll-behavior: contain; }
+  /* height is redundant against inset:0 but over-constrains the block axis on
+     purpose: should any future ancestor become a containing block (transform,
+     filter, contain, will-change), the panel stays one viewport tall instead of
+     collapsing to that ancestor's height. */
+  .nav-menu { position: fixed; inset: 0; height: 100dvh; flex-direction: column; justify-content: safe center; gap: 1.6rem; background: var(--green); padding: 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); transform: translateX(100%); visibility: hidden; transition: transform .4s var(--ease), visibility .4s; z-index: 90; overflow-y: auto; overscroll-behavior: contain; }
   body.nav-open .nav-menu { visibility: visible; }
   .nav-menu a { color: #fff !important; font-family: var(--serif); font-size: 1.7rem; padding: .3rem .6rem; }
   .nav-menu a::after { display: none; }
