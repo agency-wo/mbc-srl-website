@@ -25,7 +25,7 @@ await p.goto("http://127.0.0.1:8099/contatti/", { waitUntil: "networkidle0" });
 await p.click("#contact-form button[type=submit]");
 await new Promise(r => setTimeout(r, 200));
 const invalidCount = await p.evaluate(() => document.querySelectorAll(".form-field.invalid").length);
-out.push("empty-submit invalid fields (expect 4): " + invalidCount);
+out.push("empty-submit invalid fields (expect 5: nome, email, oggetto, messaggio, privacy): " + invalidCount);
 await p.close();
 
 // 3) Language toggle hrefs
