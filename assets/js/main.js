@@ -4,9 +4,36 @@
   var header = document.querySelector(".site-header");
   var hasHero = document.body.classList.contains("has-hero");
 
+  /* Scroll lock, shared with the gallery lightbox.
+     overflow:hidden alone lets iOS Safari rubber-band the page behind a fullscreen
+     overlay and drops the offset, so pin the body and restore it on release.
+     Depth-counted so two overlays can never unlock each other early. */
+  var lockDepth = 0, lockY = 0;
+  function lockScroll() {
+    if (lockDepth++) return;
+    /* rounded: a fractional offset pins to a `top` the browser snaps to a device
+       pixel independently of the scroll offset, drifting the page by ~1px */
+    lockY = Math.round(window.scrollY || window.pageYOffset || 0);
+    var s = document.body.style;
+    s.position = "fixed"; s.top = -lockY + "px"; s.left = "0"; s.right = "0";
+  }
+  function unlockScroll() {
+    if (!lockDepth || --lockDepth) return;
+    var s = document.body.style;
+    s.position = ""; s.top = ""; s.left = ""; s.right = "";
+    /* html { scroll-behavior: smooth } would otherwise animate the restore */
+    var d = document.documentElement, prev = d.style.scrollBehavior;
+    d.style.scrollBehavior = "auto";
+    window.scrollTo(0, lockY);
+    d.style.scrollBehavior = prev;
+  }
+  window.MBC = window.MBC || {};
+  window.MBC.lockScroll = lockScroll;
+  window.MBC.unlockScroll = unlockScroll;
+
   /* Header solid state */
   function onScroll() {
-    if (!header) return;
+    if (!header || lockDepth) return; /* body is pinned: scrollY reads 0 */
     if (window.scrollY > 60) header.classList.add("is-solid");
     else header.classList.remove("is-solid");
   }
@@ -22,13 +49,18 @@
   /* Mobile navigation */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.querySelector(".nav-menu");
+  /* Idempotent: wired to every menu link, Escape, and every resize above 860px,
+     so it must not unbalance the lock counter when the menu is already closed. */
   function closeNav() {
+    if (!document.body.classList.contains("nav-open")) return;
     document.body.classList.remove("nav-open");
+    unlockScroll();
     if (toggle) toggle.setAttribute("aria-expanded", "false");
   }
   if (toggle && menu) {
     toggle.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
+      if (open) lockScroll(); else unlockScroll();
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       if (open) { var f = menu.querySelector("a"); if (f) f.focus(); }
     });

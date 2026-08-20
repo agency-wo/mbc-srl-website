@@ -58,14 +58,15 @@
     lb.classList.add("is-open");
     lb.setAttribute("aria-hidden", "false");
     document.body.classList.add("lb-open");
-    document.body.style.overflow = "hidden";
+    /* shared with the mobile nav so the two overlays don't fight over overflow */
+    if (window.MBC) window.MBC.lockScroll(); else document.body.style.overflow = "hidden";
     lb.querySelector(".lb-close").focus();
   }
   function close() {
     lb.classList.remove("is-open");
     lb.setAttribute("aria-hidden", "true");
     document.body.classList.remove("lb-open");
-    document.body.style.overflow = "";
+    if (window.MBC) window.MBC.unlockScroll(); else document.body.style.overflow = "";
     if (lastFocus) lastFocus.focus();
   }
 
