@@ -437,10 +437,18 @@ p { max-width: 68ch; }
 .footer-bottom a { color: #8fa08f; position: relative; } .footer-bottom a:hover { color: #fff; }
 /* Il credito sta dentro una frase, non in un elenco: senza sottolineatura resta
    distinguibile solo per colore (WCAG 1.4.1). E' esattamente il controllo che su
-   flysystem faceva scendere l'accessibilita' da 100 a 96. */
-.footer-bottom a[href*="marketingpro"] {
+   flysystem faceva scendere l'accessibilita' da 100 a 96.
+   Il :not(:has(img)) e' perche' oggi il credito e' il logo di MarketingPro, e
+   un'immagine non e' "distinguibile solo per colore": la sottolineatura non
+   serve e sotto un logo sta male. La regola resta pero' armata per il caso in
+   cui il credito torni a essere testo, che e' il caso in cui serviva davvero. */
+.footer-bottom a[href*="marketingpro"]:not(:has(img)) {
   text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
 }
+/* Il logo si allinea al testo della riga invece di sedersi sulla baseline, dove
+   lascerebbe il gap dei contenuti inline. */
+.footer-bottom .credito { display: inline-flex; align-items: center; gap: .45rem; }
+.footer-bottom .credito img { display: block; width: 100px; height: auto; }
 
 /* ---------- Reveal on scroll (only when JS is active, so no-JS shows all) ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0ms); }

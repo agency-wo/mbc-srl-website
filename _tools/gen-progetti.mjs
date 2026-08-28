@@ -124,7 +124,7 @@ const footer = `  <footer class="site-footer">
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> Manfredi Business Concept SRL · P.IVA 13274090011<br>Sede legale: Via Vitaliano Donati 17, 10121 Torino (TO)</span>
-        <span>Sito realizzato da <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener">MarketingPro</a></span>
+        <span class="credito">Sito realizzato da <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener"><img src="/assets/img/brand/marketingpro-credito-100.png" srcset="/assets/img/brand/marketingpro-credito-100.png 1x, /assets/img/brand/marketingpro-credito-200.png 2x, /assets/img/brand/marketingpro-credito-300.png 3x" width="100" height="23" alt="MarketingPro" loading="lazy" decoding="async"></a></span>
         <span><a href="/privacy/">Privacy</a> · <a href="/cookie/">Cookie</a></span>
       </div>
     </div>

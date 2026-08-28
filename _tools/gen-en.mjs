@@ -84,7 +84,7 @@ const footer = `  <footer class="site-footer">
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> Manfredi Business Concept SRL · VAT 13274090011<br>Registered office: Via Vitaliano Donati 17, 10121 Turin (TO), Italy</span>
-        <span>Site by <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener">MarketingPro</a></span>
+        <span class="credito">Site by <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener"><img src="/assets/img/brand/marketingpro-credito-100.png" srcset="/assets/img/brand/marketingpro-credito-100.png 1x, /assets/img/brand/marketingpro-credito-200.png 2x, /assets/img/brand/marketingpro-credito-300.png 3x" width="100" height="23" alt="MarketingPro" loading="lazy" decoding="async"></a></span>
         <span><a href="/en/privacy/">Privacy</a> · <a href="/en/cookie/">Cookie</a></span>
       </div>
     </div>

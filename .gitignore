@@ -5,6 +5,7 @@
 /_tools/node_modules/
 /_tools/package-lock.json
 /_tools/sheets/
+/_tools/__pycache__/
 /_tools/shots/
 
 # OS / editor
