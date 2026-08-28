@@ -200,7 +200,13 @@ p { max-width: 68ch; }
    Il descrittore pero' e' alto 24px su 664 di larghezza, cioe' un rapporto di
    28:1: per leggerlo servono almeno 220px di larghezza (8px di altezza). Sotto
    quella misura e' una sbavatura grigia, e infatti sul telefono si nasconde. */
-.logo-word { display: flex; flex-direction: column; gap: 3px; }
+/* Lo spazio fra le due righe e' il 6,16% della larghezza del lettering
+   (nell'artwork: 41px di banda vuota su 666 di larghezza). Non e' una
+   percentuale CSS perche' in un flex column il gap percentuale si risolve
+   contro l'altezza del contenitore, che qui dipende dal contenuto: sarebbe
+   circolare. Quindi valore esplicito per contesto: 7px con lettering da 110px
+   nell'header, 16px con lettering da 260px nel footer. */
+.logo-word { display: flex; flex-direction: column; gap: 7px; }
 .logo-word__name, .logo-word__desc {
   display: block; background-repeat: no-repeat; background-position: left center; background-size: contain;
 }
@@ -210,12 +216,18 @@ p { max-width: 68ch; }
   background-image: -webkit-image-set(url("/assets/img/brand/logo-word-110.png") 1x, url("/assets/img/brand/logo-word-220.png") 2x, url("/assets/img/brand/logo-word-330.png") 3x);
   background-image: image-set(url("/assets/img/brand/logo-word-110.png") 1x, url("/assets/img/brand/logo-word-220.png") 2x, url("/assets/img/brand/logo-word-330.png") 3x);
 }
-/* Nascosto finche' non c'e' la larghezza per leggerlo. */
+/* Il descrittore alla proporzione dell'artwork: 664:24 alla larghezza del
+   lettering (110px) fa 4px di altezza. A questa misura e' una riga grigia, non
+   una scritta leggibile - il descrittore e' il 5,5% dell'altezza del marchio, e
+   per portarlo a 7px leggibili servirebbe un marchio da 128px e un header alto
+   ~164px invece di 76. Scelta esplicita: mostrarlo comunque, alle proporzioni
+   giuste, senza gonfiare il lockup. */
 .logo-word__desc {
-  display: none;
-  background-image: url("/assets/img/brand/logo-desc-450.png");
-  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-150.png") 1x, url("/assets/img/brand/logo-desc-300.png") 2x, url("/assets/img/brand/logo-desc-450.png") 3x);
-  background-image: image-set(url("/assets/img/brand/logo-desc-150.png") 1x, url("/assets/img/brand/logo-desc-300.png") 2x, url("/assets/img/brand/logo-desc-450.png") 3x);
+  display: block;
+  width: 110px; height: 4px;
+  background-image: url("/assets/img/brand/logo-desc-220.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-110.png") 1x, url("/assets/img/brand/logo-desc-220.png") 2x, url("/assets/img/brand/logo-desc-330.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-110.png") 1x, url("/assets/img/brand/logo-desc-220.png") 2x, url("/assets/img/brand/logo-desc-330.png") 3x);
 }
 /* logo over dark hero (before solid) */
 .site-header:not(.is-solid) .logo-mark {
@@ -229,9 +241,9 @@ p { max-width: 68ch; }
   background-image: image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
 }
 .site-header:not(.is-solid) .logo-word__desc {
-  background-image: url("/assets/img/brand/logo-desc-light-450.png");
-  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
-  background-image: image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
+  background-image: url("/assets/img/brand/logo-desc-light-220.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-110.png") 1x, url("/assets/img/brand/logo-desc-light-220.png") 2x, url("/assets/img/brand/logo-desc-light-330.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-light-110.png") 1x, url("/assets/img/brand/logo-desc-light-220.png") 2x, url("/assets/img/brand/logo-desc-light-330.png") 3x);
 }
 
 /* Il descrittore non compare mai nell'header, a nessuna larghezza. Misurato
@@ -793,4 +805,4 @@ body.lb-open .wa-fab { display: none; }
 /* Il lockup del footer deve poter rimpicciolire: senza min-width:0 un elemento
    flex non scende sotto la propria dimensione naturale e l'overflow resta. */
 .site-footer .logo { max-width: 100%; }
-.site-footer .logo-word { min-width: 0; }
+.site-footer .logo-word { min-width: 0; gap: 16px; }

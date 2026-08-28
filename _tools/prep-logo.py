@@ -62,8 +62,11 @@ LARGHEZZE_MARCHIO = [40, 80, 120]
 # LARGHEZZE_MARCHIO gia' basta.
 LARGHEZZE_PAROLA = [110, 220, 330]          # "MBC SRL" nell'header (chiara e scura)
 LARGHEZZE_PAROLA_FOOTER = [260, 520, 780]   # "MBC SRL" nel footer, sola chiara
-LARGHEZZE_DESC_FOOTER = [260, 520, 780]     # descrittore, solo nel footer, sola chiara:
-                                             # nessun contesto lo mostra su fondo chiaro
+LARGHEZZE_DESC = [110, 220, 330]            # descrittore nell'header: riquadro 110px CSS,
+                                             # quindi 330 fisici alla densita' massima.
+                                             # Serve chiaro E scuro: l'header e' crema quando
+                                             # e' solido, ma sta sopra la foto sull'hero.
+LARGHEZZE_DESC_FOOTER = [260, 520, 780]     # descrittore nel footer, sola chiara
 
 
 def scontorna(im):
@@ -296,7 +299,10 @@ def main(sorgente, destinazione):
     salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA)
     print("MBC SRL - footer (lockup intero, sola chiara)")
     salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA_FOOTER)
-    print("descrittore %dx%d (righe y %d-%d) - footer (sola chiara)" % (desc.width, desc.height, b0, b1))
+    print("descrittore %dx%d (righe y %d-%d) - header (chiara e scura)" % (desc.width, desc.height, b0, b1))
+    salva(desc, dst / "logo-desc.png", LARGHEZZE_DESC)
+    salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC)
+    print("descrittore - footer (sola chiara)")
     salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC_FOOTER)
     return 0
 
