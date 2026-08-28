@@ -234,40 +234,14 @@ p { max-width: 68ch; }
   background-image: image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
 }
 
-/* Da 861px in su c'e' la larghezza per il descrittore: 220px -> 8px di altezza,
-   e il lockup sta in 56px dentro un header alto 76. Sotto no, e resta il solo
-   "MBC SRL": e' il comportamento normale di un lockup responsive. */
-@media (min-width: 861px) {
-  .logo-word__name { width: 220px; height: 45px; }
-  .logo-word__desc { display: block; width: 220px; height: 8px; }
-}
-
-/* Sotto gli 861px il selettore lingua lascia la barra e va nel menu: quegli 84px
-   servono al lettering. Senza, il descrittore starebbe a 5,6px su uno schermo da
-   390, cioe' una sbavatura grigia. Con, arriva a 8,7px e si legge.
-   La larghezza e' legata alla finestra, quindi non esiste uno schermo su cui
-   sbordi: a 320px scende da sola e il descrittore resta il piu' grande possibile. */
-@media (max-width: 860px) {
-  .nav-side .lang { display: none; }
-  .logo-word__name,
-  .logo-word__desc { width: min(240px, calc(100vw - 132px)); height: auto; }
-  .logo-word__name { aspect-ratio: 666 / 135; }
-  .logo-word__desc { display: block; aspect-ratio: 664 / 24; }
-}
-
-/* La copia del selettore che vive dentro il menu. Esiste solo sotto gli 861px:
-   sopra, quello nella barra e' gia' al suo posto. */
-.nav-lang-item { display: none; }
-@media (max-width: 860px) {
-  .nav-lang-item { display: block; margin-top: .4rem; }
-  /* il menu rende ogni link enorme e serif: il selettore va riportato a se stesso */
-  .nav-lang-item .lang a {
-    font-family: var(--sans) !important; font-size: 1.05rem !important;
-    padding: .55rem .9rem !important; border-radius: 8px;
-  }
-  .nav-lang-item .lang a[aria-current="true"] { background: rgba(255,255,255,.16); }
-  .nav-lang-item .lang .sep { color: rgba(255,255,255,.45); }
-}
+/* Il descrittore non compare mai nell'header, a nessuna larghezza. Misurato
+   sull'artwork originale: il marchio e' alto 439px, il blocco di testo a due
+   righe (MBC SRL + descrittore) 200px - il marchio e' 2,2 volte il testo.
+   Un header che ci provasse dovrebbe tenere il blocco di testo a ~18px, il che
+   renderebbe il descrittore alto ~2px: illeggibile per costruzione, e' testo
+   fine nell'artwork, pensato per essere letto solo a dimensioni grandi (come nel
+   footer). .logo-word__name resta alla misura fissa dichiarata sopra (110x22,
+   rapporto 1,8:1 col marchio, vicino all'originale) su ogni larghezza. */
 
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav-menu { display: flex; align-items: center; gap: 1.7rem; }
@@ -406,15 +380,19 @@ p { max-width: 68ch; }
      8px su uno schermo da 320. aspect-ratio tiene le proporzioni mentre la
      larghezza si adatta, quindi non c'e' una misura che possa non entrare. */
   width: min(260px, calc(100vw - 100px)); aspect-ratio: 666 / 135; height: auto;
-  background-image: url("/assets/img/brand/logo-word-light-330.png");
-  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
-  background-image: image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
+  /* Serie propria, non quella dell'header: il riquadro qui arriva a 260px CSS,
+     quindi a 3x servono 780px fisici. Riusare la serie da 330px (pensata per i
+     220px dell'header) significava stirare quel file di 2,36 volte: misurato,
+     esattamente la sgranatura vista su "SRL" e sul descrittore. */
+  background-image: url("/assets/img/brand/logo-word-light-520.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-light-260.png") 1x, url("/assets/img/brand/logo-word-light-520.png") 2x, url("/assets/img/brand/logo-word-light-780.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-word-light-260.png") 1x, url("/assets/img/brand/logo-word-light-520.png") 2x, url("/assets/img/brand/logo-word-light-780.png") 3x);
 }
 .site-footer .logo-word__desc {
   display: block; width: min(260px, calc(100vw - 100px)); aspect-ratio: 664 / 24; height: auto;
-  background-image: url("/assets/img/brand/logo-desc-light-450.png");
-  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
-  background-image: image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
+  background-image: url("/assets/img/brand/logo-desc-light-520.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-260.png") 1x, url("/assets/img/brand/logo-desc-light-520.png") 2x, url("/assets/img/brand/logo-desc-light-780.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-light-260.png") 1x, url("/assets/img/brand/logo-desc-light-520.png") 2x, url("/assets/img/brand/logo-desc-light-780.png") 3x);
 }
 .site-footer .logo-mark {
   background-image: url("/assets/img/brand/logo-mark-light-80.png");

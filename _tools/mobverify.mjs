@@ -24,18 +24,12 @@ await p.goto(B + "/", { waitUntil: "networkidle0" });
 await p.click(".nav-toggle");
 await new Promise(r => setTimeout(r, 500));
 const ctaVisible = await p.evaluate(() => { const el = document.querySelector(".nav-cta-item"); const r = el.getBoundingClientRect(); return getComputedStyle(el).display !== "none" && r.width > 100 && r.top > 0 && r.top < innerHeight; });
-/* Sotto gli 861px il selettore lingua non sta piu' nella barra ma dentro il menu:
-   si controlla quello, e che sia davvero dentro lo schermo a menu aperto. */
-const langTap = await p.evaluate(() => {
-  const barra = document.querySelector(".nav-side .lang");
-  const nelMenu = document.querySelector(".nav-lang-item .lang a");
-  if (!nelMenu) return { h: 0, dentro: false, barraNascosta: false };
-  const r = nelMenu.getBoundingClientRect();
-  return { h: Math.round(r.height), dentro: r.top > 0 && r.bottom < innerHeight && r.width > 0,
-           barraNascosta: !barra || getComputedStyle(barra).display === "none" };
-});
+/* Il selettore lingua vive sempre nella barra, a ogni larghezza: la ragione per
+   cui era finito nel menu (fare posto al descrittore nell'header) e' sparita
+   insieme al descrittore stesso. */
+const langTap = await p.evaluate(() => { const r = document.querySelector(".nav-side .lang a").getBoundingClientRect(); return Math.round(r.height); });
 await p.screenshot({ path: "shots/mobile-menu-open.jpg", quality: 80, type: "jpeg" });
-out.push(`mobile menu CTA visible: ${ctaVisible} | lang nel menu: ${langTap.h}px (want >=38), visibile: ${langTap.dentro}, fuori dalla barra: ${langTap.barraNascosta}`);
+out.push(`mobile menu CTA visible: ${ctaVisible} | lang link height: ${langTap}px (want >=38)`);
 await p.close();
 
 /* 2a) hero state: over the image the header stays transparent and its chrome stays

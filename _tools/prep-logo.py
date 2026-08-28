@@ -48,15 +48,22 @@ LARGHEZZE_MARCHIO = [40, 80, 120]
 
 # Il lettering, ritagliato dall'artwork invece che riscritto con un font scelto a
 # occhio. Il font del logo non e' identificabile da un raster, e uno "simile"
-# resterebbe diverso: cosi' le lettere sono le sue.
-LARGHEZZE_PAROLA = [110, 220, 330]   # "MBC SRL"
-LARGHEZZE_DESC = [150, 300, 450]     # "MANFREDI BUSINESS CONCEPT"
-
-# Il lettering, ritagliato dall'artwork invece che riscritto con un font scelto a
-# occhio. Il font del logo non e' identificabile da un raster, e uno "simile"
 # resterebbe diverso: le lettere qui sono le sue.
-LARGHEZZE_PAROLA = [110, 220, 330]   # "MBC SRL" nell'header e nel footer
-LARGHEZZE_DESC = [150, 300, 450]     # "MANFREDI BUSINESS CONCEPT"
+#
+# Due serie, non una: l'header mostra solo "MBC SRL" in un riquadro di 110px CSS
+# (1,8:1 col marchio da 40px, la proporzione dell'artwork), mai il descrittore -
+# misurato sull'originale, il marchio e' 2,2 volte l'altezza del blocco di testo
+# a due righe, quindi un descrittore leggibile nell'header lo sforerebbe sempre.
+# Il footer invece mostra il lockup intero in un riquadro reale di 260px CSS: la
+# serie da 330px (pensata per l'header) ci veniva stirata 2,36 volte a 3x, ed e'
+# esattamente la sgranatura vista su "SRL". La serie del footer usa solo le
+# varianti chiare (il footer e' sempre testo bianco su verde) e solo per parola
+# e descrittore: il marchio nel footer resta 40px come nell'header, la serie
+# LARGHEZZE_MARCHIO gia' basta.
+LARGHEZZE_PAROLA = [110, 220, 330]          # "MBC SRL" nell'header (chiara e scura)
+LARGHEZZE_PAROLA_FOOTER = [260, 520, 780]   # "MBC SRL" nel footer, sola chiara
+LARGHEZZE_DESC_FOOTER = [260, 520, 780]     # descrittore, solo nel footer, sola chiara:
+                                             # nessun contesto lo mostra su fondo chiaro
 
 
 def scontorna(im):
@@ -276,19 +283,21 @@ def main(sorgente, destinazione):
     print("\nlockup %dx%d" % lockup.size)
     salva(lockup, dst / "logo-full.png", [600, 1200])
 
-    # Le due righe separate. Servono distinte perche' nell'header il descrittore
-    # alla sua proporzione naturale sarebbe alto 3,5 px, cioe' una sbavatura:
-    # come immagini separate si puo' comporlo a una misura leggibile.
+    # Le due righe separate, in due serie di misure: l'header mostra solo
+    # "MBC SRL" (compatta), il footer mostra il lockup intero (grande, sola
+    # chiara). Il descrittore non compare mai su fondo chiaro, quindi la sua
+    # variante scura non si genera piu'.
     x0 = blocchi[1][0] - 6 if len(blocchi) > 1 else mx1
     (a0, a1), (b0, b1) = righe_lettering(grezzo, x0)
     parola = ritaglia_riga(keyed, x0, a0, a1)
     desc = ritaglia_riga(keyed, x0, b0, b1)
-    print("\nMBC SRL %dx%d (righe y %d-%d)" % (parola.width, parola.height, a0, a1))
+    print("\nMBC SRL %dx%d (righe y %d-%d) - header" % (parola.width, parola.height, a0, a1))
     salva(parola, dst / "logo-word.png", LARGHEZZE_PAROLA)
     salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA)
-    print("descrittore %dx%d (righe y %d-%d)" % (desc.width, desc.height, b0, b1))
-    salva(desc, dst / "logo-desc.png", LARGHEZZE_DESC)
-    salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC)
+    print("MBC SRL - footer (lockup intero, sola chiara)")
+    salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA_FOOTER)
+    print("descrittore %dx%d (righe y %d-%d) - footer (sola chiara)" % (desc.width, desc.height, b0, b1))
+    salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC_FOOTER)
     return 0
 
 

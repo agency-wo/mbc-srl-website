@@ -49,7 +49,6 @@ function header(cur, opts = {}) {
         <ul class="nav-menu" id="nav-menu">
 ${items}
           <li class="nav-cta-item"><a class="btn" href="/en/contact/">Get a quote</a></li>
-          <li class="nav-lang-item"><span class="lang" aria-label="Language"><a href="${itHref}" hreflang="it">IT</a><span class="sep">/</span><a href="${enHref}" aria-current="true" hreflang="en">EN</a></span></li>
         </ul>
         <div class="nav-side">
           <span class="lang" aria-label="Language">
