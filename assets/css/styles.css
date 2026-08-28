@@ -606,11 +606,6 @@ textarea { min-height: 140px; resize: vertical; }
 /* "Dove siamo" carries two addresses (showroom + sede legale), so its p's stack */
 .info-item p + p { margin-top: .7rem; }
 .info-item .sub { font-size: .88rem; color: var(--muted); }
-/* --muted (#5F665D) sul crema-3 del badge da 4,36:1, sotto il 4,5 richiesto per
-   il testo piccolo: falliva gia prima, e si vedeva solo passando axe su
-   /contatti/, che non avevo mai fatto. Scurito quel tanto che basta (5,06:1);
-   il token globale resta com e, perche altrove passa. */
-.badge-soon { font-size: .78rem; background: var(--cream-3); color: #565C54; padding: .1rem .5rem; border-radius: 999px; vertical-align: middle; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
 
 /* Values row */

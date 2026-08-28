@@ -79,7 +79,7 @@ const footer = `  <footer class="site-footer">
           <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/catalogue/">Bolla catalogue</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
         </ul></div>
         <div class="footer-col footer-contact"><h3>Contact</h3><ul>
-          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Showroom by appointment<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
+          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></li><li>Showroom by appointment<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
         </ul></div>
       </div>
       <div class="footer-bottom">
@@ -137,7 +137,7 @@ const BUSINESS_LD = `  <script type="application/ld+json">
         "description": "Supply and installation of glamping bubbles and domes, outdoor dining domes for bars and restaurants, outdoor saunas, salt rooms, hot tubs and fitness equipment. Turnkey glamping projects including electrical, plumbing and climate control.",
         "url": "https://www.mbcsrl.it/en/",
         "telephone": "+393338641752",
-        "email": "info@mbcsrl.it",
+        "email": "info@manfrediconcept.it",
         "image": "https://www.mbcsrl.it/assets/img/og-share.jpg",
         "logo": "https://www.mbcsrl.it/assets/img/brand/logo-full-1200.png",
         "priceRange": "€€€",
@@ -418,7 +418,7 @@ ${header("contact")}
     <section class="section"><div class="container"><div class="contact-grid">
       <div>
         <span class="eyebrow">Request a quote</span><h2 style="margin-bottom:1.4rem">Send us a message</h2>
-        <div class="form-success" aria-live="polite">Thank you! Your email client will open with the message ready: just press send. Alternatively, write to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</div>
+        <div class="form-success" aria-live="polite">Thank you! Your email client will open with the message ready: just press send. Alternatively, write to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</div>
         <form id="contact-form" novalidate>
           <div class="form-row">
             <div class="form-field"><label for="nome">Full name <span class="req">*</span></label><input type="text" id="nome" name="nome" autocomplete="name" required><span class="field-error">Please enter your name.</span></div>
@@ -440,7 +440,7 @@ ${header("contact")}
       <aside class="contact-card">
         <div class="info-item"><span class="ico">${WA_GLYPH}</span><div><h3>WhatsApp</h3><a href="${waHref(WA_MSG.legal)}" target="_blank" rel="noopener noreferrer" data-wa-source="en-contact-card">Message us on WhatsApp<span class="visually-hidden"> (opens in a new window)</span></a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 11.5a16 16 0 0 0 6 6l1-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span><div><h3>Phone</h3><a href="tel:+393338641752">+39 333 864 1752</a></div></div>
-        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><h3>Email</h3><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a> <span class="badge-soon">to be confirmed</span></div></div>
+        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><h3>Email</h3><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Where we are</h3><p><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO), Italy<br><span class="sub">Visits by appointment</span></p>
         <p><strong>Registered office</strong><br>Via Vitaliano Donati 17, 10121 Turin (TO), Italy</p>
         <p class="sub">We install across the whole of Italy.</p></div></div>
@@ -686,11 +686,11 @@ ${waFab("legal")}
 }
 write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
   `<p class="foot-note">Last updated: 28 August 2026 · <em>Contact email address still to be confirmed.</em></p>
-   <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRL</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
+   <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRL</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</p>
    <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. That form is static and stores nothing on our servers: it opens your own mail client.</p><p>The <strong>catalogue request form</strong> works differently. To send it we ask for your <strong>full name, email address and phone number</strong>, and optionally your line of work. Those details are transmitted to <strong>FormSubmit</strong>, which forwards them to our mailbox acting as a data processor. The catalogue itself is then downloaded directly by your browser.</p>
    <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li><li>To send you the catalogue you requested and follow up about it (legal basis: your consent, Art. 6.1.a GDPR, which you may withdraw at any time).</li></ul>
    <h2>4. Recipients</h2><p>For catalogue requests only, the data passes through <strong>FormSubmit</strong> (Ozzy Digital LLC), which delivers it to our mailbox and does not use it for its own purposes.</p><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>
-   <h2>5. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
+   <h2>5. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</p>
    <h2>6. Cookies</h2><p>See our <a href="/en/cookie/">Cookie Policy</a>.</p>`));
 write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
   `<p class="foot-note">Last updated: 23 July 2026.</p>
@@ -698,7 +698,7 @@ write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
    <h2>2. Cookies used by this site</h2><p>This site is static and, in its current configuration, <strong>installs no profiling or third-party cookies</strong>. Fonts are self-hosted and no scripts, fonts or content are loaded from external services.</p>
    <p>The WhatsApp button shown on the pages is a plain link: no request is made to WhatsApp until you deliberately open it.</p>
    <h2>3. Future services</h2><p>If tools such as maps, video or analytics are added, this policy will be updated and a consent banner shown as required by law.</p>
-   <h2>4. Contact</h2><p>Questions? Write to <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>. See also our <a href="/en/privacy/">Privacy Policy</a>.</p>`));
+   <h2>4. Contact</h2><p>Questions? Write to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>. See also our <a href="/en/privacy/">Privacy Policy</a>.</p>`));
 
 console.log("wrote EN pages: /en/, /en/about/, /en/projects/ (" + ordered.length + " items), /en/contact/, /en/privacy/, /en/cookie/");
 

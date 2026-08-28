@@ -117,7 +117,7 @@ const footer = `  <footer class="site-footer">
           <ul>
             <li><a href="tel:+393338641752">+39 333 864 1752</a></li>
             <li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-            <li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li>
+            <li><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></li>
             <li>Showroom su appuntamento<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
           </ul>
         </div>

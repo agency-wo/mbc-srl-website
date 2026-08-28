@@ -6,7 +6,7 @@
   var form = document.querySelector("#contact-form");
   if (!form) return;
   var success = document.querySelector(".form-success");
-  var MAIL_TO = "info@mbcsrl.it"; // TODO: replace with the real address
+  var MAIL_TO = "info@manfrediconcept.it";
 
   function setInvalid(field, on) {
     var wrap = field.closest(".form-field");

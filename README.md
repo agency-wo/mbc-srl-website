@@ -49,14 +49,18 @@ _tools/                script di generazione/QA (nel repo; node_modules e output
 Cerca questi valori e sostituiscili con quelli reali (sono ripetuti in tutte le pagine):
 | Placeholder | Dove | Sostituire con |
 |---|---|---|
-| `info@mbcsrl.it` | footer, contatti, contact.js | email reale |
-| `P.IVA 00000000000` / `VAT 00000000000` | footer | Partita IVA reale |
 | `https://www.mbcsrl.it` | canonical, og, sitemap, JSON-LD | dominio definitivo |
-| indirizzo "Italia · su appuntamento" | footer, contatti, privacy | sede/area reale |
 | social `href="#"` (Instagram, Facebook) | footer | URL profili reali |
 | tagline / claim | hero home | eventuale claim scelto |
 
-Il **numero di telefono `+39 333 864 1752`** è già inserito ovunque (footer, contatti, click-to-call, JSON-LD).
+Gia' inseriti e **non** piu' segnaposto: email `info@manfrediconcept.it` (footer, contatti,
+contact.js, JSON-LD, e destinazione del modulo catalogo via FormSubmit), P.IVA `13274090011`,
+sede legale e showroom, telefono `+39 333 864 1752`.
+
+> **FormSubmit va ancora attivato**: al primo invio vero del modulo catalogo arriva una mail di
+> conferma a `info@manfrediconcept.it` che qualcuno deve cliccare. Finche' non succede, i contatti
+> non vengono recapitati.
+
 
 I **2 file HEIC** (`IMG_8301`, `IMG_8367`) non sono stati convertiti (manca il codec HEVC): se servono,
 riesportali in JPEG e aggiungili con la procedura sopra.
