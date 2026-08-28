@@ -55,10 +55,7 @@ const filters = filterOrder.map((f, idx) =>
 const header = `  <header class="site-header">
     <div class="container">
       <a class="logo" href="/" aria-label="MBC, home">
-        <span class="logo-mark">
-          <img class="logo-mark__light" src="/assets/img/brand/logo-mark-96.png" srcset="/assets/img/brand/logo-mark-96.png 1x, /assets/img/brand/logo-mark-192.png 2x" width="40" height="39" alt="" decoding="async">
-          <img class="logo-mark__dark" src="/assets/img/brand/logo-mark-light-96.png" srcset="/assets/img/brand/logo-mark-light-96.png 1x, /assets/img/brand/logo-mark-light-192.png 2x" width="40" height="39" alt="" decoding="async">
-        </span>
+        <span class="logo-mark" aria-hidden="true"></span>
         <span class="logo-word"><strong>MBC</strong><em>SRL</em></span>
       </a>
       <nav class="nav" aria-label="Navigazione principale">
@@ -85,10 +82,7 @@ const footer = `  <footer class="site-footer">
       <div class="footer-grid">
         <div class="footer-about">
           <a class="logo" href="/" aria-label="MBC, home">
-            <span class="logo-mark">
-              <img class="logo-mark__light" src="/assets/img/brand/logo-mark-96.png" srcset="/assets/img/brand/logo-mark-96.png 1x, /assets/img/brand/logo-mark-192.png 2x" width="40" height="39" alt="" decoding="async">
-              <img class="logo-mark__dark" src="/assets/img/brand/logo-mark-light-96.png" srcset="/assets/img/brand/logo-mark-light-96.png 1x, /assets/img/brand/logo-mark-light-192.png 2x" width="40" height="39" alt="" decoding="async">
-            </span>
+            <span class="logo-mark" aria-hidden="true"></span>
             <span class="logo-word"><strong>MBC</strong><em>SRL</em></span>
           </a>
           <p>Bolle per glamping, percorsi benessere e forniture per il wellness. Trent'anni di esperienza, progetti chiavi in mano su misura.</p>

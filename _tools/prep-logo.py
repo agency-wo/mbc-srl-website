@@ -41,6 +41,11 @@ from PIL import Image
 # chiaro sta comunque centinaia di livelli piu' giu'.
 HI, LO = 232, 190
 
+# Il riquadro del marchio e' 40px CSS: servono 40 px fisici a 1x, 80 a 2x, 120 a 3x.
+# Prima erano 96 e 192, cioe' 192 px per riempirne 80: due volte e mezzo in lineare,
+# quasi sei in pixel. Le densita' si scrivono in base al riquadro, non a occhio.
+LARGHEZZE_MARCHIO = [40, 80, 120]
+
 
 def scontorna(im):
     rgba = im.convert("RGBA")
@@ -126,11 +131,20 @@ def semplifica(im, colori=16):
 
 
 def salva(im, percorso, larghezze):
+    """Scrive le rendition in PNG-8 con tavolozza.
+
+    Un PNG a 32 bit per un disegno a due colori piatti e' il formato sbagliato,
+    e si vedeva: il marchio a 192px pesava 20,4 KB. Quantizzando con FASTOCTREE,
+    che conserva l'alpha, lo stesso disegno a 80px sta in 2,8 KB. Misurato a
+    confronto anche con WebP lossless (8,9 KB) e WebP q90 (6,8 KB): qui vince
+    il PNG a tavolozza, perche' i colori sono pochi e piatti.
+    """
     for w in larghezze:
         h = round(im.height * w / im.width)
         out = semplifica(im.resize((w, h), Image.LANCZOS))
+        pal = out.quantize(colors=64, method=Image.FASTOCTREE)
         nome = percorso.with_name("%s-%d.png" % (percorso.stem, w))
-        out.save(nome, optimize=True)
+        pal.save(nome, optimize=True)
         print("  %-34s %dx%d  %d B" % (nome.name, w, h, nome.stat().st_size))
 
 
@@ -151,9 +165,9 @@ def main(sorgente, destinazione):
     mx0, mx1 = blocchi[0]
     marchio = keyed.crop(riquadro(keyed, mx0, mx1))
     print("\nmarchio %dx%d" % marchio.size)
-    salva(marchio, dst / "logo-mark.png", [96, 192])
+    salva(marchio, dst / "logo-mark.png", LARGHEZZE_MARCHIO)
     print("marchio per fondi scuri")
-    salva(schiarisci(marchio), dst / "logo-mark-light.png", [96, 192])
+    salva(schiarisci(marchio), dst / "logo-mark-light.png", LARGHEZZE_MARCHIO)
 
     lockup = keyed.crop(riquadro(keyed))
     print("\nlockup %dx%d" % lockup.size)

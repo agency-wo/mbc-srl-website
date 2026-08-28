@@ -13,7 +13,7 @@ const nav = [
   { key: "projects", it: "/progetti/", en: "/en/projects/", label: "Projects" },
   { key: "contact", it: "/contatti/", en: "/en/contact/", label: "Contact" },
 ];
-const LOGO = `<span class="logo-mark"><img class="logo-mark__light" src="/assets/img/brand/logo-mark-96.png" srcset="/assets/img/brand/logo-mark-96.png 1x, /assets/img/brand/logo-mark-192.png 2x" width="40" height="39" alt="" decoding="async"><img class="logo-mark__dark" src="/assets/img/brand/logo-mark-light-96.png" srcset="/assets/img/brand/logo-mark-light-96.png 1x, /assets/img/brand/logo-mark-light-192.png 2x" width="40" height="39" alt="" decoding="async"></span>`;
+const LOGO = `<span class="logo-mark" aria-hidden="true"></span>`;
 
 /* ---- WhatsApp ---- */
 const WA_NUMBER = "393338641752";

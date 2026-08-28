@@ -39,10 +39,10 @@ await p.setViewport({ width: 390, height: 844, isMobile: true });
 await p.goto(B + "/", { waitUntil: "networkidle0" });
 const hero = await p.evaluate(() => ({
   solid: document.querySelector(".site-header").classList.contains("is-solid"),
-  /* Il marchio non e piu un SVG ricolorabile ma due <img>: sopra la foto
-     deve essere visibile quello chiaro e nascosto quello scuro. */
-  mark: getComputedStyle(document.querySelector(".logo-mark__dark")).display,
-  markLight: getComputedStyle(document.querySelector(".logo-mark__light")).display,
+  /* Il marchio e un solo elemento dipinto dal CSS: sopra la foto la regola
+     attiva deve chiedere la variante chiara, non quella verde. Si guarda quale
+     file finisce nel background-image. */
+  mark: getComputedStyle(document.querySelector(".logo-mark")).backgroundImage,
   word: getComputedStyle(document.querySelector(".logo-word strong")).color,
   burger: getComputedStyle(document.querySelector(".nav-toggle span")).backgroundColor,
   hdrBf: getComputedStyle(document.querySelector(".site-header")).backdropFilter,
@@ -50,8 +50,7 @@ const hero = await p.evaluate(() => ({
 }));
 const heroFail = [];
 if (hero.solid) heroFail.push("header is-solid at scrollY 0");
-if (hero.mark !== "block") heroFail.push(`marchio per fondi scuri display:${hero.mark}`);
-if (hero.markLight !== "none") heroFail.push(`marchio chiaro non nascosto: display:${hero.markLight}`);
+if (!/logo-mark-light-/.test(hero.mark)) heroFail.push(`sopra la foto il marchio non e la variante chiara: ${hero.mark.slice(0, 90)}`);
 if (hero.word !== "rgb(255, 255, 255)") heroFail.push(`logo word colour ${hero.word}`);
 if (hero.burger !== "rgb(255, 255, 255)") heroFail.push(`burger bar colour ${hero.burger}`);
 if (hero.hdrBf !== "none" || hero.beforeBf !== "none") heroFail.push(`blur leaked (${hero.hdrBf} / ${hero.beforeBf})`);
