@@ -1,0 +1,44 @@
+# Intestazioni di cache. Nasce da una misura: navigando dalla home a /soluzioni/
+# con la cache calda arrivavano **quattro risposte 304**, cioe' i due font, il
+# CSS e il JS facevano un giro di rete completo solo per sentirsi dire "non e'
+# cambiato". I byte non si riscaricavano, ma su mobile un round trip costa fra i
+# 100 e i 300 ms, e qui le pagine sono quattordici: il cliente ci clicca dentro.
+#
+# La riga X-Robots-Tag: noindex NON sta qui di proposito. Vale per l'anteprima,
+# non per il sito vero, quindi la aggiunge il comando di deploy in coda a questo
+# file. Vedi README.
+
+# I font non cambiano mai e il loro nome descrive il taglio: un peso diverso e'
+# un file diverso. Immutable significa che il browser non torna nemmeno a
+# chiedere se sono cambiati.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# CSS e JS possono stare a un anno **solo perche'** _tools/versiona.py appende
+# l'impronta sha1 del contenuto all'indirizzo (styles.css?v=1f27331f), e una
+# stringa di query e' una chiave di cache distinta: contenuto nuovo, indirizzo
+# nuovo. Se un giorno si togliesse versiona.py, queste due regole vanno tolte
+# con lui, altrimenti un aggiornamento non arriverebbe piu' a nessuno.
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Immagini: lunghe ma NON immutable. Qui i nomi sono parlanti e stabili, non
+# contengono un'impronta, quindi sostituire una fotografia tenendo lo stesso
+# nome deve restare possibile e deve arrivare ai visitatori senza rinominarla.
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+
+# Il catalogo pesa 9,6 MB: chi lo ha gia' scaricato non deve rifarlo. Stessa
+# ragione delle immagini per il non-immutable, il cliente ne mandera' altre
+# edizioni con lo stesso nome.
+/assets/pdf/*
+  Cache-Control: public, max-age=2592000
+
+# Le pagine cambiano quando cambia il sito e non hanno impronta nell'indirizzo,
+# quindi vanno rivalidate. max-age=0 con must-revalidate vuol dire una richiesta
+# condizionale che di norma torna 304 senza corpo, non un download.
+/*
+  Cache-Control: public, max-age=0, must-revalidate

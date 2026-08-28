@@ -70,11 +70,49 @@ Per aggiornare l'anteprima dopo nuovi commit:
 ```bash
 STAGE=$(mktemp -d) && git archive HEAD | tar -x -C "$STAGE" \
   && rm -rf "$STAGE/_tools" "$STAGE/README.md" "$STAGE/.gitignore" \
-  && printf '/*\n  X-Robots-Tag: noindex\n' > "$STAGE/_headers" \
+  && printf '\n/*\n  X-Robots-Tag: noindex\n' >> "$STAGE/_headers" \
   && npx wrangler pages deploy "$STAGE" --project-name=mbc-srl-preview --branch=main --commit-dirty=true
 ```
+Nota il `>>`: il `noindex` si **aggiunge** a `_headers`, che ora è committato e contiene le regole di
+cache. Con `>` le cancellerebbe.
+
+**Prima di ogni deploy**, se hai toccato CSS o JS, va rilanciato `versiona.py`, altrimenti chi ha già
+visitato il sito continuerebbe a vedere la versione in cache:
+
+```bash
+node _tools/gen-en.mjs && node _tools/gen-progetti.mjs   # solo se hai toccato i generatori
+python _tools/versiona.py                                # sempre, e sempre per ultimo
+```
+
 Quando arriverà il dominio definitivo basterà collegarlo allo stesso progetto Cloudflare Pages
 (senza header noindex) oppure attivare GitHub Pages come da sezione seguente.
+
+## Cache
+
+`_headers` (committato) dice a Cloudflare quanto tenere ogni cosa. Nasce da una misura: navigando
+dalla home a `/soluzioni/` con la cache calda arrivavano **quattro risposte 304**, cioè i due font, il
+CSS e il JS facevano un giro di rete completo solo per sentirsi dire "non è cambiato". I byte non si
+riscaricavano, ma su mobile un round trip costa 100-300 ms, e le pagine qui sono quattordici.
+
+| | durata | perché |
+|---|---|---|
+| font | 1 anno, immutable | non cambiano mai, il nome descrive il taglio |
+| CSS e JS | 1 anno, immutable | **solo grazie all'impronta** messa da `versiona.py` |
+| immagini, PDF | 30 giorni | nomi stabili: sostituirne uno con lo stesso nome deve restare possibile |
+| pagine HTML | revalidate | non hanno impronta nell'indirizzo |
+
+`_tools/versiona.py` appende lo sha1 del contenuto all'indirizzo (`styles.css?v=1f27331f`): contenuto
+nuovo, indirizzo nuovo, quindi una cache lunga non può servire una copia vecchia. **Va eseguito dopo i
+generatori**, che riscrivono l'HTML con l'indirizzo nudo.
+
+```bash
+python _tools/versiona.py          # riscrive le pagine
+python _tools/versiona.py --check  # esce 1 se un'impronta è vecchia
+python _tools/versiona.py --hook   # installa il pre-commit che fa il check
+```
+
+Se un giorno si toglie `versiona.py`, vanno tolte anche le due regole `immutable` su CSS e JS in
+`_headers`: senza impronta, un aggiornamento non arriverebbe più a chi ha già visitato il sito.
 
 ## Pubblicazione (GitHub Pages + Cloudflare)
 1. Crea un repository su GitHub e carica il contenuto di questa cartella (root del repo).
