@@ -253,7 +253,7 @@ ${header("home")}
           </picture></div>
           <div class="split__body reveal" data-delay="1">
             <span class="eyebrow">Catalogue</span>
-            <h2>Our bubbles are at the Sheraton in Milan and in a hotel in Rome</h2>
+            <h2>Your outdoor space stops being a season</h2>
             <p>Four models, from the 300&nbsp;UP for two people to the 600&nbsp;UP at 21&nbsp;m&sup2; seating thirty. With dimensions, capacities and photographs of installations already in use.</p>
             <ul class="ticks">
               <li>Seven use cases: dining, glamping, garden, office, spa, events, sport</li>
@@ -703,7 +703,7 @@ console.log("wrote EN pages: /en/, /en/about/, /en/projects/ (" + ordered.length
 
 
 /* ---------------- CATALOGUE (/en/catalogue/) ---------------- */
-write("en/catalogue/index.html", `${head({ title: "BOLLA catalogue 2026: 4 sizes, from 2 to 30 people | MBC", desc: "The BOLLA catalogue as a PDF: four models from 2 to 30 people, sizes and floor areas, seven use cases and real installations. Italian and English side by side.", path: "/en/catalogue/", itAlt: "/catalogo/" })}
+write("en/catalogue/index.html", `${head({ title: "BOLLA catalogue 2026: glamping bubbles and domes | MBC", desc: "The BOLLA catalogue as a PDF: four models from 2 to 30 people, sizes and floor areas, seven use cases and real installations. Italian and English side by side.", path: "/en/catalogue/", itAlt: "/catalogo/" })}
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},
@@ -717,8 +717,8 @@ ${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogu
     <section class="page-header">
       <div class="container">
         <span class="eyebrow">BOLLA&reg; catalogue</span>
-        <h1>Four sizes. The smallest fits a garden, the largest seats thirty.</h1>
-        <p>Dimensions and capacities model by model, and the bubbles already in use: Sheraton Milan San Siro, 9Hotel Ces&agrave;ri in Rome, Villa Cariola. As a PDF, Italian and English.</p>
+        <h1>The space you close in October, open in January. Without building anything.</h1>
+        <p>Dimensions and capacities model by model, the winter and summer covers, and the bubbles already in use in hotels, resorts and beach clubs. As a PDF, Italian and English.</p>
       </div>
     </section>
 
