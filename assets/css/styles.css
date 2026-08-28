@@ -242,11 +242,31 @@ p { max-width: 68ch; }
   .logo-word__desc { display: block; width: 220px; height: 8px; }
 }
 
-/* Sotto i 380px l'header non ha spazio: misurato a 320px servivano 308px fra
-   logo e comandi, con 284 disponibili. Il lettering scende a 76px invece di
-   sparire, perche' "MBC SRL" e' il marchio, non un fronzolo da togliere. */
-@media (max-width: 380px) {
-  .logo-word__name { width: 76px; height: 15px; }
+/* Sotto gli 861px il selettore lingua lascia la barra e va nel menu: quegli 84px
+   servono al lettering. Senza, il descrittore starebbe a 5,6px su uno schermo da
+   390, cioe' una sbavatura grigia. Con, arriva a 8,7px e si legge.
+   La larghezza e' legata alla finestra, quindi non esiste uno schermo su cui
+   sbordi: a 320px scende da sola e il descrittore resta il piu' grande possibile. */
+@media (max-width: 860px) {
+  .nav-side .lang { display: none; }
+  .logo-word__name,
+  .logo-word__desc { width: min(240px, calc(100vw - 132px)); height: auto; }
+  .logo-word__name { aspect-ratio: 666 / 135; }
+  .logo-word__desc { display: block; aspect-ratio: 664 / 24; }
+}
+
+/* La copia del selettore che vive dentro il menu. Esiste solo sotto gli 861px:
+   sopra, quello nella barra e' gia' al suo posto. */
+.nav-lang-item { display: none; }
+@media (max-width: 860px) {
+  .nav-lang-item { display: block; margin-top: .4rem; }
+  /* il menu rende ogni link enorme e serif: il selettore va riportato a se stesso */
+  .nav-lang-item .lang a {
+    font-family: var(--sans) !important; font-size: 1.05rem !important;
+    padding: .55rem .9rem !important; border-radius: 8px;
+  }
+  .nav-lang-item .lang a[aria-current="true"] { background: rgba(255,255,255,.16); }
+  .nav-lang-item .lang .sep { color: rgba(255,255,255,.45); }
 }
 
 .nav { display: flex; align-items: center; gap: 2rem; }
@@ -413,6 +433,12 @@ p { max-width: 68ch; }
 .socials svg { width: 18px; height: 18px; }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-block: 1.6rem calc(1.6rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; justify-content: space-between; font-size: .85rem; color: #8fa08f; }
 .footer-bottom a { color: #8fa08f; position: relative; } .footer-bottom a:hover { color: #fff; }
+/* Il credito sta dentro una frase, non in un elenco: senza sottolineatura resta
+   distinguibile solo per colore (WCAG 1.4.1). E' esattamente il controllo che su
+   flysystem faceva scendere l'accessibilita' da 100 a 96. */
+.footer-bottom a[href*="marketingpro"] {
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+}
 
 /* ---------- Reveal on scroll (only when JS is active, so no-JS shows all) ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0ms); }

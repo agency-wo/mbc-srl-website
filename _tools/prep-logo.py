@@ -91,15 +91,22 @@ def schiarisci(im, chiaro=(246, 241, 231)):
     la fa bianca, `.site-footer .lm-fill` la fa crema). Un `filter: invert()` sul
     raster sbiancherebbe anche l'anello, cioe' butterebbe via meta' del marchio.
 
-    Il verde (#2D4A3A) e il terracotta (#BC6B3E) si distinguono senza ambiguita':
-    nel terracotta il rosso domina, nel verde no.
+    Il verde (#2D4A3A, r45 g74) e il terracotta (#BC6B3E, r188 g107) si
+    distinguono dal rapporto fra rosso e verde: 0,61 il primo, 1,76 il secondo.
+
+    LA SOGLIA NON PUO' ESSERE `r <= g`, e l'ho imparato sbagliandola. Con quella,
+    i pixel di bordo delle lettere sottili di "SRL" - dove il rumore JPEG spinge
+    il rosso appena sopra il verde, tipo 1,05 - venivano scambiati per terracotta
+    e lasciati scuri. Sul fondo verde del footer diventavano buchi: misurato, il
+    13% dei pixel opachi di "SRL" restava scuro, e le lettere sembravano
+    sbriciolate. Si schiarisce tutto tranne cio' che e' *chiaramente* rosso.
     """
     out = im.copy()
     px = out.load()
     for y in range(out.height):
         for x in range(out.width):
             r, g, b, a = px[x, y]
-            if a and r <= g:
+            if a and r <= g * 1.3:
                 px[x, y] = chiaro + (a,)
     return out
 
@@ -122,21 +129,25 @@ def colonne_piene(im, soglia=200, passo=3):
     return blocchi
 
 
-def semplifica(im, colori=16):
-    """Riduce la tavolozza tenendo l'alpha.
+def semplifica(im, colori=48):
+    """Riduce la tavolozza dei colori, e **non tocca l'alpha**.
 
-    Il logo e' fatto di due colori piatti, ma arriva da un JPEG: la compressione
-    ne ha sparsi migliaia di quasi-uguali, e un PNG li paga tutti. Quantizzare il
-    solo RGB e rimettere l'alpha originale ripulisce gli artefatti e taglia il
-    peso, senza toccare la morbidezza dei bordi, che vive nell'alpha.
+    Il logo e' fatto di due colori piatti ma arriva da un JPEG, che ne ha sparsi
+    migliaia di quasi-uguali: quantizzare l'RGB toglie quel rumore e fa il peso.
+
+    L'ALPHA SI LASCIA STARE, e la ragione e' un guasto vero. Prima qui c'era una
+    "pulizia" dell'alpha (sotto 24 azzera, sopra 232 satura, il resto a gradini
+    di 8) messa per far dimagrire i file. Sul marchio, che e' fatto di forme
+    spesse, non si notava. Su "SRL", che ha i tratti sottili, ha sbriciolato le
+    lettere: misurato, **fra il 27% e il 30% del disegno di "SRL" sta sotto alpha
+    24**, cioe' quasi un terzo delle sue lettere era esattamente cio' che quella
+    riga buttava via. In un tratto sottile l'antialiasing non e' un contorno, e'
+    la lettera.
+
+    Senza quella pulizia i file crescono di 1-2 KB l'uno. Con la cache a un anno
+    e' un prezzo che non si sente, e le lettere restano intere.
     """
-    # L'alpha e' l'altra meta' del peso: misurato, il 21% dei pixel stava su
-    # valori intermedi sparsi su tutti i 256 livelli, quasi tutti residui di
-    # rumore JPEG. Si azzera il quasi-trasparente, si satura il quasi-opaco e si
-    # tiene il resto a 32 gradini: a 96-192px il bordo resta liscio e il PNG
-    # smette di pagare entropia inventata dalla compressione del sorgente.
-    alpha = im.split()[3].point(
-        lambda v: 0 if v < 24 else 255 if v > 232 else (v // 8) * 8)
+    alpha = im.split()[3]
     rgb = im.convert("RGB").quantize(colors=colori, method=Image.MEDIANCUT).convert("RGB")
     rgb.putalpha(alpha)
     return rgb
@@ -232,7 +243,9 @@ def salva(im, percorso, larghezze):
     for w in larghezze:
         h = round(im.height * w / im.width)
         out = semplifica(im.resize((w, h), Image.LANCZOS))
-        pal = out.quantize(colors=64, method=Image.FASTOCTREE)
+        # 128 e non 64: la tavolozza deve contenere anche i livelli di alpha dei
+        # bordi, e su un tratto sottile quelli sono la maggioranza dei pixel.
+        pal = out.quantize(colors=128, method=Image.FASTOCTREE)
         nome = percorso.with_name("%s-%d.png" % (percorso.stem, w))
         pal.save(nome, optimize=True)
         print("  %-34s %dx%d  %d B" % (nome.name, w, h, nome.stat().st_size))

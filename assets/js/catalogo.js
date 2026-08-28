@@ -68,8 +68,7 @@
         _captcha: "false",
         Nome: f.nome.value,
         Email: f.email.value,
-        Telefono: f.telefono.value,
-        Ruolo: f.ruolo.value || "non indicato"
+        Telefono: f.telefono.value
       })
     }).then(function (r) {
       if (!r.ok) throw new Error("invio non riuscito: " + r.status);

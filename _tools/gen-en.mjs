@@ -49,6 +49,7 @@ function header(cur, opts = {}) {
         <ul class="nav-menu" id="nav-menu">
 ${items}
           <li class="nav-cta-item"><a class="btn" href="/en/contact/">Get a quote</a></li>
+          <li class="nav-lang-item"><span class="lang" aria-label="Language"><a href="${itHref}" hreflang="it">IT</a><span class="sep">/</span><a href="${enHref}" aria-current="true" hreflang="en">EN</a></span></li>
         </ul>
         <div class="nav-side">
           <span class="lang" aria-label="Language">
@@ -84,6 +85,7 @@ const footer = `  <footer class="site-footer">
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> Manfredi Business Concept SRL · VAT 13274090011</span>
+        <span>Site by <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener">MarketingPro</a></span>
         <span><a href="/en/privacy/">Privacy</a> · <a href="/en/cookie/">Cookie</a></span>
       </div>
     </div>
@@ -777,17 +779,6 @@ ${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogu
               <label for="telefono">Phone <span class="req">*</span></label>
               <input type="tel" id="telefono" name="telefono" autocomplete="tel" required>
               <span class="field-error">Please enter a phone number.</span>
-            </div>
-            <div class="form-field">
-              <label for="ruolo">What you do</label>
-              <select id="ruolo" name="ruolo">
-                <option value="">Select&hellip;</option>
-                <option>Restaurant or hotel</option>
-                <option>Glamping or accommodation</option>
-                <option>Architect or designer</option>
-                <option>Private client</option>
-                <option>Other</option>
-              </select>
             </div>
           </div>
           <div class="hp" aria-hidden="true"><label>Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>

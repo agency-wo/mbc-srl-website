@@ -66,6 +66,7 @@ const header = `  <header class="site-header">
           <li><a href="/progetti/" aria-current="page">Progetti</a></li>
           <li><a href="/contatti/">Contatti</a></li>
           <li class="nav-cta-item"><a class="btn" href="/contatti/">Richiedi un preventivo</a></li>
+          <li class="nav-lang-item"><span class="lang" aria-label="Selezione lingua"><a href="/progetti/" aria-current="true" hreflang="it">IT</a><span class="sep">/</span><a href="/en/projects/" hreflang="en">EN</a></span></li>
         </ul>
         <div class="nav-side">
           <span class="lang" aria-label="Selezione lingua">
@@ -124,6 +125,7 @@ const footer = `  <footer class="site-footer">
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> Manfredi Business Concept SRL · P.IVA 13274090011</span>
+        <span>Sito realizzato da <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener">MarketingPro</a></span>
         <span><a href="/privacy/">Privacy</a> · <a href="/cookie/">Cookie</a></span>
       </div>
     </div>
