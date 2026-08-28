@@ -13,7 +13,7 @@ const nav = [
   { key: "projects", it: "/progetti/", en: "/en/projects/", label: "Projects" },
   { key: "contact", it: "/contatti/", en: "/en/contact/", label: "Contact" },
 ];
-const LOGO = `<svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="42" class="lm-ring"/><path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" class="lm-fill"/><rect x="47" y="60" width="3.4" height="22" class="lm-fill"/><rect x="69.6" y="60" width="3.4" height="22" class="lm-fill"/></svg>`;
+const LOGO = `<span class="logo-mark"><img class="logo-mark__light" src="/assets/img/brand/logo-mark-96.png" srcset="/assets/img/brand/logo-mark-96.png 1x, /assets/img/brand/logo-mark-192.png 2x" width="40" height="39" alt="" decoding="async"><img class="logo-mark__dark" src="/assets/img/brand/logo-mark-light-96.png" srcset="/assets/img/brand/logo-mark-light-96.png 1x, /assets/img/brand/logo-mark-light-192.png 2x" width="40" height="39" alt="" decoding="async"></span>`;
 
 /* ---- WhatsApp ---- */
 const WA_NUMBER = "393338641752";
@@ -44,7 +44,7 @@ function header(cur, opts = {}) {
   const items = nav.map(n => `          <li><a href="${n.en}"${n.key === cur ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join("\n");
   return `  <header class="site-header${opts.solid ? " is-solid" : ""}">
     <div class="container">
-      <a class="logo" href="/en/" aria-label="MBC, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRLS</em></span></a>
+      <a class="logo" href="/en/" aria-label="MBC, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
       <nav class="nav" aria-label="Main navigation">
         <ul class="nav-menu" id="nav-menu">
 ${items}
@@ -65,7 +65,7 @@ const footer = `  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="logo" href="/en/" aria-label="MBC, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRLS</em></span></a>
+          <a class="logo" href="/en/" aria-label="MBC, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
           <p>Glamping bubbles, wellness paths and supplies for the wellness sector. Thirty years of experience, turnkey projects tailored to you.</p>
           <div class="socials">
             <a href="#" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -76,14 +76,14 @@ const footer = `  <footer class="site-footer">
           <li><a href="/en/">Home</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/solutions/">Solutions</a></li><li><a href="/en/projects/">Projects</a></li><li><a href="/en/contact/">Contact</a></li>
         </ul></div>
         <div class="footer-col"><h3>Solutions</h3><ul>
-          <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
+          <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/assets/pdf/catalogo-bolla-mbc.pdf" type="application/pdf" download>Bolla catalogue</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
         </ul></div>
         <div class="footer-col footer-contact"><h3>Contact</h3><ul>
           <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Showroom by appointment<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
         </ul></div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Manfredi Business Concept SRLS · VAT 13274090011</span>
+        <span>© <span data-year>2026</span> Manfredi Business Concept SRL · VAT 13274090011</span>
         <span><a href="/en/privacy/">Privacy</a> · <a href="/en/cookie/">Cookie</a></span>
       </div>
     </div>
@@ -130,7 +130,7 @@ const BUSINESS_LD = `  <script type="application/ld+json">
         "@type": "LocalBusiness",
         "@id": "https://www.mbcsrl.it/#business",
         "name": "MBC",
-        "legalName": "Manfredi Business Concept SRLS",
+        "legalName": "Manfredi Business Concept SRL",
         "vatID": "IT13274090011",
         "taxID": "13274090011",
         "description": "Supply and installation of glamping bubbles and domes, outdoor dining domes for bars and restaurants, outdoor saunas, salt rooms, hot tubs and fitness equipment. Turnkey glamping projects including electrical, plumbing and climate control.",
@@ -138,7 +138,7 @@ const BUSINESS_LD = `  <script type="application/ld+json">
         "telephone": "+393338641752",
         "email": "info@mbcsrl.it",
         "image": "https://www.mbcsrl.it/assets/img/og-share.jpg",
-        "logo": "https://www.mbcsrl.it/assets/img/brand/logo-full.svg",
+        "logo": "https://www.mbcsrl.it/assets/img/brand/logo-full-1200.png",
         "priceRange": "€€€",
         "address": {
           "@type": "PostalAddress",
@@ -243,6 +243,36 @@ ${header("home")}
         <div class="step reveal" data-delay="3"><b></b><h3>Wellness</h3><p>Open the doors to your guests and offer unique experiences.</p></div>
       </div>
     </div></section>
+    <!-- ===================== CATALOGUE ===================== -->
+    <section class="section section--green catalogo" id="catalogo">
+      <div class="container">
+        <div class="split split--feature">
+          <div class="split__media reveal"><picture>
+            <source type="image/webp" srcset="/assets/img/catalogo-copertina-640.webp 640w, /assets/img/catalogo-copertina-1000.webp 1000w" sizes="(max-width:860px) 100vw, 46vw">
+            <img src="/assets/img/catalogo-copertina-640.jpg" srcset="/assets/img/catalogo-copertina-640.jpg 640w, /assets/img/catalogo-copertina-1000.jpg 1000w" sizes="(max-width:860px) 100vw, 46vw" width="1000" height="713" loading="lazy" decoding="async" alt="Cover of the MBC Bolla catalogue">
+          </picture></div>
+          <div class="split__body reveal" data-delay="1">
+            <span class="eyebrow">Catalogue</span>
+            <h2>The Bolla catalogue, eighty pages</h2>
+            <p>Models, sizes and fit-outs, with photographs of installations already built. Written in Italian and English, so you can pass it on as it is.</p>
+            <ul class="ticks">
+              <li>Every model with diameter, floor area and intended use</li>
+              <li>Fit-outs for glamping, dining and wellness</li>
+              <li>Finishes, furnishings and available equipment</li>
+            </ul>
+            <div class="btn-row mt-2">
+              <a class="btn btn--primary" href="/assets/pdf/catalogo-bolla-mbc.pdf" type="application/pdf" download>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+                Download the catalogue
+              </a>
+              <a class="btn btn--light" href="/en/contact/">Get a quote</a>
+            </div>
+            <p class="cat-note">PDF, 9.6 MB &middot; 80 pages</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-ora-blu", [800, 1200], "100vw", "", 1200, 1600, "Glamping dome at blue hour with an alpine peak behind", 'loading="lazy"')}</div>
       <div class="container"><h2 class="reveal">Ready to create something extraordinary?</h2>
         <p class="reveal" data-delay="1">Tell us your idea: from a single bubble to a wellness village, we'll find the right tailor-made solution.</p>
@@ -535,6 +565,7 @@ ${header("solutions")}
             <div class="btn-row mt-2">
               <a class="btn btn--primary" href="/en/contact/">Book a site visit</a>
               <a class="btn btn--ghost" href="/en/projects/">See the projects</a>
+              <a class="btn btn--ghost" href="/assets/pdf/catalogo-bolla-mbc.pdf" type="application/pdf" download>Download the catalogue</a>
             </div>
           </div>
         </div>
@@ -654,7 +685,7 @@ ${waFab("legal")}
 }
 write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
   `<p class="foot-note">Last updated: 28 August 2026 · <em>Contact email address still to be confirmed.</em></p>
-   <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRLS</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
+   <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRL</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
    <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. The site is static and does not store form data on its servers.</p>
    <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li></ul>
    <h2>4. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>

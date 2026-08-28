@@ -172,14 +172,20 @@ p { max-width: 68ch; }
 .site-header.is-solid { box-shadow: 0 1px 0 var(--line); }
 
 .logo { display: inline-flex; align-items: center; gap: .6rem; }
-.logo-mark { width: 40px; height: 40px; flex: none; }
-.lm-ring { fill: none; stroke: var(--terracotta); stroke-width: 7; }
-.lm-fill { fill: var(--green); }
+/* Il marchio e' il logo vero del cliente, un raster: non si ricolora col CSS
+   come faceva l'SVG disegnato a mano che stava qui prima. Quindi due rendition,
+   verde su fondo chiaro e crema su fondo scuro, e si mostra quella giusta.
+   L'anello resta terracotta in entrambe: sui fondi scuri cambia solo la M,
+   esattamente come faceva la regola .lm-fill. 448x439 nel sorgente, da cui 39. */
+.logo-mark { width: 40px; height: 39px; flex: none; display: block; }
+.logo-mark img { display: block; width: 100%; height: 100%; }
+.logo-mark__dark { display: none; }
 .logo-word { font-family: var(--serif); line-height: 1; display: inline-flex; align-items: baseline; gap: .38em; }
 .logo-word strong { font-weight: 600; font-size: 1.44rem; color: var(--green); letter-spacing: .01em; }
 .logo-word em { font-family: var(--sans); font-style: normal; font-weight: 600; font-size: .72rem; letter-spacing: .28em; color: var(--muted); }
 /* logo over dark hero (before solid) */
-.site-header:not(.is-solid) .lm-fill { fill: #fff; }
+.site-header:not(.is-solid) .logo-mark__light { display: none; }
+.site-header:not(.is-solid) .logo-mark__dark { display: block; }
 .site-header:not(.is-solid) .logo-word strong { color: #fff; }
 .site-header:not(.is-solid) .logo-word em { color: rgba(255,255,255,.8); }
 
@@ -315,7 +321,8 @@ p { max-width: 68ch; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: clamp(1.8rem, 4vw, 3rem); padding-bottom: 3rem; }
 .site-footer .logo-word strong { color: #fff; }
 .site-footer .logo-word em { color: rgba(255,255,255,.7); }
-.site-footer .lm-fill { fill: var(--cream); }
+.site-footer .logo-mark__light { display: none; }
+.site-footer .logo-mark__dark { display: block; }
 .footer-about p { color: #a9b5a9; margin-top: 1.1rem; font-size: .96rem; }
 .footer-col h3 { font-family: var(--sans); font-size: .82rem; text-transform: uppercase; letter-spacing: .16em; color: #8fa08f; margin-bottom: 1.1rem; font-weight: 700; }
 .footer-col ul { display: grid; gap: .6rem; }
@@ -658,3 +665,22 @@ body.lb-open .wa-fab { display: none; }
   .js .wa-fab { transform: none; }
   .wa-fab__label { transition: none; }
 }
+
+/* ---------- Catalogo Bolla ---------- */
+/* La copertina e' crema (#FDF6ED) quasi identica al --cream del sito: su una
+   sezione chiara sparirebbe nel fondo. Sul verde diventa un oggetto posato, e
+   l'ombra le da' lo spessore che il colore da solo non puo' dare. */
+.catalogo .split__media img {
+  /* .split__media img ritaglia le fotografie a 4/5 (e a 4/3 sotto gli 860px)
+     con object-fit: cover. Su una copertina quel ritaglio taglia via i bordi
+     della pagina: una copertina o si vede intera o non e' una copertina.
+     Qui comanda la proporzione vera del file, 1000x713. */
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: fill;
+  border-radius: var(--radius-s);
+  box-shadow: 0 30px 60px -22px rgba(0,0,0,.55);
+}
+/* .ticks nasce per fondo chiaro: il suo #3f483f sul verde non si legge. */
+.section--green .ticks li { color: #dbe4db; }
+.catalogo .cat-note { margin-top: .9rem; font-size: .86rem; color: rgba(233,239,233,.72); }
