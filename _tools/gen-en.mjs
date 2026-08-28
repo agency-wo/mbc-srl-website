@@ -253,7 +253,7 @@ ${header("home")}
           </picture></div>
           <div class="split__body reveal" data-delay="1">
             <span class="eyebrow">Catalogue</span>
-            <h2>The BOLLA&reg; catalogue, eighty pages</h2>
+            <h2>Our bubbles are at the Sheraton in Milan and in a hotel in Rome</h2>
             <p>Four models, from the 300&nbsp;UP for two people to the 600&nbsp;UP at 21&nbsp;m&sup2; seating thirty. With dimensions, capacities and photographs of installations already in use.</p>
             <ul class="ticks">
               <li>Seven use cases: dining, glamping, garden, office, spa, events, sport</li>
@@ -267,7 +267,7 @@ ${header("home")}
               </a>
               <a class="btn btn--light" href="/en/contact/">Get a quote</a>
             </div>
-            <p class="cat-note">80-page PDF, Italian and English &middot; sent straight away</p>
+            <p class="cat-note">PDF in Italian and English &middot; sent straight away</p>
           </div>
         </div>
       </div>
@@ -703,7 +703,7 @@ console.log("wrote EN pages: /en/, /en/about/, /en/projects/ (" + ordered.length
 
 
 /* ---------------- CATALOGUE (/en/catalogue/) ---------------- */
-write("en/catalogue/index.html", `${head({ title: "BOLLA catalogue 2026 | 80 pages, 4 models | MBC", desc: "The BOLLA catalogue as a PDF: four models from 2 to 30 people, sizes and floor areas, seven use cases and real installations. Italian and English side by side.", path: "/en/catalogue/", itAlt: "/catalogo/" })}
+write("en/catalogue/index.html", `${head({ title: "BOLLA catalogue 2026: 4 sizes, from 2 to 30 people | MBC", desc: "The BOLLA catalogue as a PDF: four models from 2 to 30 people, sizes and floor areas, seven use cases and real installations. Italian and English side by side.", path: "/en/catalogue/", itAlt: "/catalogo/" })}
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},
@@ -717,8 +717,8 @@ ${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogu
     <section class="page-header">
       <div class="container">
         <span class="eyebrow">BOLLA&reg; catalogue</span>
-        <h1>Eighty pages to see whether BOLLA fits</h1>
-        <p>Real dimensions, real capacities, photographs of installations already in use. We send it as a PDF, in Italian and English.</p>
+        <h1>Four sizes. The smallest fits a garden, the largest seats thirty.</h1>
+        <p>Dimensions and capacities model by model, and the bubbles already in use: Sheraton Milan San Siro, 9Hotel Ces&agrave;ri in Rome, Villa Cariola. As a PDF, Italian and English.</p>
       </div>
     </section>
 
@@ -731,7 +731,7 @@ ${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogu
           </picture></div>
           <div class="split__body reveal" data-delay="1">
             <h2>What is inside</h2>
-            <p>Not a two-page brochure. It is the document we work from with architects and operators when an idea turns into a quote.</p>
+            <p>Not a leaflet. It is the document we work from with architects and operators when an idea turns into a quote.</p>
             <ul class="ticks">
               <li><strong>Four models</strong>, from the 300&nbsp;UP for 2-6 people to the 600&nbsp;UP at 21.22&nbsp;m&sup2; seating up to 30, each with dimensions and floor area</li>
               <li><strong>Seven use cases</strong>: dining and hospitality, glamping, garden, offices and meeting rooms, spa, events, sports venues</li>
@@ -740,7 +740,7 @@ ${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogu
               <li><strong>Same frame, different cover</strong>: warm in winter, cool in summer, without dismantling anything</li>
               <li><strong>Real installations</strong> photographed in hotels, resorts, mountain refuges, beach clubs and workplaces across Italy</li>
             </ul>
-            <p class="foot-note">80-page PDF, 9.6&nbsp;MB. Italian and English side by side, so you can pass it on to a client or a designer abroad.</p>
+            <p class="foot-note">9.6&nbsp;MB PDF. Italian and English side by side, so you can pass it on to a client or a designer abroad.</p>
           </div>
         </div>
       </div>
@@ -750,8 +750,8 @@ ${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogu
       <div class="container container--narrow">
         <div class="section-head center reveal">
           <span class="eyebrow">Request the catalogue</span>
-          <h2>Where should we send it?</h2>
-          <p>Leave us a contact and the download starts straight away. We write to you about this and to answer your questions, nothing else.</p>
+          <h2>Not sure which size fits your space?</h2>
+          <p>Leave us your name, email and phone: the catalogue starts straight away, with the dimensions of all four models. We write to you about this and to answer your questions, nothing else.</p>
         </div>
 
         <div class="form-success" aria-live="polite">
