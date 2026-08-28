@@ -44,7 +44,7 @@ function header(cur, opts = {}) {
   const items = nav.map(n => `          <li><a href="${n.en}"${n.key === cur ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join("\n");
   return `  <header class="site-header${opts.solid ? " is-solid" : ""}">
     <div class="container">
-      <a class="logo" href="/en/" aria-label="MBC SRL, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
+      <a class="logo" href="/en/" aria-label="MBC, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRLS</em></span></a>
       <nav class="nav" aria-label="Main navigation">
         <ul class="nav-menu" id="nav-menu">
 ${items}
@@ -65,7 +65,7 @@ const footer = `  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="logo" href="/en/" aria-label="MBC SRL, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRL</em></span></a>
+          <a class="logo" href="/en/" aria-label="MBC, home">${LOGO}<span class="logo-word"><strong>MBC</strong><em>SRLS</em></span></a>
           <p>Glamping bubbles, wellness paths and supplies for the wellness sector. Thirty years of experience, turnkey projects tailored to you.</p>
           <div class="socials">
             <a href="#" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -76,14 +76,14 @@ const footer = `  <footer class="site-footer">
           <li><a href="/en/">Home</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/solutions/">Solutions</a></li><li><a href="/en/projects/">Projects</a></li><li><a href="/en/contact/">Contact</a></li>
         </ul></div>
         <div class="footer-col"><h3>Solutions</h3><ul>
-          <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
+          <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
         </ul></div>
         <div class="footer-col footer-contact"><h3>Contact</h3><ul>
-          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Italy · by appointment</li>
+          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li><li>Showroom by appointment<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
         </ul></div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> MBC SRL · VAT 00000000000</span>
+        <span>© <span data-year>2026</span> Manfredi Business Concept SRLS · VAT 13274090011</span>
         <span><a href="/en/privacy/">Privacy</a> · <a href="/en/cookie/">Cookie</a></span>
       </div>
     </div>
@@ -103,7 +103,7 @@ function head({ title, desc, path, itAlt }) {
   <link rel="alternate" hreflang="en" href="https://www.mbcsrl.it${path}">
   <link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it${itAlt}">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="MBC SRL">
+  <meta property="og:site_name" content="MBC">
   <meta property="og:locale" content="en_US">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${desc}">
@@ -118,6 +118,63 @@ function head({ title, desc, path, itAlt }) {
   <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css">`;
 }
+
+/* The business node. Same @id as the IT home deliberately: the 6 Service nodes on
+   /en/solutions/ declare it as their provider, and an @id is global, so both
+   language homes describing it merge into one entity rather than two. */
+const BUSINESS_LD = `  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.mbcsrl.it/#business",
+        "name": "MBC",
+        "legalName": "Manfredi Business Concept SRLS",
+        "vatID": "IT13274090011",
+        "taxID": "13274090011",
+        "description": "Supply and installation of glamping bubbles and domes, outdoor dining domes for bars and restaurants, outdoor saunas, salt rooms, hot tubs and fitness equipment. Turnkey glamping projects including electrical, plumbing and climate control.",
+        "url": "https://www.mbcsrl.it/en/",
+        "telephone": "+393338641752",
+        "email": "info@mbcsrl.it",
+        "image": "https://www.mbcsrl.it/assets/img/og-share.jpg",
+        "logo": "https://www.mbcsrl.it/assets/img/brand/logo-full.svg",
+        "priceRange": "€€€",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Vitaliano Donati 17",
+          "postalCode": "10121",
+          "addressLocality": "Torino",
+          "addressRegion": "TO",
+          "addressCountry": "IT"
+        },
+        "areaServed": [
+          {"@type": "Country", "name": "Italy"},
+          {"@type": "AdministrativeArea", "name": "Piemonte"},
+          {"@type": "City", "name": "Torino"}
+        ],
+        "knowsAbout": ["glamping bubbles", "glamping domes", "dining domes for bars and restaurants", "outdoor saunas", "barrel sauna", "salt rooms", "outdoor hot tubs", "professional gym equipment", "wellness centre supplies", "turnkey glamping"]
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.mbcsrl.it/#showroom",
+        "name": "MBC · Showroom",
+        "branchOf": {"@id": "https://www.mbcsrl.it/#business"},
+        "description": "MBC showroom, open by appointment.",
+        "telephone": "+393338641752",
+        "url": "https://www.mbcsrl.it/en/contact/",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via Cascine Dighera 2",
+          "postalCode": "10090",
+          "addressLocality": "Vialfrè",
+          "addressRegion": "TO",
+          "addressCountry": "IT"
+        }
+      }
+    ]
+  }
+  </script>`;
 const arrow = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
 function pic(slug, widths, sizes, cls, w, h, alt, extra = "") {
   const web = widths.map(x => `/assets/img/${slug}-${x}.webp ${x}w`).join(", ");
@@ -128,7 +185,8 @@ function pic(slug, widths, sizes, cls, w, h, alt, extra = "") {
 const write = (rel, html) => { mkdirSync(join(ROOT, dirname(rel)), { recursive: true }); writeFileSync(join(ROOT, rel), html); };
 
 /* ---------------- HOME (/en/) ---------------- */
-write("en/index.html", `${head({ title: "MBC SRL | Glamping bubbles & turnkey wellness paths", desc: "MBC SRL designs and supplies glamping bubbles, outdoor saunas, salt rooms and hot tubs. From a single dome to a complete turnkey wellness project. 30 years of experience.", path: "/en/", itAlt: "/" })}
+write("en/index.html", `${head({ title: "MBC | Glamping bubbles & turnkey wellness paths", desc: "MBC designs and supplies glamping bubbles, outdoor saunas, salt rooms and hot tubs. From a single dome to a complete turnkey wellness project. 30 years of experience.", path: "/en/", itAlt: "/" })}
+${BUSINESS_LD}
 </head>
 <body class="has-hero">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -142,7 +200,7 @@ ${header("home")}
         <img src="/assets/img/bolla-glamping-notte-montagne-1800.jpg" srcset="/assets/img/bolla-glamping-notte-montagne-1200.jpg 1200w, /assets/img/bolla-glamping-notte-montagne-1800.jpg 1800w, /assets/img/bolla-glamping-notte-montagne-2400.jpg 2400w" sizes="100vw" width="2400" height="1600" fetchpriority="high" decoding="async" alt="Illuminated glamping dome at night in front of the Alps">
       </picture></div>
       <div class="container hero__inner">
-        <span class="eyebrow" style="color:#dfa781">MBC SRL · 30 years of wellness</span>
+        <span class="eyebrow" style="color:#dfa781">MBC · 30 years of wellness</span>
         <h1 class="hero__title">Glamping bubbles &amp; turnkey wellness paths</h1>
         <p class="hero__sub">We design and supply transparent glamping domes, outdoor saunas, salt rooms and hot tubs. From a single bubble to a complete, tailor-made project.</p>
         <div class="hero__btns btn-row">
@@ -172,7 +230,7 @@ ${header("home")}
     <section class="section section--tint"><div class="container"><div class="split">
       <div class="split__media split__media--tall reveal">${pic("bolla-interni-letto-notte", [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, "Bubble interior with an illuminated double bed at night", 'loading="lazy"')}</div>
       <div class="split__body reveal" data-delay="1"><span class="eyebrow">About us</span><h2>Thirty years of wellness, now under the stars</h2>
-        <p>We started as wellness specialists: beauty centres, solariums and professional supplies. Today MBC SRL specialises in glamping domes and complete wellness paths, with the same craftsmanship as always.</p>
+        <p>We started as wellness specialists: beauty centres, solariums and professional supplies. Today MBC specialises in glamping domes and complete wellness paths, with the same craftsmanship as always.</p>
         <ul class="ticks"><li>Three decades of experience in wellness</li><li>Equipment supply only, or a complete project</li><li>Dedicated support from design to installation</li></ul>
         <div class="btn-row mt-2"><a class="btn btn--ghost" href="/en/about/">Our story</a></div></div>
     </div></div></section>
@@ -204,7 +262,7 @@ function card(slug, title, text, alt, href = "/en/projects/", cta = "Discover", 
 }
 
 /* ---------------- ABOUT ---------------- */
-write("en/about/index.html", `${head({ title: "About us | 30 years in wellness | MBC SRL", desc: "MBC SRL: thirty years in the wellness sector, today specialising in glamping bubbles and turnkey wellness paths. Discover our story and the two options.", path: "/en/about/", itAlt: "/chi-siamo/" })}
+write("en/about/index.html", `${head({ title: "About us | 30 years in wellness | MBC", desc: "MBC: thirty years in the wellness sector, today specialising in glamping bubbles and turnkey wellness paths. Discover our story and the two options.", path: "/en/about/", itAlt: "/chi-siamo/" })}
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"About","item":"https://www.mbcsrl.it/en/about/"}]}</script>
 </head>
 <body class="has-hero">
@@ -281,7 +339,7 @@ const gItems = ordered.map(m => {
           <picture><source type="image/webp" srcset="${webpS}" sizes="${THUMB_SIZES}"><img src="/assets/img/${m.slug}-${w2}.jpg" srcset="${jpgS}" sizes="${THUMB_SIZES}" width="${w2}" height="${th}" loading="lazy" decoding="async" alt="${m.alt_en.replace(/"/g,'&quot;')}"></picture>
           <figcaption>${m.alt_en}</figcaption></figure>`; }).join("\n");
 const gFilters = fOrder.map((f, idx) => `        <button class="filter${idx===0?' is-active':''}" data-filter="${f}" aria-pressed="${idx===0}">${fLabel[f]}</button>`).join("\n");
-write("en/projects/index.html", `${head({ title: "Projects & installations | Glamping bubbles, saunas & hot tubs | MBC SRL", desc: "MBC SRL projects: glamping bubbles, hot tubs, outdoor saunas and salt rooms. Browse the gallery of our wellness installations.", path: "/en/projects/", itAlt: "/progetti/" })}
+write("en/projects/index.html", `${head({ title: "Projects & installations | Glamping bubbles, saunas & hot tubs | MBC", desc: "MBC projects: glamping bubbles, hot tubs, outdoor saunas and salt rooms. Browse the gallery of our wellness installations.", path: "/en/projects/", itAlt: "/progetti/" })}
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://www.mbcsrl.it/en/projects/"}]}</script>
 </head>
 <body class="has-hero">
@@ -316,7 +374,7 @@ ${waFab("projects")}
 </body></html>`);
 
 /* ---------------- CONTACT ---------------- */
-write("en/contact/index.html", `${head({ title: "Contact | Get a quote | MBC SRL", desc: "Contact MBC SRL for glamping bubbles, saunas, salt rooms and hot tubs. Request a quote for your supply or turnkey project.", path: "/en/contact/", itAlt: "/contatti/" })}
+write("en/contact/index.html", `${head({ title: "Contact | Get a quote | MBC", desc: "Contact MBC for glamping bubbles, saunas, salt rooms and hot tubs. Request a quote for your supply or turnkey project.", path: "/en/contact/", itAlt: "/contatti/" })}
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.mbcsrl.it/en/contact/"}]}</script>
 </head>
 <body class="has-hero">
@@ -352,7 +410,9 @@ ${header("contact")}
         <div class="info-item"><span class="ico">${WA_GLYPH}</span><div><h3>WhatsApp</h3><a href="${waHref(WA_MSG.legal)}" target="_blank" rel="noopener noreferrer" data-wa-source="en-contact-card">Message us on WhatsApp<span class="visually-hidden"> (opens in a new window)</span></a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 11.5a16 16 0 0 0 6 6l1-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span><div><h3>Phone</h3><a href="tel:+393338641752">+39 333 864 1752</a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><h3>Email</h3><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a> <span class="badge-soon">to be confirmed</span></div></div>
-        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Where we are</h3><p>Italy · work across the country, by appointment</p></div></div>
+        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Where we are</h3><p><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO), Italy<br><span class="sub">Visits by appointment</span></p>
+        <p><strong>Registered office</strong><br>Via Vitaliano Donati 17, 10121 Turin (TO), Italy</p>
+        <p class="sub">We install across the whole of Italy.</p></div></div>
       </aside>
     </div></div></section>
   </main>
@@ -375,12 +435,15 @@ const proofEn = [
 
 // one product section: media LEFT by default, RIGHT when `rev`.
 // `inset` (optional [slug, alt]) upgrades it to the .media-stack feature split.
-function solSection(id, cls, eyebrow, h2, body, ticks, ctaHref, ctaText, slug, alt, rev, inset) {
+/* dims: intrinsic size of the main photo. Defaults to the 4:5 most of these shots
+   are; the bar/restaurant pair is 3:4, and declaring the wrong height here would
+   reserve the wrong box and shift the layout on load. */
+function solSection(id, cls, eyebrow, h2, body, ticks, ctaHref, ctaText, slug, alt, rev, inset, dims = [1000, 1250]) {
   const media = inset
-    ? `<div class="split__media media-stack reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1250, alt, 'loading="lazy"')}
+    ? `<div class="split__media media-stack reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 46vw", "", dims[0], dims[1], alt, 'loading="lazy"')}
             <div class="media-stack__inset">${pic(inset[0], [360, 640], "(max-width:860px) 58vw, 20vw", "", 640, 853, inset[1], 'loading="lazy"')}</div>
           </div>`
-    : `<div class="split__media split__media--tall reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, alt, 'loading="lazy"')}</div>`;
+    : `<div class="split__media split__media--tall reveal">${pic(slug, [640, 1000], "(max-width:860px) 100vw, 50vw", "", dims[0], dims[1], alt, 'loading="lazy"')}</div>`;
   return `    <section class="section${cls}" id="${id}">
       <div class="container">
         <div class="split${inset ? " split--feature" : ""}${rev ? " split--rev" : ""}">
@@ -399,7 +462,7 @@ ${ticks.map(t => `              <li>${t}</li>`).join("\n")}
     </section>`;
 }
 
-write("en/solutions/index.html", `${head({ title: "Glamping bubbles, saunas &amp; salt rooms | MBC SRL", desc: "Glamping bubbles, outdoor saunas, salt rooms and hot tubs. Turnkey glamping with electrics, climate control and plumbing included.", path: "/en/solutions/", itAlt: "/soluzioni/" })}
+write("en/solutions/index.html", `${head({ title: "Glamping bubbles &amp; domes for bars and restaurants | MBC", desc: "Glamping bubbles and domes, dining domes for bars and restaurants, outdoor saunas, salt rooms and hot tubs. Turnkey projects, services included.", path: "/en/solutions/", itAlt: "/soluzioni/" })}
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"BreadcrumbList","itemListElement":[
@@ -408,10 +471,11 @@ write("en/solutions/index.html", `${head({ title: "Glamping bubbles, saunas &amp
     {"@type":"ItemList","itemListElement":[
       {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Glamping bubbles","url":"https://www.mbcsrl.it/en/solutions/#bolle","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
       {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Turnkey glamping","url":"https://www.mbcsrl.it/en/solutions/#chiavi-in-mano","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Outdoor sauna","url":"https://www.mbcsrl.it/en/solutions/#sauna","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Salt room","url":"https://www.mbcsrl.it/en/solutions/#sale","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Outdoor hot tub","url":"https://www.mbcsrl.it/en/solutions/#idromassaggio","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Professional gym equipment","url":"https://www.mbcsrl.it/en/solutions/#fitness","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}}]}
+      {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Dining domes for bars and restaurants","url":"https://www.mbcsrl.it/en/solutions/#bar-ristoranti","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
+      {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Outdoor sauna","url":"https://www.mbcsrl.it/en/solutions/#sauna","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
+      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Salt room","url":"https://www.mbcsrl.it/en/solutions/#sale","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
+      {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Outdoor hot tub","url":"https://www.mbcsrl.it/en/solutions/#idromassaggio","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
+      {"@type":"ListItem","position":7,"item":{"@type":"Service","name":"Professional gym equipment","url":"https://www.mbcsrl.it/en/solutions/#fitness","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}}]}
   ]}
   </script>
 </head>
@@ -441,6 +505,7 @@ ${header("solutions")}
           <div class="jump-row" style="justify-content:center">
             <a class="jump" href="#bolle">Bubbles</a>
             <a class="jump" href="#chiavi-in-mano">Turnkey</a>
+            <a class="jump" href="#bar-ristoranti">Bars &amp; restaurants</a>
             <a class="jump" href="#sauna">Saunas</a>
             <a class="jump" href="#sale">Salt rooms</a>
             <a class="jump" href="#idromassaggio">Hot tubs</a>
@@ -508,7 +573,13 @@ ${header("solutions")}
       </div>
     </section>
 
-${solSection("sauna", "", "02 &middot; Saunas", "Outdoor saunas: the wooden barrel sauna",
+${solSection("bar-ristoranti", " section--tint", "02 &middot; Bars &amp; restaurants", "Domes and bubbles for bars and restaurants: a terrace that works all year",
+  "The same dome that becomes a glamping room covers the terrace of a bar or a restaurant: an enclosed, heated, lit space that stretches the outdoor season. You keep serving outside in winter, with the view intact and the same service as the dining room.",
+  ["Bubbles and domes for terraces, verandas and outdoor tables in any season", "Private rooms and reserved tables: each dome is a space of its own, for dinners and events", "Heating, climate control and lighting designed in, not bolted on afterwards", "Fit-outs for restaurants, bars, hotels, agriturismi and venues with a garden"],
+  "#chiavi-in-mano", "Services included: how we work turnkey", "bolla-interni-tavolo-cena", "Table set with wine inside the bubble", false,
+  ["bolla-interni-aperitivo", "Aperitif served in the bubble with light curtains"], [1000, 1333])}
+
+${solSection("sauna", "", "03 &middot; Saunas", "Outdoor saunas: the wooden barrel sauna",
   "The barrel sauna is the most requested outdoor solution: the cylindrical shape cuts the volume you have to heat and the timber holds the warmth. We build them ourselves, on a steel ring frame.",
   ["Barrel saunas for private gardens, agriturismi and hospitality", "Glass door or porthole, benches and backrests already fitted", "Sizes and finishes adjustable, because we make them in-house", "Pairs with a hot tub for the hot-cold circuit"],
   "#produzione", "We build them ourselves, in our workshop", "sauna-botte-esterno-montagne", "Outdoor barrel sauna with a mountain view", false,
@@ -533,17 +604,17 @@ ${proofEn}
       </div>
     </section>
 
-${solSection("sale", "", "03 &middot; Salt rooms", "Salt rooms: wellness you can breathe",
+${solSection("sale", "", "04 &middot; Salt rooms", "Salt rooms: wellness you can breathe",
   "A salt room recreates a saline micro-climate in a small, quiet space: salt walls and blocks, warm light, comfortable seating. We also build them inside wooden barrel structures, also known as salt caves.",
   ["Salt-clad rooms, indoor or outdoor", "Feature lighting and seating for relaxation", "Barrel version, installed on a deck like a sauna", "For hotels, wellness centres, agriturismi and private spas"],
   "/en/contact/", "Ask for a proposal", "grotta-sale-interni-botte", "Salt-room interior inside the wooden barrel", true)}
 
-${solSection("idromassaggio", " section--tint", "04 &middot; Hot tubs", "Outdoor hot tubs, with the landscape in front of you",
+${solSection("idromassaggio", " section--tint", "05 &middot; Hot tubs", "Outdoor hot tubs, with the landscape in front of you",
   "Hot water, jets and an open view: an outdoor hot tub turns a garden into a wellness area, at sunset in August and with cold air on your face in January.",
   ["Tubs for private use and for hospitality", "Deck installation with plumbing and electrics prepared", "Area lighting and access path designed with the tub", "Pairs naturally with an outdoor sauna and relax area"],
   "/en/contact/", "Get a quote", "vasca-idromassaggio-lettini", "Hot tub with sun loungers and a barrel sauna", false)}
 
-${solSection("fitness", "", "05 &middot; Fitness", "Professional gym equipment, indoors and outdoors",
+${solSection("fitness", "", "06 &middot; Fitness", "Professional gym equipment, indoors and outdoors",
   "We supply professional gym equipment for fitness rooms, hotels and wellness areas. The same equipment can go outside, on a deck or under a pergola.",
   ["Cardio equipment for gyms, hotels and sports centres", "Outdoor set-ups on decking or under a pergola", "Advice on layout, circulation and clearances"],
   "/en/contact/", "Send us your dimensions", "attrezzature-tapis-roulant-outdoor", "Outdoor fitness equipment with an Alpine view", true)}
@@ -567,7 +638,7 @@ ${waFab("solutions")}
 
 /* ---------------- PRIVACY & COOKIE (EN) ---------------- */
 function legal(pathSeg, title, itAlt, bodyHtml) {
-  return `${head({ title: title + " | MBC SRL", desc: title + " of the MBC SRL website.", path: "/en/" + pathSeg + "/", itAlt })}
+  return `${head({ title: title + " | MBC", desc: title + " of the MBC website.", path: "/en/" + pathSeg + "/", itAlt })}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -582,8 +653,8 @@ ${waFab("legal")}
 </body></html>`;
 }
 write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
-  `<p class="foot-note">Last updated: 23 July 2026 · <em>Template to be finalised with the controller's official details.</em></p>
-   <h2>1. Data controller</h2><p>The data controller is <strong>MBC SRL</strong>, VAT 00000000000, phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
+  `<p class="foot-note">Last updated: 28 August 2026 · <em>Contact email address still to be confirmed.</em></p>
+   <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRLS</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a>.</p>
    <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. The site is static and does not store form data on its servers.</p>
    <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li></ul>
    <h2>4. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>

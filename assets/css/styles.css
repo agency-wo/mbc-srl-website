@@ -498,6 +498,9 @@ textarea { min-height: 140px; resize: vertical; }
 .info-item h3 { font-size: 1rem; margin-bottom: .15rem; font-family: var(--sans); font-weight: 700; color: var(--green); }
 .info-item p, .info-item a { font-size: .96rem; color: #4c554c; }
 .info-item a { color: var(--terracotta-text); }
+/* "Dove siamo" carries two addresses (showroom + sede legale), so its p's stack */
+.info-item p + p { margin-top: .7rem; }
+.info-item .sub { font-size: .88rem; color: var(--muted); }
 .badge-soon { font-size: .72rem; background: var(--cream-3); color: var(--muted); padding: .1rem .5rem; border-radius: 999px; vertical-align: middle; }
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
 

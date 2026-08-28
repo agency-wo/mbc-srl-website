@@ -54,14 +54,14 @@ const filters = filterOrder.map((f, idx) =>
 
 const header = `  <header class="site-header">
     <div class="container">
-      <a class="logo" href="/" aria-label="MBC SRL, home">
+      <a class="logo" href="/" aria-label="MBC, home">
         <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
           <circle cx="60" cy="60" r="42" class="lm-ring"/>
           <path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" class="lm-fill"/>
           <rect x="47" y="60" width="3.4" height="22" class="lm-fill"/>
           <rect x="69.6" y="60" width="3.4" height="22" class="lm-fill"/>
         </svg>
-        <span class="logo-word"><strong>MBC</strong><em>SRL</em></span>
+        <span class="logo-word"><strong>MBC</strong><em>SRLS</em></span>
       </a>
       <nav class="nav" aria-label="Navigazione principale">
         <ul class="nav-menu" id="nav-menu">
@@ -86,14 +86,14 @@ const footer = `  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="logo" href="/" aria-label="MBC SRL, home">
+          <a class="logo" href="/" aria-label="MBC, home">
             <svg class="logo-mark" viewBox="0 0 120 120" aria-hidden="true">
               <circle cx="60" cy="60" r="42" class="lm-ring"/>
               <path d="M30 82 L46 44 L60 65 L74 44 L90 82 Z" class="lm-fill"/>
               <rect x="47" y="60" width="3.4" height="22" class="lm-fill"/>
               <rect x="69.6" y="60" width="3.4" height="22" class="lm-fill"/>
             </svg>
-            <span class="logo-word"><strong>MBC</strong><em>SRL</em></span>
+            <span class="logo-word"><strong>MBC</strong><em>SRLS</em></span>
           </a>
           <p>Bolle per glamping, percorsi benessere e forniture per il wellness. Trent'anni di esperienza, progetti chiavi in mano su misura.</p>
           <div class="socials">
@@ -116,6 +116,7 @@ const footer = `  <footer class="site-footer">
           <ul>
             <li><a href="/soluzioni/#bolle">Bolle per glamping</a></li>
             <li><a href="/soluzioni/#chiavi-in-mano">Chiavi in mano</a></li>
+            <li><a href="/soluzioni/#bar-ristoranti">Bar e ristoranti</a></li>
             <li><a href="/soluzioni/#sauna">Saune &amp; grotte di sale</a></li>
             <li><a href="/soluzioni/#idromassaggio">Idromassaggio &amp; fitness</a></li>
           </ul>
@@ -126,12 +127,12 @@ const footer = `  <footer class="site-footer">
             <li><a href="tel:+393338641752">+39 333 864 1752</a></li>
             <li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
             <li><a href="mailto:info@mbcsrl.it">info@mbcsrl.it</a></li>
-            <li>Italia · su appuntamento</li>
+            <li>Showroom su appuntamento<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> MBC SRL · P.IVA 00000000000</span>
+        <span>© <span data-year>2026</span> Manfredi Business Concept SRLS · P.IVA 13274090011</span>
         <span><a href="/privacy/">Privacy</a> · <a href="/cookie/">Cookie</a></span>
       </div>
     </div>
@@ -143,16 +144,16 @@ const html = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.classList.add('js');</script>
-  <title>Progetti e realizzazioni glamping | Bolle, saune e idromassaggio | MBC SRL</title>
-  <meta name="description" content="Le realizzazioni MBC SRL: bolle per glamping, vasche idromassaggio, saune da esterno e grotte di sale. Sfoglia la galleria dei nostri progetti benessere.">
+  <title>Progetti e realizzazioni glamping | Bolle, saune e idromassaggio | MBC</title>
+  <meta name="description" content="Le realizzazioni MBC: bolle per glamping, vasche idromassaggio, saune da esterno e grotte di sale. Sfoglia la galleria dei nostri progetti benessere.">
   <link rel="canonical" href="https://www.mbcsrl.it/progetti/">
   <link rel="alternate" hreflang="it" href="https://www.mbcsrl.it/progetti/">
   <link rel="alternate" hreflang="en" href="https://www.mbcsrl.it/en/projects/">
   <link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it/progetti/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="MBC SRL">
+  <meta property="og:site_name" content="MBC">
   <meta property="og:locale" content="it_IT">
-  <meta property="og:title" content="Progetti e realizzazioni | MBC SRL">
+  <meta property="og:title" content="Progetti e realizzazioni | MBC">
   <meta property="og:description" content="Bolle per glamping, idromassaggio, saune e grotte di sale: sfoglia la galleria dei nostri progetti.">
   <meta property="og:url" content="https://www.mbcsrl.it/progetti/">
   <meta property="og:image" content="https://www.mbcsrl.it/assets/img/og-share.jpg">

@@ -46,6 +46,25 @@
     }
   }
 
+  /* Landing on a #hash from another page.
+     .section carries content-visibility:auto, so at the moment the browser performs
+     its initial anchor jump the sections below are still sized by their
+     contain-intrinsic-size estimate, not their real height. The estimate is short,
+     so the jump overshoots (measured: every anchor on /soluzioni/ landed 269-678px
+     past its target). Re-run the scroll once layout has settled; scrollIntoView
+     honours the scroll-padding-top that clears the fixed header. */
+  if (location.hash) {
+    window.addEventListener("load", function () {
+      var el;
+      try { el = document.querySelector(location.hash); } catch (e) { return; }
+      if (!el) return;
+      var d = document.documentElement, prev = d.style.scrollBehavior;
+      d.style.scrollBehavior = "auto";   /* html{scroll-behavior:smooth} would animate a correction the user never asked for */
+      el.scrollIntoView();
+      d.style.scrollBehavior = prev;
+    });
+  }
+
   /* Mobile navigation */
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.querySelector(".nav-menu");
