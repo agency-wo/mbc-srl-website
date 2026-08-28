@@ -235,15 +235,22 @@ p { max-width: 68ch; }
   background-image: -webkit-image-set(url("/assets/img/brand/logo-mark-light-40.png") 1x, url("/assets/img/brand/logo-mark-light-80.png") 2x, url("/assets/img/brand/logo-mark-light-120.png") 3x);
   background-image: image-set(url("/assets/img/brand/logo-mark-light-40.png") 1x, url("/assets/img/brand/logo-mark-light-80.png") 2x, url("/assets/img/brand/logo-mark-light-120.png") 3x);
 }
+/* Sopra la foto usa di proposito la serie grande del footer, non quella da 110px
+   calibrata sul riquadro. Due ragioni. Il pinch-zoom non fa riscegliere l'immagine
+   al browser: qualunque file ha preso al caricamento, quello ingrandisce, e la
+   serie da 330px mostrava un "SRL" sgranato appena si zoomava, perche' li' i suoi
+   tratti sottili stanno in un pixel. E il footer scarica gia' questi file: usarli
+   anche qui vuol dire un file solo invece di due, cioe' 5,8 KB in meno a pagina,
+   non di piu'. */
 .site-header:not(.is-solid) .logo-word__name {
-  background-image: url("/assets/img/brand/logo-word-light-220.png");
-  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
-  background-image: image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
+  background-image: url("/assets/img/brand/logo-word-light-520.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-light-260.png") 1x, url("/assets/img/brand/logo-word-light-520.png") 2x, url("/assets/img/brand/logo-word-light-780.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-word-light-260.png") 1x, url("/assets/img/brand/logo-word-light-520.png") 2x, url("/assets/img/brand/logo-word-light-780.png") 3x);
 }
 .site-header:not(.is-solid) .logo-word__desc {
-  background-image: url("/assets/img/brand/logo-desc-light-220.png");
-  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-110.png") 1x, url("/assets/img/brand/logo-desc-light-220.png") 2x, url("/assets/img/brand/logo-desc-light-330.png") 3x);
-  background-image: image-set(url("/assets/img/brand/logo-desc-light-110.png") 1x, url("/assets/img/brand/logo-desc-light-220.png") 2x, url("/assets/img/brand/logo-desc-light-330.png") 3x);
+  background-image: url("/assets/img/brand/logo-desc-light-520.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-260.png") 1x, url("/assets/img/brand/logo-desc-light-520.png") 2x, url("/assets/img/brand/logo-desc-light-780.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-light-260.png") 1x, url("/assets/img/brand/logo-desc-light-520.png") 2x, url("/assets/img/brand/logo-desc-light-780.png") 3x);
 }
 
 /* Il descrittore non compare mai nell'header, a nessuna larghezza. Misurato

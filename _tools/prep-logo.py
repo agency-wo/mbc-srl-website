@@ -11,13 +11,16 @@ secca lascia un alone crema sui bordi antialiasati del cerchio, che a 40px si
 vede benissimo. Qui le costanti sono ritarate, perche' quelle originali sono
 per il bianco: il crema di questo file ha canale minimo 237, non 255.
 
-Due ritagli invece di uno, perche' servono due cose diverse:
+Il lockup viene ritagliato in pezzi, perche' il sito lo ricompone a misure
+diverse in header e footer:
 
-  logo-mark      solo cerchio + M + B. Va nell'header a 40px, dove la riga
-                 "MANFREDI BUSINESS CONCEPT" del lockup completo sarebbe
-                 illeggibile.
-  logo-full      il lockup intero. Footer, fascia catalogo, campo `logo` dei
-                 dati strutturati, sorgente per l'immagine OG.
+  logo-mark      solo cerchio + M + B, il riquadro da 40px in header e footer.
+  logo-word      la riga "MBC SRL".
+  logo-desc      la riga "MANFREDI BUSINESS CONCEPT". Separata da logo-word
+                 perche' alla proporzione dell'artwork sarebbe alta 4px
+                 nell'header: tenerle distinte permette di dosarle per contesto.
+  logo-full      il lockup intero, in un'unica misura: serve solo come campo
+                 `logo` dei dati strutturati, che vuole un URL assoluto.
 
 E una terza uscita, logo-mark-light: sui fondi scuri il verde della M sparirebbe.
 Non e' un semplice invert, che sbiancherebbe anche l'anello terracotta: schiarisce
@@ -50,23 +53,25 @@ LARGHEZZE_MARCHIO = [40, 80, 120]
 # occhio. Il font del logo non e' identificabile da un raster, e uno "simile"
 # resterebbe diverso: le lettere qui sono le sue.
 #
-# Due serie, non una: l'header mostra solo "MBC SRL" in un riquadro di 110px CSS
-# (1,8:1 col marchio da 40px, la proporzione dell'artwork), mai il descrittore -
-# misurato sull'originale, il marchio e' 2,2 volte l'altezza del blocco di testo
-# a due righe, quindi un descrittore leggibile nell'header lo sforerebbe sempre.
-# Il footer invece mostra il lockup intero in un riquadro reale di 260px CSS: la
-# serie da 330px (pensata per l'header) ci veniva stirata 2,36 volte a 3x, ed e'
-# esattamente la sgranatura vista su "SRL". La serie del footer usa solo le
-# varianti chiare (il footer e' sempre testo bianco su verde) e solo per parola
-# e descrittore: il marchio nel footer resta 40px come nell'header, la serie
-# LARGHEZZE_MARCHIO gia' basta.
-LARGHEZZE_PAROLA = [110, 220, 330]          # "MBC SRL" nell'header (chiara e scura)
-LARGHEZZE_PAROLA_FOOTER = [260, 520, 780]   # "MBC SRL" nel footer, sola chiara
-LARGHEZZE_DESC = [110, 220, 330]            # descrittore nell'header: riquadro 110px CSS,
-                                             # quindi 330 fisici alla densita' massima.
-                                             # Serve chiaro E scuro: l'header e' crema quando
-                                             # e' solido, ma sta sopra la foto sull'hero.
-LARGHEZZE_DESC_FOOTER = [260, 520, 780]     # descrittore nel footer, sola chiara
+# Due serie, e la divisione non e' header/footer ma scuro/chiaro.
+#
+# SCURA: la usa solo l'header quando e' solido, su un riquadro di 110px CSS,
+# quindi 330 fisici alla densita' massima. Basta quella.
+#
+# CHIARA: la usano l'header sopra la foto (riquadro 110px) e il footer (riquadro
+# 260px), e condividono la serie grande del footer. Sembra sovradimensionata per
+# l'header, ed e' voluto: il footer quei file li scarica comunque, quindi usarli
+# anche sopra la foto fa scaricare un file invece di due, 5,8 KB in meno a
+# pagina. E soprattutto regge il pinch-zoom, che NON fa riscegliere l'immagine al
+# browser: qualunque file ha preso al caricamento, quello ingrandisce, e la serie
+# da 330px mostrava un "SRL" sgranato appena si zoomava.
+#
+# La regola che vale sempre: la serie copre il riquadro reale moltiplicato per la
+# densita' massima. Sbagliarla e' costato due sessioni.
+LARGHEZZE_PAROLA = [110, 220, 330]          # "MBC SRL" scuro, solo header solido
+LARGHEZZE_PAROLA_FOOTER = [260, 520, 780]   # "MBC SRL" chiaro, header-sopra-foto + footer
+LARGHEZZE_DESC = [110, 220, 330]            # descrittore scuro, solo header solido
+LARGHEZZE_DESC_FOOTER = [260, 520, 780]     # descrittore chiaro, header-sopra-foto + footer
 
 
 def scontorna(im):
@@ -284,7 +289,7 @@ def main(sorgente, destinazione):
 
     lockup = keyed.crop(riquadro(keyed))
     print("\nlockup %dx%d" % lockup.size)
-    salva(lockup, dst / "logo-full.png", [600, 1200])
+    salva(lockup, dst / "logo-full.png", [1200])   # solo il 1200: e' il campo logo dei dati strutturati
 
     # Le due righe separate, in due serie di misure: l'header mostra solo
     # "MBC SRL" (compatta), il footer mostra il lockup intero (grande, sola
@@ -295,14 +300,18 @@ def main(sorgente, destinazione):
     parola = ritaglia_riga(keyed, x0, a0, a1)
     desc = ritaglia_riga(keyed, x0, b0, b1)
     print("\nMBC SRL %dx%d (righe y %d-%d) - header" % (parola.width, parola.height, a0, a1))
+    # La variante SCURA serve solo all'header solido, e li' basta la serie
+    # calibrata sul riquadro da 110px. La variante CHIARA invece la usano sia
+    # l'header sopra la foto sia il footer, con la stessa serie grande: il footer
+    # ne ha bisogno comunque, cosi' la pagina scarica un file solo invece di due
+    # (5,8 KB in meno) e regge il pinch-zoom, che non fa riscegliere l'immagine
+    # al browser - qualunque file ha preso al caricamento, quello ingrandisce.
     salva(parola, dst / "logo-word.png", LARGHEZZE_PAROLA)
-    salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA)
-    print("MBC SRL - footer (lockup intero, sola chiara)")
+    print("MBC SRL - chiara, condivisa fra header-sopra-foto e footer")
     salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA_FOOTER)
-    print("descrittore %dx%d (righe y %d-%d) - header (chiara e scura)" % (desc.width, desc.height, b0, b1))
+    print("descrittore %dx%d (righe y %d-%d) - header, sola scura" % (desc.width, desc.height, b0, b1))
     salva(desc, dst / "logo-desc.png", LARGHEZZE_DESC)
-    salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC)
-    print("descrittore - footer (sola chiara)")
+    print("descrittore - chiara, condivisa fra header-sopra-foto e footer")
     salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC_FOOTER)
     return 0
 
