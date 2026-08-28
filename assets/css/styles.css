@@ -190,17 +190,64 @@ p { max-width: 68ch; }
   background-image: -webkit-image-set(url("/assets/img/brand/logo-mark-40.png") 1x, url("/assets/img/brand/logo-mark-80.png") 2x, url("/assets/img/brand/logo-mark-120.png") 3x);
   background-image: image-set(url("/assets/img/brand/logo-mark-40.png") 1x, url("/assets/img/brand/logo-mark-80.png") 2x, url("/assets/img/brand/logo-mark-120.png") 3x);
 }
-.logo-word { font-family: var(--serif); line-height: 1; display: inline-flex; align-items: baseline; gap: .38em; }
-.logo-word strong { font-weight: 600; font-size: 1.44rem; color: var(--green); letter-spacing: .01em; }
-.logo-word em { font-family: var(--sans); font-style: normal; font-weight: 600; font-size: .72rem; letter-spacing: .28em; color: var(--muted); }
+/* Il lettering e' ritagliato dall'artwork, non composto con un font.
+   Prima era Fraunces, un serif, mentre il logo vero e' un sans geometrico:
+   sembrava un altro marchio. Il font non e' identificabile da un raster e uno
+   "simile" resterebbe diverso, quindi qui le lettere sono le sue.
+
+   Le due righe sono larghe uguali nell'originale (666 e 664 px): il descrittore
+   e' spaziato apposta per pareggiare "MBC SRL", quindi si impilano allineate.
+   Il descrittore pero' e' alto 24px su 664 di larghezza, cioe' un rapporto di
+   28:1: per leggerlo servono almeno 220px di larghezza (8px di altezza). Sotto
+   quella misura e' una sbavatura grigia, e infatti sul telefono si nasconde. */
+.logo-word { display: flex; flex-direction: column; gap: 3px; }
+.logo-word__name, .logo-word__desc {
+  display: block; background-repeat: no-repeat; background-position: left center; background-size: contain;
+}
+.logo-word__name {
+  width: 110px; height: 22px;
+  background-image: url("/assets/img/brand/logo-word-220.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-110.png") 1x, url("/assets/img/brand/logo-word-220.png") 2x, url("/assets/img/brand/logo-word-330.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-word-110.png") 1x, url("/assets/img/brand/logo-word-220.png") 2x, url("/assets/img/brand/logo-word-330.png") 3x);
+}
+/* Nascosto finche' non c'e' la larghezza per leggerlo. */
+.logo-word__desc {
+  display: none;
+  background-image: url("/assets/img/brand/logo-desc-450.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-150.png") 1x, url("/assets/img/brand/logo-desc-300.png") 2x, url("/assets/img/brand/logo-desc-450.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-150.png") 1x, url("/assets/img/brand/logo-desc-300.png") 2x, url("/assets/img/brand/logo-desc-450.png") 3x);
+}
 /* logo over dark hero (before solid) */
 .site-header:not(.is-solid) .logo-mark {
   background-image: url("/assets/img/brand/logo-mark-light-80.png");
   background-image: -webkit-image-set(url("/assets/img/brand/logo-mark-light-40.png") 1x, url("/assets/img/brand/logo-mark-light-80.png") 2x, url("/assets/img/brand/logo-mark-light-120.png") 3x);
   background-image: image-set(url("/assets/img/brand/logo-mark-light-40.png") 1x, url("/assets/img/brand/logo-mark-light-80.png") 2x, url("/assets/img/brand/logo-mark-light-120.png") 3x);
 }
-.site-header:not(.is-solid) .logo-word strong { color: #fff; }
-.site-header:not(.is-solid) .logo-word em { color: rgba(255,255,255,.8); }
+.site-header:not(.is-solid) .logo-word__name {
+  background-image: url("/assets/img/brand/logo-word-light-220.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
+}
+.site-header:not(.is-solid) .logo-word__desc {
+  background-image: url("/assets/img/brand/logo-desc-light-450.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
+}
+
+/* Da 861px in su c'e' la larghezza per il descrittore: 220px -> 8px di altezza,
+   e il lockup sta in 56px dentro un header alto 76. Sotto no, e resta il solo
+   "MBC SRL": e' il comportamento normale di un lockup responsive. */
+@media (min-width: 861px) {
+  .logo-word__name { width: 220px; height: 45px; }
+  .logo-word__desc { display: block; width: 220px; height: 8px; }
+}
+
+/* Sotto i 380px l'header non ha spazio: misurato a 320px servivano 308px fra
+   logo e comandi, con 284 disponibili. Il lettering scende a 76px invece di
+   sparire, perche' "MBC SRL" e' il marchio, non un fronzolo da togliere. */
+@media (max-width: 380px) {
+  .logo-word__name { width: 76px; height: 15px; }
+}
 
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav-menu { display: flex; align-items: center; gap: 1.7rem; }
@@ -332,8 +379,23 @@ p { max-width: 68ch; }
 /* ---------- Footer ---------- */
 .site-footer { background: var(--green-deep); color: #c7d1c7; padding-top: clamp(3.5rem, 7vw, 5.5rem); }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: clamp(1.8rem, 4vw, 3rem); padding-bottom: 3rem; }
-.site-footer .logo-word strong { color: #fff; }
-.site-footer .logo-word em { color: rgba(255,255,255,.7); }
+/* Nel footer c'e' larghezza vera, quindi il descrittore compare sempre, anche
+   sul telefono: a 260px sta a 9,4px di altezza, che si legge. */
+.site-footer .logo-word__name {
+  /* Fluida e non fissa: a 260px il logo del footer misurava 310px e sbordava di
+     8px su uno schermo da 320. aspect-ratio tiene le proporzioni mentre la
+     larghezza si adatta, quindi non c'e' una misura che possa non entrare. */
+  width: min(260px, calc(100vw - 100px)); aspect-ratio: 666 / 135; height: auto;
+  background-image: url("/assets/img/brand/logo-word-light-330.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-word-light-110.png") 1x, url("/assets/img/brand/logo-word-light-220.png") 2x, url("/assets/img/brand/logo-word-light-330.png") 3x);
+}
+.site-footer .logo-word__desc {
+  display: block; width: min(260px, calc(100vw - 100px)); aspect-ratio: 664 / 24; height: auto;
+  background-image: url("/assets/img/brand/logo-desc-light-450.png");
+  background-image: -webkit-image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
+  background-image: image-set(url("/assets/img/brand/logo-desc-light-150.png") 1x, url("/assets/img/brand/logo-desc-light-300.png") 2x, url("/assets/img/brand/logo-desc-light-450.png") 3x);
+}
 .site-footer .logo-mark {
   background-image: url("/assets/img/brand/logo-mark-light-80.png");
   background-image: -webkit-image-set(url("/assets/img/brand/logo-mark-light-40.png") 1x, url("/assets/img/brand/logo-mark-light-80.png") 2x, url("/assets/img/brand/logo-mark-light-120.png") 3x);
@@ -435,7 +497,8 @@ p { max-width: 68ch; }
   .cards { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .stat-grid { grid-template-columns: 1fr 1fr; }
-  .logo-word em { display: none; }
+  /* niente da nascondere: il lettering ora e' una sola immagine, e "SRL"
+     faceva parte del marchio, non era un dettaglio da togliere sul telefono */
   /* gallery: true 2-col on phones; captions live in the lightbox */
   .masonry { columns: 2; column-gap: .6rem; }
   .masonry figure { margin-bottom: .6rem; }
@@ -722,3 +785,8 @@ body.lb-open .wa-fab { display: none; }
 /* La label della checkbox porta il bersaglio a tutta la riga. */
 .checkbox { align-items: center; }
 .checkbox input { cursor: pointer; }
+
+/* Il lockup del footer deve poter rimpicciolire: senza min-width:0 un elemento
+   flex non scende sotto la propria dimensione naturale e l'overflow resta. */
+.site-footer .logo { max-width: 100%; }
+.site-footer .logo-word { min-width: 0; }

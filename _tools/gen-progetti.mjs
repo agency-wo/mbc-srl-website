@@ -54,9 +54,9 @@ const filters = filterOrder.map((f, idx) =>
 
 const header = `  <header class="site-header">
     <div class="container">
-      <a class="logo" href="/" aria-label="MBC, home">
+      <a class="logo" href="/" aria-label="MBC SRL, Manfredi Business Concept, home">
         <span class="logo-mark" aria-hidden="true"></span>
-        <span class="logo-word"><strong>MBC</strong><em>SRL</em></span>
+        <span class="logo-word" aria-hidden="true"><span class="logo-word__name"></span><span class="logo-word__desc"></span></span>
       </a>
       <nav class="nav" aria-label="Navigazione principale">
         <ul class="nav-menu" id="nav-menu">
@@ -81,9 +81,9 @@ const footer = `  <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="logo" href="/" aria-label="MBC, home">
+          <a class="logo" href="/" aria-label="MBC SRL, Manfredi Business Concept, home">
             <span class="logo-mark" aria-hidden="true"></span>
-            <span class="logo-word"><strong>MBC</strong><em>SRL</em></span>
+            <span class="logo-word" aria-hidden="true"><span class="logo-word__name"></span><span class="logo-word__desc"></span></span>
           </a>
           <p>Bolle per glamping, percorsi benessere e forniture per il wellness. Trent'anni di esperienza, progetti chiavi in mano su misura.</p>
           <div class="socials">
@@ -107,7 +107,7 @@ const footer = `  <footer class="site-footer">
             <li><a href="/soluzioni/#bolle">Bolle per glamping</a></li>
             <li><a href="/soluzioni/#chiavi-in-mano">Chiavi in mano</a></li>
             <li><a href="/soluzioni/#bar-ristoranti">Bar e ristoranti</a></li>
-            <li><a href="/assets/pdf/catalogo-bolla-mbc.pdf" type="application/pdf" download>Catalogo Bolla</a></li>
+            <li><a href="/catalogo/">Catalogo Bolla</a></li>
             <li><a href="/soluzioni/#sauna">Saune &amp; grotte di sale</a></li>
             <li><a href="/soluzioni/#idromassaggio">Idromassaggio &amp; fitness</a></li>
           </ul>

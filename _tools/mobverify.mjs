@@ -43,7 +43,9 @@ const hero = await p.evaluate(() => ({
      attiva deve chiedere la variante chiara, non quella verde. Si guarda quale
      file finisce nel background-image. */
   mark: getComputedStyle(document.querySelector(".logo-mark")).backgroundImage,
-  word: getComputedStyle(document.querySelector(".logo-word strong")).color,
+  /* Il lettering non e piu testo ma il ritaglio dell'artwork: sopra la foto
+     deve essere la variante chiara, come il marchio. */
+  word: getComputedStyle(document.querySelector(".logo-word__name")).backgroundImage,
   burger: getComputedStyle(document.querySelector(".nav-toggle span")).backgroundColor,
   hdrBf: getComputedStyle(document.querySelector(".site-header")).backdropFilter,
   beforeBf: getComputedStyle(document.querySelector(".site-header"), "::before").backdropFilter,
@@ -51,7 +53,7 @@ const hero = await p.evaluate(() => ({
 const heroFail = [];
 if (hero.solid) heroFail.push("header is-solid at scrollY 0");
 if (!/logo-mark-light-/.test(hero.mark)) heroFail.push(`sopra la foto il marchio non e la variante chiara: ${hero.mark.slice(0, 90)}`);
-if (hero.word !== "rgb(255, 255, 255)") heroFail.push(`logo word colour ${hero.word}`);
+if (!/logo-word-light-/.test(hero.word)) heroFail.push(`sopra la foto il lettering non e la variante chiara: ${hero.word.slice(0, 80)}`);
 if (hero.burger !== "rgb(255, 255, 255)") heroFail.push(`burger bar colour ${hero.burger}`);
 if (hero.hdrBf !== "none" || hero.beforeBf !== "none") heroFail.push(`blur leaked (${hero.hdrBf} / ${hero.beforeBf})`);
 out.push(`hero header over-image state: ${heroFail.length ? "FAIL " + heroFail.join("; ") : "ok"}`);
@@ -137,8 +139,8 @@ const deskLb = await p.goto(B + "/progetti/", { waitUntil: "networkidle0" }).the
 out.push(`desktop: nav CTA hidden: ${deskHidden} | lightbox full-size: ${deskLb} (want -1200/-1600/-2400)`);
 await p.close();
 
-/* 4) sweep 12 pages at 320 + 768 (overflow/console/404) */
-const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
+/* 4) sweep di tutte le rotte a 320 + 768 + 900x700 + 844x390 (overflow/console/404) */
+const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/catalogo/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/catalogue/","/en/privacy/","/en/cookie/"];
 let problems = [];
 for (const path of pages) for (const w of [320, 768, 900, 844]) {
   const pg = await b.newPage(); await pg.setCacheEnabled(false);
@@ -151,7 +153,7 @@ for (const path of pages) for (const w of [320, 768, 900, 844]) {
   if (over) problems.push(`[${w}] ${path} OVERFLOW`);
   await pg.close();
 }
-out.push(problems.length ? "SWEEP PROBLEMS:\n" + problems.join("\n") : "sweep 14 pages @320+768+900x700+844x390: clean");
+out.push(problems.length ? "SWEEP PROBLEMS:\n" + problems.join("\n") : `sweep ${pages.length} pages @320+768+900x700+844x390: clean`);
 
 console.log(out.join("\n"));
 await b.close();

@@ -46,6 +46,18 @@ HI, LO = 232, 190
 # quasi sei in pixel. Le densita' si scrivono in base al riquadro, non a occhio.
 LARGHEZZE_MARCHIO = [40, 80, 120]
 
+# Il lettering, ritagliato dall'artwork invece che riscritto con un font scelto a
+# occhio. Il font del logo non e' identificabile da un raster, e uno "simile"
+# resterebbe diverso: cosi' le lettere sono le sue.
+LARGHEZZE_PAROLA = [110, 220, 330]   # "MBC SRL"
+LARGHEZZE_DESC = [150, 300, 450]     # "MANFREDI BUSINESS CONCEPT"
+
+# Il lettering, ritagliato dall'artwork invece che riscritto con un font scelto a
+# occhio. Il font del logo non e' identificabile da un raster, e uno "simile"
+# resterebbe diverso: le lettere qui sono le sue.
+LARGHEZZE_PAROLA = [110, 220, 330]   # "MBC SRL" nell'header e nel footer
+LARGHEZZE_DESC = [150, 300, 450]     # "MANFREDI BUSINESS CONCEPT"
+
 
 def scontorna(im):
     rgba = im.convert("RGBA")
@@ -130,6 +142,84 @@ def semplifica(im, colori=16):
     return rgb
 
 
+def righe_lettering(im, x0):
+    """Le due righe del lettering, separate dalla banda vuota fra loro.
+
+    A destra del marchio il logo ha "MBC SRL" sopra e "MANFREDI BUSINESS
+    CONCEPT" sotto, divise da una fascia senza pixel. Si trova quella invece di
+    scrivere due rettangoli a mano, cosi' se l'artwork cambia il ritaglio segue.
+
+    Le due righe sono larghe uguali (663 px nell'originale): il descrittore e'
+    spaziato apposta per pareggiare la riga sopra, quindi si impilano da sole.
+    """
+    px = im.convert("RGB").load()
+    def piena(y):
+        return any(min(px[x, y]) < 200 for x in range(x0, im.width, 2))
+    righe = [y for y in range(im.height) if piena(y)]
+    if not righe:
+        raise SystemExit("  nessun lettering a destra del marchio")
+    bande, ini = [], None
+    for y in range(righe[0], righe[-1] + 1):
+        if not piena(y):
+            if ini is None:
+                ini = y
+        else:
+            if ini is not None and y - ini >= 3:
+                bande.append((ini, y - 1))
+            ini = None
+    if not bande:
+        raise SystemExit("  le due righe del lettering non si separano")
+    sep = bande[-1]
+    return (righe[0], sep[0] - 1), (sep[1] + 1, righe[-1])
+
+
+def ritaglia_riga(im, x0, y0, y1):
+    """Riquadro stretto sul contenuto opaco di una singola riga."""
+    fascia = im.crop((x0, y0, im.width, y1 + 1))
+    b = fascia.split()[3].point(lambda v: 255 if v > 40 else 0).getbbox()
+    return fascia.crop(b)
+
+
+def righe_lettering(im, x0):
+    """Le due righe del lettering, separate dalla banda vuota fra loro.
+
+    A destra del marchio c'e' "MBC SRL" sopra e "MANFREDI BUSINESS CONCEPT"
+    sotto, divise da una fascia senza pixel. Si cerca quella invece di scrivere
+    due rettangoli a mano: se l'artwork cambia, il ritaglio lo segue.
+
+    Le due righe sono larghe uguali (663 px nell'originale) perche' il
+    descrittore e' spaziato apposta per pareggiare la riga sopra.
+    """
+    px = im.convert("RGB").load()
+
+    def piena(y):
+        return any(min(px[x, y]) < 200 for x in range(x0, im.width, 2))
+
+    righe = [y for y in range(im.height) if piena(y)]
+    if not righe:
+        raise SystemExit("  nessun lettering a destra del marchio")
+    bande, ini = [], None
+    for y in range(righe[0], righe[-1] + 1):
+        if not piena(y):
+            if ini is None:
+                ini = y
+        else:
+            if ini is not None and y - ini >= 3:
+                bande.append((ini, y - 1))
+            ini = None
+    if not bande:
+        raise SystemExit("  le due righe del lettering non si separano")
+    sep = bande[-1]
+    return (righe[0], sep[0] - 1), (sep[1] + 1, righe[-1])
+
+
+def ritaglia_riga(im, x0, y0, y1):
+    """Riquadro stretto sul contenuto opaco di una singola riga."""
+    fascia = im.crop((x0, y0, im.width, y1 + 1))
+    b = fascia.split()[3].point(lambda v: 255 if v > 40 else 0).getbbox()
+    return fascia.crop(b)
+
+
 def salva(im, percorso, larghezze):
     """Scrive le rendition in PNG-8 con tavolozza.
 
@@ -172,6 +262,20 @@ def main(sorgente, destinazione):
     lockup = keyed.crop(riquadro(keyed))
     print("\nlockup %dx%d" % lockup.size)
     salva(lockup, dst / "logo-full.png", [600, 1200])
+
+    # Le due righe separate. Servono distinte perche' nell'header il descrittore
+    # alla sua proporzione naturale sarebbe alto 3,5 px, cioe' una sbavatura:
+    # come immagini separate si puo' comporlo a una misura leggibile.
+    x0 = blocchi[1][0] - 6 if len(blocchi) > 1 else mx1
+    (a0, a1), (b0, b1) = righe_lettering(grezzo, x0)
+    parola = ritaglia_riga(keyed, x0, a0, a1)
+    desc = ritaglia_riga(keyed, x0, b0, b1)
+    print("\nMBC SRL %dx%d (righe y %d-%d)" % (parola.width, parola.height, a0, a1))
+    salva(parola, dst / "logo-word.png", LARGHEZZE_PAROLA)
+    salva(schiarisci(parola), dst / "logo-word-light.png", LARGHEZZE_PAROLA)
+    print("descrittore %dx%d (righe y %d-%d)" % (desc.width, desc.height, b0, b1))
+    salva(desc, dst / "logo-desc.png", LARGHEZZE_DESC)
+    salva(schiarisci(desc), dst / "logo-desc-light.png", LARGHEZZE_DESC)
     return 0
 
 
