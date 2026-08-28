@@ -118,12 +118,12 @@ const footer = `  <footer class="site-footer">
             <li><a href="tel:+393338641752">+39 333 864 1752</a></li>
             <li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
             <li><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></li>
-            <li>Showroom su appuntamento<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
+            <li><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Manfredi Business Concept SRL · P.IVA 13274090011</span>
+        <span>© <span data-year>2026</span> Manfredi Business Concept SRL · P.IVA 13274090011<br>Sede legale: Via Vitaliano Donati 17, 10121 Torino (TO)</span>
         <span>Sito realizzato da <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener">MarketingPro</a></span>
         <span><a href="/privacy/">Privacy</a> · <a href="/cookie/">Cookie</a></span>
       </div>

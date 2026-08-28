@@ -28,6 +28,11 @@
   --terracotta:   #BC6B3E;
   --terracotta-d: #A85A30;
   --terracotta-text: #8F4A26; /* AA-compliant terracotta for text on light bg */
+  /* Verde del bottone WhatsApp. NON e' il #25D366 del marchio: il bianco sopra
+     quello misura 1,98:1 e non passa AA, ne' per l'etichetta ne' per il glifo.
+     Su questo il bianco sta a 5,36:1, e resta un verde WhatsApp riconoscibile. */
+  --wa-green:     #0E7A50;
+  --wa-green-d:   #0B6340;
   --cream:        #F6F1E7;
   --cream-2:      #EFE7D8;
   --cream-3:      #E7DCC8;
@@ -723,13 +728,13 @@ textarea { min-height: 140px; resize: vertical; }
   height: 56px;
   padding: 0 16px;                 /* collapsed: 56px circle (16+24+16) */
   border-radius: 999px;
-  background: var(--terracotta-d);
+  background: var(--wa-green);
   color: #fff;
   text-decoration: none;
   box-shadow: 0 0 0 2px rgba(246, 241, 231, .92), 0 10px 30px -12px rgba(30, 51, 40, .45);
   transition: opacity .5s var(--ease), transform .5s var(--ease), background .25s var(--ease);
 }
-.wa-fab:hover { background: var(--terracotta-text); color: #fff; text-decoration: none; }
+.wa-fab:hover { background: var(--wa-green-d); color: #fff; text-decoration: none; }
 .wa-fab svg { width: 24px; height: 24px; flex: none; }
 
 /* Label: real DOM text (so IT/EN can't drift) - collapsed by default */

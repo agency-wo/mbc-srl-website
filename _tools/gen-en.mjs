@@ -79,11 +79,11 @@ const footer = `  <footer class="site-footer">
           <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/catalogue/">Bolla catalogue</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
         </ul></div>
         <div class="footer-col footer-contact"><h3>Contact</h3><ul>
-          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></li><li>Showroom by appointment<br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
+          <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></li><li><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
         </ul></div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Manfredi Business Concept SRL · VAT 13274090011</span>
+        <span>© <span data-year>2026</span> Manfredi Business Concept SRL · VAT 13274090011<br>Registered office: Via Vitaliano Donati 17, 10121 Turin (TO), Italy</span>
         <span>Site by <a href="https://www.marketingpro-agency.com/" target="_blank" rel="noopener">MarketingPro</a></span>
         <span><a href="/en/privacy/">Privacy</a> · <a href="/en/cookie/">Cookie</a></span>
       </div>
@@ -128,19 +128,18 @@ const BUSINESS_LD = `  <script type="application/ld+json">
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LocalBusiness",
+        "@type": "Organization",
         "@id": "https://www.mbcsrl.it/#business",
         "name": "MBC",
         "legalName": "Manfredi Business Concept SRL",
         "vatID": "IT13274090011",
         "taxID": "13274090011",
         "description": "Supply and installation of glamping bubbles and domes, outdoor dining domes for bars and restaurants, outdoor saunas, salt rooms, hot tubs and fitness equipment. Turnkey glamping projects including electrical, plumbing and climate control.",
-        "url": "https://www.mbcsrl.it/en/",
+        "url": "https://www.mbcsrl.it/",
         "telephone": "+393338641752",
         "email": "info@manfrediconcept.it",
         "image": "https://www.mbcsrl.it/assets/img/og-share.jpg",
         "logo": "https://www.mbcsrl.it/assets/img/brand/logo-full-1200.png",
-        "priceRange": "€€€",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Via Vitaliano Donati 17",
@@ -161,9 +160,9 @@ const BUSINESS_LD = `  <script type="application/ld+json">
         "@id": "https://www.mbcsrl.it/#showroom",
         "name": "MBC · Showroom",
         "branchOf": {"@id": "https://www.mbcsrl.it/#business"},
-        "description": "MBC showroom, open by appointment.",
+        "description": "MBC showroom: bubbles, domes and wellness installations on display.",
         "telephone": "+393338641752",
-        "url": "https://www.mbcsrl.it/en/contact/",
+        "url": "https://www.mbcsrl.it/contatti/",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Via Cascine Dighera 2",
@@ -441,7 +440,7 @@ ${header("contact")}
         <div class="info-item"><span class="ico">${WA_GLYPH}</span><div><h3>WhatsApp</h3><a href="${waHref(WA_MSG.legal)}" target="_blank" rel="noopener noreferrer" data-wa-source="en-contact-card">Message us on WhatsApp<span class="visually-hidden"> (opens in a new window)</span></a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 11.5a16 16 0 0 0 6 6l1-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></span><div><h3>Phone</h3><a href="tel:+393338641752">+39 333 864 1752</a></div></div>
         <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><h3>Email</h3><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></div></div>
-        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Where we are</h3><p><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO), Italy<br><span class="sub">Visits by appointment</span></p>
+        <div class="info-item"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>Where we are</h3><p><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO), Italy</p>
         <p><strong>Registered office</strong><br>Via Vitaliano Donati 17, 10121 Turin (TO), Italy</p>
         <p class="sub">We install across the whole of Italy.</p></div></div>
       </aside>
