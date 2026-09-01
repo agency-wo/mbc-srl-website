@@ -9,6 +9,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "800": 1067,
+      "1200": 1600
+    },
     "w": 1200,
     "h": 1600,
     "alt_it": "Bolla glamping trasparente illuminata di notte tra le montagne",
@@ -24,6 +29,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "800": 1067,
+      "1200": 1600
+    },
     "w": 1200,
     "h": 1600,
     "alt_it": "Cupola glamping all'ora blu con vetta alpina sullo sfondo",
@@ -38,6 +48,10 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "800": 1067
+    },
     "w": 800,
     "h": 1067,
     "alt_it": "Bolla glamping al crepuscolo con insegna e montagne",
@@ -55,6 +69,13 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "800": 1200,
+      "1200": 1800,
+      "1800": 2700,
+      "2400": 3600
+    },
     "w": 2400,
     "h": 3600,
     "alt_it": "Cupola glamping illuminata di notte davanti alle Alpi",
@@ -69,6 +90,10 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "800": 1067
+    },
     "w": 800,
     "h": 1067,
     "alt_it": "Interno della bolla con letto e luce dorata del tramonto",
@@ -85,6 +110,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Bolla glamping al crepuscolo con montagne blu",
@@ -100,6 +131,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Bolla su pedana in legno con letto al tramonto",
@@ -115,6 +151,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Bolla glamping con insegna Glamping & Spa",
@@ -130,6 +171,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Bolla glamping di giorno immersa nel bosco alpino",
@@ -146,6 +192,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 240,
+      "640": 427,
+      "1000": 667,
+      "1600": 1067
+    },
     "w": 1600,
     "h": 1067,
     "alt_it": "Insegna del glamping illuminata di notte",
@@ -161,6 +213,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 240,
+      "640": 427,
+      "1030": 687
+    },
     "w": 1030,
     "h": 687,
     "alt_it": "Cupola geodetica sulla neve sotto un cielo terso d'inverno",
@@ -177,6 +234,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 224,
+      "640": 398,
+      "1000": 621,
+      "1536": 954
+    },
     "w": 1536,
     "h": 954,
     "alt_it": "Cupola con struttura in legno e pedana, montata su un prato",
@@ -192,6 +255,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 240,
+      "640": 427,
+      "1030": 687
+    },
     "w": 1030,
     "h": 687,
     "alt_it": "Cupola trasparente su pedana in legno in un giardino a primavera",
@@ -208,6 +276,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Interno della bolla con letto matrimoniale illuminato di notte",
@@ -224,6 +298,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Interno della bolla con zona lavabo e vista sulle montagne",
@@ -240,6 +320,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Letto all'interno della bolla con candele accese",
@@ -255,6 +341,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Tavolo apparecchiato con vino all'interno della bolla",
@@ -270,6 +361,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Aperitivo servito nella bolla con tende chiare",
@@ -286,6 +382,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 961,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Dettaglio del lavabo in pietra con candela",
@@ -302,6 +404,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Dettaglio di candele su comodino in legno",
@@ -318,6 +426,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Fioriture arancioni lungo la pedana in legno",
@@ -332,6 +446,10 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "800": 1067
+    },
     "w": 800,
     "h": 1067,
     "alt_it": "Vasca idromassaggio da esterno con lettini al tramonto sulle Alpi",
@@ -346,6 +464,10 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "800": 1067
+    },
     "w": 800,
     "h": 1067,
     "alt_it": "Vasca idromassaggio con luci e saune a botte al crepuscolo",
@@ -362,6 +484,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Vasca idromassaggio illuminata di notte con sauna a botte",
@@ -377,6 +505,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Vasca idromassaggio e sauna a botte su pedana di giorno",
@@ -392,6 +525,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Vasca idromassaggio con lettini e sauna a botte",
@@ -407,6 +545,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Vasca idromassaggio con luci sospese all'imbrunire",
@@ -423,6 +566,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 240,
+      "640": 427,
+      "1000": 667,
+      "1280": 854
+    },
     "w": 1280,
     "h": 854,
     "alt_it": "Vasca idromassaggio su una terrazza affacciata sulla spiaggia",
@@ -438,6 +587,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 240,
+      "640": 427,
+      "960": 640
+    },
     "w": 960,
     "h": 640,
     "alt_it": "Due vasche idromassaggio rotonde in una spa illuminata di blu",
@@ -453,6 +607,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 270,
+      "640": 480,
+      "960": 720
+    },
     "w": 960,
     "h": 720,
     "alt_it": "Suite con vasca idromassaggio illuminata dalle candele",
@@ -468,6 +627,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 180,
+      "640": 320,
+      "960": 480
+    },
     "w": 960,
     "h": 480,
     "alt_it": "Vasca idromassaggio incassata con parete in pietra e pedana in legno",
@@ -482,6 +646,10 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 240,
+      "600": 400
+    },
     "w": 600,
     "h": 400,
     "alt_it": "Vasca idromassaggio interna davanti a una finestra ad arco affacciata sul parco",
@@ -498,6 +666,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Ingresso della sauna a botte in legno con oblò",
@@ -513,6 +687,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Sauna a botte da esterno con vista sulle montagne",
@@ -529,6 +708,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1501,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Sauna a botte e vasca esterna di giorno",
@@ -545,6 +730,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 961,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Lampada di sale in ambiente benessere in legno",
@@ -560,6 +751,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Interno della grotta di sale nella botte in legno",
@@ -576,6 +772,12 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 540,
+      "640": 960,
+      "1000": 1500,
+      "1600": 2400
+    },
     "w": 1600,
     "h": 2400,
     "alt_it": "Interno della sauna con blocco di sale e oblò",
@@ -591,6 +793,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Due artigiani prendono le misure di una sauna a botte in laboratorio",
@@ -606,6 +813,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Cerchiature in acciaio della sauna a botte prima del rivestimento in legno",
@@ -621,6 +833,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Sauna a botte in costruzione con cerchiature in acciaio e panca già montata",
@@ -636,6 +853,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Scocca della sauna a botte con telaio della porta e panche interne",
@@ -651,6 +873,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Sauna a botte completata con porta a vetro, in laboratorio",
@@ -666,6 +893,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Tapis roulant professionale su pedana con pergola e montagne",
@@ -681,6 +913,11 @@
       360
     ],
     "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333
+    },
     "w": 1000,
     "h": 1333,
     "alt_it": "Attrezzatura fitness all'aperto con vista sulle Alpi",
@@ -691,13 +928,16 @@
     "cat": "azienda",
     "hero": false,
     "widths": [
-      768,
       640,
       360
     ],
     "gallery": false,
-    "w": 768,
-    "h": 1024,
+    "dims": {
+      "360": 480,
+      "640": 853
+    },
+    "w": 640,
+    "h": 853,
     "alt_it": "Sopralluogo in una tenuta con torre in pietra",
     "alt_en": "A site visit at an estate with a stone tower"
   }

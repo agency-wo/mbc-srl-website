@@ -44,7 +44,7 @@ const items = ordered.map(m => {
   const mids = ws.filter(w => w >= 1000);
   const fullM = mids.length ? Math.min(...mids) : ws[ws.length - 1];  // mobile lightbox size
   const full = ws[ws.length - 1];                                     // desktop lightbox size
-  const th = Math.round(w2 * m.h / m.w);
+  const th = (m.dims && m.dims[w2]) || Math.round(w2 * m.h / m.w);
   const webp = `/assets/img/${m.slug}-${w1}.webp ${w1}w, /assets/img/${m.slug}-${w2}.webp ${w2}w`;
   const jpg  = `/assets/img/${m.slug}-${w1}.jpg ${w1}w, /assets/img/${m.slug}-${w2}.jpg ${w2}w`;
   return `        <figure class="gallery-item" data-cat="${m.cat}" data-full="/assets/img/${m.slug}-${full}.jpg" data-full-m="/assets/img/${m.slug}-${fullM}.jpg">
@@ -175,7 +175,7 @@ ${header}
       <div class="hero__media">
         <picture>
           <source type="image/webp" srcset="/assets/img/vasca-idromassaggio-notte-1000.webp 1000w, /assets/img/vasca-idromassaggio-notte-1600.webp 1600w" sizes="100vw">
-          <img src="/assets/img/vasca-idromassaggio-notte-1600.jpg" width="1067" height="1600" style="object-position:50% 38%" alt="Vasca idromassaggio illuminata di notte con sauna a botte" fetchpriority="high" decoding="async">
+          <img src="/assets/img/vasca-idromassaggio-notte-1600.jpg" width="1600" height="2400" style="object-position:50% 38%" alt="Vasca idromassaggio illuminata di notte con sauna a botte" fetchpriority="high" decoding="async">
         </picture>
       </div>
       <div class="container hero__inner">

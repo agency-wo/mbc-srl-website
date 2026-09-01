@@ -58,7 +58,11 @@ RADICE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Solo i file che cambiano spesso e che esistono in copia unica. Aggiungerne uno
 # qui basta: la riscrittura e' generica sull'attributo che lo cita.
-ASSETS = ("/assets/css/styles.css", "/assets/js/main.js")
+# gallery.js e contact.js sono entrati qui dopo una verifica: _headers da a
+# /assets/js/* un anno di cache **immutable**, e senza impronta nell'indirizzo
+# una loro correzione non sarebbe mai arrivata a chi ha gia visitato il sito.
+ASSETS = ("/assets/css/styles.css", "/assets/js/main.js",
+          "/assets/js/gallery.js", "/assets/js/contact.js")
 
 # Cartelle che non contengono pagine pubblicate.
 SALTA = {"_tools", "_source", "node_modules", ".git", ".wrangler"}

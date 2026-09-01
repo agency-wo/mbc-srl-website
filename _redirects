@@ -10,5 +10,13 @@
 # La destinazione e' /soluzioni/ e non la home: e' la pagina che descrive gli
 # stessi prodotti che il catalogo elencava, quindi chi cercava il catalogo trova
 # comunque quello che voleva sapere.
+# Tre forme per rotta, e non e' pignoleria: Cloudflare Pages aggiunge lo slash
+# finale con un 308 solo alle rotte che ESISTONO ancora. Cancellata la cartella
+# non c'e' piu' niente contro cui normalizzare, quindi /catalogo senza slash non
+# arriva mai alla regola di sotto e cade sul ripiego. Verificato dal vivo.
+/catalogo        /soluzioni/       301
 /catalogo/       /soluzioni/       301
+/catalogo/*      /soluzioni/       301
+/en/catalogue    /en/solutions/    301
 /en/catalogue/   /en/solutions/    301
+/en/catalogue/*  /en/solutions/    301

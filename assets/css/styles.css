@@ -93,7 +93,6 @@ p { max-width: 68ch; }
 
 /* ---------- Layout helpers ---------- */
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
-.container--narrow { max-width: 900px; }
 .section { padding-block: var(--section-y); }
 /* skip layout/paint of below-fold sections until needed (big win on mobile CPUs).
    NOTE: deliberately NOT applied to .site-footer - skipped rendering prevents
@@ -448,7 +447,13 @@ p { max-width: 68ch; }
 /* Il logo si allinea al testo della riga invece di sedersi sulla baseline, dove
    lascerebbe il gap dei contenuti inline. */
 .footer-bottom .credito { display: inline-flex; align-items: center; gap: .45rem; }
-.footer-bottom .credito img { display: block; width: 100px; height: auto; }
+/* aspect-ratio esplicito: le tre rendition del credito non condividono lo
+   stesso rapporto al pixel (100x23 e 200x46 fanno 4,3478; 300x68 fa 4,4118,
+   perche' ogni altezza viene arrotondata per conto suo), quindi a densita'
+   diverse il browser dipingeva un'altezza diversa da quella riservata
+   dall'attributo. Fissando il rapporto la riserva e' la stessa per tutte. */
+.footer-bottom .credito img { display: block; width: 100px; height: auto;
+  aspect-ratio: 100 / 23; object-fit: contain; }
 
 /* ---------- Reveal on scroll (only when JS is active, so no-JS shows all) ---------- */
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0ms); }

@@ -125,7 +125,12 @@ const M = [
   // ---- Fuori galleria ----
   // `gallery: false`: il file serve su chi-siamo, ma non e' portfolio. La `cat`
   // non arriva mai ai filtri, perche' il filtro per gallery scatta prima.
-  { slug: "mbc-sopralluogo-tenuta", src: "mbc-sopralluogo-tenuta.jpeg", cat: "azienda", gallery: false, widths: [768, 640, 360],
+  // Niente 768: l'inserto e' 236x314 CSS, quindi a 2x chiede 640 e non arriva
+  // mai al 768 - erano 377 KB di binari mai referenziati.
+  // `q` piu' basso perche' e' uno scatto ad alta entropia (erba, fogliame) che a
+  // qualita' standard usciva a 0,236 byte/pixel, il file piu' pesante del sito
+  // contro una mediana di 0,134, e per un inserto decorativo non ha senso.
+  { slug: "mbc-sopralluogo-tenuta", src: "mbc-sopralluogo-tenuta.jpeg", cat: "azienda", gallery: false, widths: [640, 360], q: { webp: 62, jpeg: 68 },
     it: "Sopralluogo in una tenuta con torre in pietra", en: "A site visit at an estate with a stone tower" },
 ];
 
@@ -140,6 +145,7 @@ async function run() {
        grande della sorgente non ingrandisce niente, la scarta e basta. */
     const widths = item.widths ?? (item.hero ? HERO_W : STD_W);
     let natW = 0, natH = 0;
+    const dims = {};
     const base = sharp(join(SRC, item.src), { failOn: "none" }).rotate();
     const meta = await base.metadata();
     const srcW = meta.width, srcH = meta.height;
@@ -148,14 +154,21 @@ async function run() {
     for (const w of usable) {
       const pipe = sharp(join(SRC, item.src), { failOn: "none" }).rotate().resize({ width: w, withoutEnlargement: true });
       const info = await pipe.clone().webp({ quality: item.q?.webp ?? 72 }).toFile(join(OUT, `${item.slug}-${w}.webp`));
-      await pipe.clone().jpeg({ quality: item.q?.jpeg ?? 80, mozjpeg: true }).toFile(join(OUT, `${item.slug}-${w}.jpg`));
+      const jinfo = await pipe.clone().jpeg({ quality: item.q?.jpeg ?? 80, mozjpeg: true }).toFile(join(OUT, `${item.slug}-${w}.jpg`));
       if (w === usable[0]) { natW = info.width; natH = info.height; }
+      /* Altezza REALE di ogni rendition, non ricalcolata dopo. sharp ridimensiona
+         a partire dall'originale, quindi il suo arrotondamento non coincide con
+         quello che si otterrebbe scalando la rendition piu' grande: su
+         dettaglio-lavabo-pietra a 640 il file e' alto 961 e il calcolo dava 960.
+         Nella masonry non c'e' aspect-ratio nel CSS, quindi width/height sono
+         l'unica riserva di spazio e quel pixel e' uno spostamento vero. */
+      dims[w] = jinfo.height;
     }
     /* `gallery: false` fa esistere il file senza mandarlo in vetrina. Serve per le
        fotografie che stanno su una pagina ma non sono portfolio: un ritratto, una
        foto di sede. Senza, l'unica scelta era fra non usarla e metterla in galleria. */
     manifest.push({ slug: item.slug, cat: item.cat, hero: !!item.hero, widths: usable,
-      gallery: item.gallery !== false,
+      gallery: item.gallery !== false, dims,
       w: natW, h: natH, alt_it: item.it, alt_en: item.en });
     console.log(`✓ ${item.slug}  (${srcW}x${srcH} → ${usable.join(",")})`);
   }

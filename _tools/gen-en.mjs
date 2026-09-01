@@ -197,7 +197,7 @@ ${header("home")}
         <source media="(max-width: 700px)" type="image/webp" srcset="/assets/img/bolla-glamping-luce-notturna-800.webp 800w, /assets/img/bolla-glamping-luce-notturna-1200.webp 1200w" sizes="100vw">
         <source media="(max-width: 700px)" type="image/jpeg" srcset="/assets/img/bolla-glamping-luce-notturna-800.jpg 800w, /assets/img/bolla-glamping-luce-notturna-1200.jpg 1200w" sizes="100vw">
         <source type="image/webp" srcset="/assets/img/bolla-glamping-notte-montagne-1200.webp 1200w, /assets/img/bolla-glamping-notte-montagne-1800.webp 1800w, /assets/img/bolla-glamping-notte-montagne-2400.webp 2400w" sizes="100vw">
-        <img src="/assets/img/bolla-glamping-notte-montagne-1800.jpg" srcset="/assets/img/bolla-glamping-notte-montagne-1200.jpg 1200w, /assets/img/bolla-glamping-notte-montagne-1800.jpg 1800w, /assets/img/bolla-glamping-notte-montagne-2400.jpg 2400w" sizes="100vw" width="2400" height="1600" fetchpriority="high" decoding="async" alt="Illuminated glamping dome at night in front of the Alps">
+        <img src="/assets/img/bolla-glamping-notte-montagne-1800.jpg" srcset="/assets/img/bolla-glamping-notte-montagne-1200.jpg 1200w, /assets/img/bolla-glamping-notte-montagne-1800.jpg 1800w, /assets/img/bolla-glamping-notte-montagne-2400.jpg 2400w" sizes="100vw" width="1800" height="2700" fetchpriority="high" decoding="async" alt="Illuminated glamping dome at night in front of the Alps">
       </picture></div>
       <div class="container hero__inner">
         <span class="eyebrow" style="color:#dfa781">MBC · 30 years of wellness</span>
@@ -257,10 +257,10 @@ ${header("home")}
           </ul>
         </div>
       </div>
-      <div class="proof-strip proof-strip--wide reveal">
-        <figure>${pic("cupola-neve-inverno", [640, 1030], "(max-width:1024px) 72vw, 33vw", "", 1030, 687, "Geodesic dome on the snow under a clear winter sky", 'loading="lazy"')}</figure>
-        <figure>${pic("spa-vasche-gemelle-luce-blu", [640, 960], "(max-width:1024px) 72vw, 33vw", "", 960, 640, "Two round hot tubs in a spa lit in blue", 'loading="lazy"')}</figure>
-        <figure>${pic("vasca-idromassaggio-terrazza-mare", [640, 1280], "(max-width:1024px) 72vw, 33vw", "", 1280, 854, "Hot tub on a terrace overlooking the beach", 'loading="lazy"')}</figure>
+      <div class="proof-strip proof-strip--wide reveal" role="group" aria-label="Photographs of bubbles and wellness installations" tabindex="0">
+        <figure>${pic("cupola-neve-inverno", [360, 640, 1030], "(max-width:1024px) min(62vw, 280px), min(33vw, 600px)", "", 640, 427, "Geodesic dome on the snow under a clear winter sky", 'loading="lazy"')}</figure>
+        <figure>${pic("spa-vasche-gemelle-luce-blu", [360, 640, 960], "(max-width:1024px) min(62vw, 280px), min(33vw, 600px)", "", 640, 427, "Two round hot tubs in a spa lit in blue", 'loading="lazy"')}</figure>
+        <figure>${pic("vasca-idromassaggio-terrazza-mare", [360, 640, 1280], "(max-width:1024px) min(62vw, 280px), min(33vw, 600px)", "", 640, 427, "Hot tub on a terrace overlooking the beach", 'loading="lazy"')}</figure>
       </div>
       <div class="container">
         <div class="btn-row mt-3 reveal">
@@ -296,7 +296,7 @@ write("en/about/index.html", `${head({ title: "About us | 30 years in wellness |
   <a class="skip-link" href="#main">Skip to content</a>
 ${header("about")}
   <main id="main">
-    <section class="hero hero--short"><div class="hero__media">${pic("sauna-botte-ingresso", [1000, 1600], "100vw", "", 1600, 1067, "Entrance of the wooden barrel sauna with a glowing porthole", 'fetchpriority="high" style="object-position:62% 50%"')}</div>
+    <section class="hero hero--short"><div class="hero__media">${pic("sauna-botte-ingresso", [1000, 1600], "100vw", "", 1600, 2400, "Entrance of the wooden barrel sauna with a glowing porthole", 'fetchpriority="high" style="object-position:62% 50%"')}</div>
       <div class="container hero__inner"><span class="eyebrow" style="color:#dfa781">About us</span><h1 class="hero__title">Thirty years of wellness,<br>now under the stars</h1>
         <p class="hero__sub">From beauty centres to glamping domes: our story is a journey of care, craftsmanship and passion for wellbeing.</p></div></section>
     <section class="section"><div class="container"><div class="split">
@@ -323,10 +323,10 @@ ${header("about")}
           <p>What guests remember isn't the dome: it's the right light in the evening, the stone basin, the flowers along the deck.</p>
         </div>
       </div>
-      <div class="proof-strip proof-strip--detail reveal">
-        <figure>${pic("dettaglio-lavabo-pietra", [640, 1000], "(max-width:1024px) 72vw, 33vw", "", 1000, 1250, "Detail of the stone washbasin with a candle", 'loading="lazy"')}</figure>
-        <figure>${pic("dettaglio-candele-comodino", [640, 1000], "(max-width:1024px) 72vw, 33vw", "", 1000, 1250, "Detail of candles on a wooden nightstand", 'loading="lazy"')}</figure>
-        <figure>${pic("dettaglio-fiori", [640, 1000], "(max-width:1024px) 72vw, 33vw", "", 1000, 1250, "Orange blooms along the wooden deck", 'loading="lazy"')}</figure>
+      <div class="proof-strip proof-strip--detail reveal" role="group" aria-label="Close-ups of our finished work" tabindex="0">
+        <figure>${pic("dettaglio-lavabo-pietra", [360, 640, 1000], "(max-width:1024px) min(72vw, 320px), min(33vw, 600px)", "", 640, 800, "Detail of the stone washbasin with a candle", 'loading="lazy"')}</figure>
+        <figure>${pic("dettaglio-candele-comodino", [360, 640, 1000], "(max-width:1024px) min(72vw, 320px), min(33vw, 600px)", "", 640, 800, "Detail of candles on a wooden nightstand", 'loading="lazy"')}</figure>
+        <figure>${pic("dettaglio-fiori", [360, 640, 1000], "(max-width:1024px) min(72vw, 320px), min(33vw, 600px)", "", 640, 800, "Orange blooms along the wooden deck", 'loading="lazy"')}</figure>
       </div>
     </section>
 
@@ -335,7 +335,7 @@ ${header("about")}
         <div class="feat reveal"><span class="tag">Option 1</span><h3>Equipment supply</h3><p>Buy individual bubbles and wellness equipment, also with spa and fitness area, and add them to your project. Ideal for those who already have a structure.</p></div>
         <div class="feat reveal" data-delay="1"><span class="tag">Option 2</span><h3>Turnkey project</h3><p>We design and build the entire wellness path: multiple bubbles, relax areas, saunas, hot tubs and services. From survey to installation, we handle it all.</p></div>
       </div></div></section>
-    <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-notte-montagne", [1200, 1800], "100vw", "", 1800, 1200, "Illuminated glamping dome at night in front of the Alps", 'loading="lazy"')}</div>
+    <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-notte-montagne", [1200, 1800], "100vw", "", 1800, 2700, "Illuminated glamping dome at night in front of the Alps", 'loading="lazy"')}</div>
       <div class="container"><h2 class="reveal">Let's talk about your project</h2><p class="reveal" data-delay="1">Whether you want a single bubble or a complete wellness path, we're ready to listen.</p>
         <div class="btn-row reveal" data-delay="2" style="justify-content:center"><a class="btn btn--primary" href="/en/contact/">Contact us</a><a class="btn btn--light" href="/en/projects/">See the projects</a></div></div></section>
   </main>
@@ -366,7 +366,7 @@ const gItems = ordered.map(m => {
   const mids = ws.filter(w => w >= 1000);
   const fullM = mids.length ? Math.min(...mids) : ws[ws.length - 1];
   const full = ws[ws.length - 1];
-  const th = Math.round(w2 * m.h / m.w);
+  const th = (m.dims && m.dims[w2]) || Math.round(w2 * m.h / m.w);
   const webpS = `/assets/img/${m.slug}-${w1}.webp ${w1}w, /assets/img/${m.slug}-${w2}.webp ${w2}w`;
   const jpgS = `/assets/img/${m.slug}-${w1}.jpg ${w1}w, /assets/img/${m.slug}-${w2}.jpg ${w2}w`;
   return `        <figure class="gallery-item" data-cat="${m.cat}" data-full="/assets/img/${m.slug}-${full}.jpg" data-full-m="/assets/img/${m.slug}-${fullM}.jpg">
@@ -632,7 +632,7 @@ ${solSection("sauna", "", "03 &middot; Saunas", "Outdoor saunas: the wooden barr
           </ul>
           <div class="mt-2"><a class="link-arrow" href="/en/contact/">Want to see a sauna being built? Write to us ${arrow}</a></div>
         </div>
-        <div class="proof-strip reveal">
+        <div class="proof-strip reveal" role="group" aria-label="Stages of production in our workshop" tabindex="0">
 ${proofEn}
         </div>
       </div>
@@ -687,13 +687,14 @@ ${waFab("legal")}
 </body></html>`;
 }
 write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
-  `<p class="foot-note">Last updated: 29 August 2026 · <em>Contact email address still to be confirmed.</em></p>
+  `<p class="foot-note">Last updated: 1 September 2026 · <em>Contact email address still to be confirmed.</em></p>
    <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRL</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</p>
    <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. That form is static and stores nothing on our servers: it opens your own mail client.</p>
    <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li></ul>
-   <h2>4. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>
-   <h2>5. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</p>
-   <h2>6. Cookies</h2><p>See our <a href="/en/cookie/">Cookie Policy</a>.</p>`));
+   <h2>4. Retention</h2><p>Data is kept for as long as it takes to handle your request and to meet any legal obligation, and is then deleted.</p>
+   <h2>5. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>
+   <h2>6. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>. You also have the right to lodge a complaint with a supervisory authority, in Italy the Garante per la protezione dei dati personali.</p>
+   <h2>7. Cookies</h2><p>See our <a href="/en/cookie/">Cookie Policy</a>.</p>`));
 write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
   `<p class="foot-note">Last updated: 23 July 2026.</p>
    <h2>1. About cookies</h2><p>Cookies are small text files that sites store on your device to make pages work or to collect usage information.</p>
