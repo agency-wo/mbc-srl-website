@@ -1,0 +1,14 @@
+# Rimandi permanenti per le pagine che non esistono piu'.
+#
+# Il catalogo BOLLA e' uscito dal sito su richiesta del titolare. Senza queste
+# due righe il vecchio indirizzo cade sul ripiego di Cloudflare Pages, che
+# risponde **200 con la home**: un soft 404. E' la risposta peggiore delle tre
+# possibili. Google la tratta peggio di un 301 perche' non gli dice che la
+# pagina e' sparita, e a chi arriva con il link vecchio - dal PDF gia' scaricato
+# o da una mail - non spiega niente: si ritrova altrove senza capire perche'.
+#
+# La destinazione e' /soluzioni/ e non la home: e' la pagina che descrive gli
+# stessi prodotti che il catalogo elencava, quindi chi cercava il catalogo trova
+# comunque quello che voleva sapere.
+/catalogo/       /soluzioni/       301
+/en/catalogue/   /en/solutions/    301
