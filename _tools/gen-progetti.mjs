@@ -25,7 +25,8 @@ const filterLabel = { all:"Tutti", ...catLabel };
 // round-robin interleave by category for a lively default order.
 // `produzione` is appended AFTER the interleave: workshop shots are proof, not portfolio,
 // and interleaved they would land in the gallery's first visible row.
-const byCat = {}; man.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
+const inGalleria = man.filter(m => m.gallery !== false);
+const byCat = {}; inGalleria.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
 const cats = Object.keys(byCat).filter(c => c !== "produzione");
 let ordered = []; let i = 0; let added = true;
 while (added) { added = false; for (const c of cats) { if (byCat[c][i]) { ordered.push(byCat[c][i]); added = true; } } i++; }
@@ -35,7 +36,11 @@ const THUMB_SIZES = "(max-width:520px) 46vw, (max-width:860px) 45vw, 30vw";
 
 const items = ordered.map(m => {
   const ws = [...m.widths].sort((a, b) => a - b);
-  const [w1, w2] = ws;                                  // two smallest (e.g. 360, 640)
+  /* w2 ricade su w1 quando la scala ha una sola larghezza. Senza, una sorgente
+     stretta produce `slug-undefined.jpg` e `height="NaN"`: nella masonry non c'e'
+     aspect-ratio nel CSS, quindi width/height sono l'unica cosa che riserva lo
+     spazio, e un NaN e' un salto di layout vero, non un difetto estetico. */
+  const [w1, w2 = w1] = ws;
   const mids = ws.filter(w => w >= 1000);
   const fullM = mids.length ? Math.min(...mids) : ws[ws.length - 1];  // mobile lightbox size
   const full = ws[ws.length - 1];                                     // desktop lightbox size

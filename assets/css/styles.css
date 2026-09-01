@@ -705,6 +705,22 @@ textarea { min-height: 140px; resize: vertical; }
 /* workshop shots carry the same grade in the gallery as in the proof strip */
 .masonry .gallery-item[data-cat="produzione"] img { filter: saturate(.92) contrast(1.04); }
 
+/* Wide triptych: come --detail, ma per fotografie ORIZZONTALI.
+   Serviva perche' ogni contenitore del sito e' verticale (4:5 negli split, 3:4
+   nella proof-strip, 3:4 nella preview-grid) e le fotografie nuove sono 3:2:
+   dentro un 4:5 `object-fit: cover` ne butta via il 47% della larghezza, cioe'
+   il campo innevato, il mare, la seconda vasca. A 3:2 il ritaglio e' sotto il
+   pixel, perche' le tre foto scelte per questa striscia sono 1,4993 / 1,4988 /
+   1,5000.
+   Il selettore e' a doppia classe di proposito: `.proof-strip--wide img` da solo
+   pesa (0,1,1) esattamente come `.proof-strip img`, e vincerebbe solo per ordine
+   nel file. E' la stessa ragione per cui piu' su sta scritto
+   `.split__media.split__media--tall img`. */
+.proof-strip.proof-strip--wide { grid-template-columns: repeat(3, 1fr); gap: clamp(.5rem, 1vw, .9rem);
+    max-width: 1800px; margin-inline: auto; }
+.proof-strip.proof-strip--wide figure { border-radius: 0; background: var(--green-800); }
+.proof-strip.proof-strip--wide img { aspect-ratio: 3/2; filter: none; }
+
 /* Detail triptych: the same component, full-bleed on green, ungraded, taller frames.
    Sits directly in the section (not .container) so it runs edge to edge without 100vw math. */
 .proof-strip--detail { grid-template-columns: repeat(3, 1fr); gap: clamp(.5rem, 1vw, .9rem);

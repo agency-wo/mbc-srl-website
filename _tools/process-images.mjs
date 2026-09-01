@@ -40,6 +40,17 @@ const M = [
     it: "Bolla glamping di giorno immersa nel bosco alpino", en: "Glamping bubble by day set in the alpine forest" },
   { slug: "bolla-glamping-insegna-notte", src: "DSC09492.JPG.jpeg", cat: "bolle",
     it: "Insegna del glamping illuminata di notte", en: "Glamping sign illuminated at night" },
+  // ---- Cupole fornite dal cliente (agosto 2026) ----
+  // `widths` dichiarate a mano: queste sorgenti non cadono sui pioli standard e
+  // la scala fissa ne butterebbe via fino a un terzo. Gli alt descrivono la
+  // scena e basta: il paesaggio non e' italiano e il sito parla di installazioni
+  // in Italia, quindi non le si dichiara tali.
+  { slug: "cupola-neve-inverno", src: "cupola-neve-inverno.jpeg", cat: "bolle", widths: [1030, 640, 360],
+    it: "Cupola geodetica sulla neve sotto un cielo terso d'inverno", en: "Geodesic dome on the snow under a clear winter sky" },
+  { slug: "cupola-legno-pedana-prato", src: "cupola-legno-pedana-prato.jpeg", cat: "bolle", widths: [1536, 1000, 640, 360],
+    it: "Cupola con struttura in legno e pedana, montata su un prato", en: "Dome with a wooden frame and deck, set on a lawn" },
+  { slug: "cupola-giardino-primavera", src: "cupola-giardino-primavera.jpeg", cat: "bolle", widths: [1030, 640, 360],
+    it: "Cupola trasparente su pedana in legno in un giardino a primavera", en: "Transparent dome on a wooden deck in a garden in spring" },
   // ---- INTERNI (bubble interiors & details) ----
   { slug: "bolla-interni-letto-notte", src: "DSC09407.JPG.jpeg", cat: "interni",
     it: "Interno della bolla con letto matrimoniale illuminato di notte", en: "Bubble interior with an illuminated double bed at night" },
@@ -70,6 +81,17 @@ const M = [
     it: "Vasca idromassaggio con lettini e sauna a botte", en: "Hot tub with sun loungers and a barrel sauna" },
   { slug: "vasca-idromassaggio-luci", src: "IMG_8373.PNG", cat: "idromassaggio",
     it: "Vasca idromassaggio con luci sospese all'imbrunire", en: "Hot tub with hanging lights at nightfall" },
+  // ---- Benessere fornito dal cliente (agosto 2026) ----
+  { slug: "vasca-idromassaggio-terrazza-mare", src: "vasca-idromassaggio-terrazza-mare.jpeg", cat: "idromassaggio", widths: [1280, 1000, 640, 360],
+    it: "Vasca idromassaggio su una terrazza affacciata sulla spiaggia", en: "Hot tub on a terrace overlooking the beach" },
+  { slug: "spa-vasche-gemelle-luce-blu", src: "spa-vasche-gemelle-luce-blu.jpeg", cat: "idromassaggio", widths: [960, 640, 360],
+    it: "Due vasche idromassaggio rotonde in una spa illuminata di blu", en: "Two round hot tubs in a spa lit in blue" },
+  { slug: "suite-idromassaggio-candele", src: "suite-idromassaggio-candele.jpeg", cat: "idromassaggio", widths: [960, 640, 360],
+    it: "Suite con vasca idromassaggio illuminata dalle candele", en: "Suite with a hot tub lit by candlelight" },
+  { slug: "vasca-idromassaggio-pietra-legno", src: "vasca-idromassaggio-pietra-legno.jpeg", cat: "idromassaggio", widths: [960, 640, 360],
+    it: "Vasca idromassaggio incassata con parete in pietra e pedana in legno", en: "Built-in hot tub with a stone wall and wooden decking" },
+  { slug: "vasca-idromassaggio-finestra-parco", src: "vasca-idromassaggio-finestra-parco.jpeg", cat: "idromassaggio", widths: [600, 360],
+    it: "Vasca idromassaggio interna davanti a una finestra ad arco affacciata sul parco", en: "Indoor hot tub in front of an arched window looking onto the park" },
   // ---- SAUNE (barrel saunas) ----
   { slug: "sauna-botte-ingresso", src: "DSC09426.JPG.jpeg", cat: "sauna",
     it: "Ingresso della sauna a botte in legno con oblò", en: "Entrance of the wooden barrel sauna with a porthole" },
@@ -100,12 +122,23 @@ const M = [
     it: "Tapis roulant professionale su pedana con pergola e montagne", en: "Professional treadmill on a pergola deck with mountains" },
   { slug: "attrezzature-tapis-roulant-outdoor", src: "IMG_8378.PNG", cat: "fitness",
     it: "Attrezzatura fitness all'aperto con vista sulle Alpi", en: "Outdoor fitness equipment with an Alpine view" },
+  // ---- Fuori galleria ----
+  // `gallery: false`: il file serve su chi-siamo, ma non e' portfolio. La `cat`
+  // non arriva mai ai filtri, perche' il filtro per gallery scatta prima.
+  { slug: "mbc-sopralluogo-tenuta", src: "mbc-sopralluogo-tenuta.jpeg", cat: "azienda", gallery: false, widths: [768, 640, 360],
+    it: "Sopralluogo in una tenuta con torre in pietra", en: "A site visit at an estate with a stone tower" },
 ];
 
 async function run() {
   const manifest = [];
   for (const item of M) {
-    const widths = item.hero ? HERO_W : STD_W;
+    /* `widths` per voce: la scala standard salta da 640 a 1000, e sotto i 1000
+       una sorgente da 960 uscirebbe al massimo a 640 - un terzo dei pixel buttato
+       via prima ancora di iniziare. Le fotografie del cliente arrivano a misure
+       che non cadono sui pioli standard, quindi la voce puo' dichiarare la sua
+       scala. Resta il filtro `w <= srcW` piu' sotto: dichiarare una larghezza piu'
+       grande della sorgente non ingrandisce niente, la scarta e basta. */
+    const widths = item.widths ?? (item.hero ? HERO_W : STD_W);
     let natW = 0, natH = 0;
     const base = sharp(join(SRC, item.src), { failOn: "none" }).rotate();
     const meta = await base.metadata();
@@ -118,7 +151,11 @@ async function run() {
       await pipe.clone().jpeg({ quality: item.q?.jpeg ?? 80, mozjpeg: true }).toFile(join(OUT, `${item.slug}-${w}.jpg`));
       if (w === usable[0]) { natW = info.width; natH = info.height; }
     }
+    /* `gallery: false` fa esistere il file senza mandarlo in vetrina. Serve per le
+       fotografie che stanno su una pagina ma non sono portfolio: un ritratto, una
+       foto di sede. Senza, l'unica scelta era fra non usarla e metterla in galleria. */
     manifest.push({ slug: item.slug, cat: item.cat, hero: !!item.hero, widths: usable,
+      gallery: item.gallery !== false,
       w: natW, h: natH, alt_it: item.it, alt_en: item.en });
     console.log(`✓ ${item.slug}  (${srcW}x${srcH} → ${usable.join(",")})`);
   }

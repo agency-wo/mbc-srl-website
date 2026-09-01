@@ -243,6 +243,33 @@ ${header("home")}
         <div class="step reveal" data-delay="3"><b></b><h3>Wellness</h3><p>Open the doors to your guests and offer unique experiences.</p></div>
       </div>
     </div></section>
+    <!-- ===================== WELLNESS ===================== -->
+    <section class="section section--green">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Bubbles &amp; wellness</span>
+          <h2>Your outdoor space stops being a season</h2>
+          <p>The dome holds the snow, the hot tub stays outside in January, the sauna warms up while it snows. It is not only a bubble: it is the wellness circuit around it, and we build that too.</p>
+          <ul class="ticks">
+            <li>Domes for glamping, outdoor dining and private rooms, heated and climate controlled</li>
+            <li>Hot tubs, barrel saunas and salt rooms, outdoor and indoor</li>
+            <li>Electrical, plumbing and climate control included, if you choose turnkey</li>
+          </ul>
+        </div>
+      </div>
+      <div class="proof-strip proof-strip--wide reveal">
+        <figure>${pic("cupola-neve-inverno", [640, 1030], "(max-width:1024px) 72vw, 33vw", "", 1030, 687, "Geodesic dome on the snow under a clear winter sky", 'loading="lazy"')}</figure>
+        <figure>${pic("spa-vasche-gemelle-luce-blu", [640, 960], "(max-width:1024px) 72vw, 33vw", "", 960, 640, "Two round hot tubs in a spa lit in blue", 'loading="lazy"')}</figure>
+        <figure>${pic("vasca-idromassaggio-terrazza-mare", [640, 1280], "(max-width:1024px) 72vw, 33vw", "", 1280, 854, "Hot tub on a terrace overlooking the beach", 'loading="lazy"')}</figure>
+      </div>
+      <div class="container">
+        <div class="btn-row mt-3 reveal">
+          <a class="btn btn--primary" href="/en/solutions/">See all solutions ${arrow}</a>
+          <a class="btn btn--light" href="/en/contact/">Get a quote</a>
+        </div>
+      </div>
+    </section>
+
     <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-ora-blu", [800, 1200], "100vw", "", 1200, 1600, "Glamping dome at blue hour with an alpine peak behind", 'loading="lazy"')}</div>
       <div class="container"><h2 class="reveal">Ready to create something extraordinary?</h2>
         <p class="reveal" data-delay="1">Tell us your idea: from a single bubble to a wellness village, we'll find the right tailor-made solution.</p>
@@ -273,7 +300,9 @@ ${header("about")}
       <div class="container hero__inner"><span class="eyebrow" style="color:#dfa781">About us</span><h1 class="hero__title">Thirty years of wellness,<br>now under the stars</h1>
         <p class="hero__sub">From beauty centres to glamping domes: our story is a journey of care, craftsmanship and passion for wellbeing.</p></div></section>
     <section class="section"><div class="container"><div class="split">
-      <div class="split__media split__media--tall reveal">${pic("grotta-sale-lampada", [640, 1000], "(max-width:860px) 100vw, 50vw", "", 1000, 1250, "Salt lamp in a wooden wellness room", 'loading="lazy"')}</div>
+      <div class="split__media media-stack reveal">${pic("grotta-sale-lampada", [640, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1250, "Salt lamp in a wooden wellness room", 'loading="lazy"')}
+        <div class="media-stack__inset">${pic("mbc-sopralluogo-tenuta", [360, 640], "(max-width:860px) 58vw, 20vw", "", 640, 853, "A site visit at an estate with a stone tower", 'loading="lazy"')}</div>
+      </div>
       <div class="split__body reveal" data-delay="1"><span class="eyebrow">Our origins</span><h2>Born in the world of wellness</h2>
         <p>For over thirty years we've worked in the wellness sector: wellness centres, solariums and professional supplies for beauty. A journey that taught us what it truly means to care for people and spaces.</p>
         <p>That know-how, made of materials, details and relationships, is today at the heart of every project.</p></div>
@@ -319,7 +348,8 @@ ${waFab("about")}
 const catLabel = { bolle:"Bubbles", interni:"Interiors", idromassaggio:"Hot tubs", sauna:"Saunas", benessere:"Salt rooms", produzione:"Workshop", fitness:"Fitness" };
 const fOrder = ["all","bolle","interni","idromassaggio","sauna","benessere","produzione","fitness"];
 const fLabel = { all:"All", ...catLabel };
-const byCat = {}; man.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
+const inGalleria = man.filter(m => m.gallery !== false);
+const byCat = {}; inGalleria.forEach(m => (byCat[m.cat] = byCat[m.cat] || []).push(m));
 // `produzione` appended after the interleave - see gen-progetti.mjs for the rationale
 const cats = Object.keys(byCat).filter(c => c !== "produzione");
 let ordered = [], i = 0, added = true;
@@ -328,7 +358,11 @@ ordered = ordered.concat(byCat.produzione || []);
 const THUMB_SIZES = "(max-width:520px) 46vw, (max-width:860px) 45vw, 30vw";
 const gItems = ordered.map(m => {
   const ws = [...m.widths].sort((a, b) => a - b);
-  const [w1, w2] = ws;
+  /* w2 ricade su w1 quando la scala ha una sola larghezza. Senza, una sorgente
+     stretta produce `slug-undefined.jpg` e `height="NaN"`: nella masonry non c'e'
+     aspect-ratio nel CSS, quindi width/height sono l'unica cosa che riserva lo
+     spazio, e un NaN e' un salto di layout vero, non un difetto estetico. */
+  const [w1, w2 = w1] = ws;
   const mids = ws.filter(w => w >= 1000);
   const fullM = mids.length ? Math.min(...mids) : ws[ws.length - 1];
   const full = ws[ws.length - 1];
