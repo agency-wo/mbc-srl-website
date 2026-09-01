@@ -54,12 +54,13 @@ Cerca questi valori e sostituiscili con quelli reali (sono ripetuti in tutte le 
 | tagline / claim | hero home | eventuale claim scelto |
 
 Gia' inseriti e **non** piu' segnaposto: email `info@manfrediconcept.it` (footer, contatti,
-contact.js, JSON-LD, e destinazione del modulo catalogo via FormSubmit), P.IVA `13274090011`,
+contact.js e JSON-LD), P.IVA `13274090011`,
 sede legale e showroom, telefono `+39 333 864 1752`.
 
-> **FormSubmit va ancora attivato**: al primo invio vero del modulo catalogo arriva una mail di
-> conferma a `info@manfrediconcept.it` che qualcuno deve cliccare. Finche' non succede, i contatti
-> non vengono recapitati.
+> **Il sito non ha piu' nessun modulo con backend.** Il catalogo BOLLA e' stato rimosso su
+> richiesta del cliente, e con lui il cancello che passava da FormSubmit. Il modulo contatti apre
+> il client di posta dell'utente (`mailto:`, vedi `assets/js/contact.js`): non transita da nessun
+> servizio esterno e non ha niente da attivare.
 
 
 I **2 file HEIC** (`IMG_8301`, `IMG_8367`) non sono stati convertiti (manca il codec HEVC): se servono,
@@ -102,7 +103,7 @@ riscaricavano, ma su mobile un round trip costa 100-300 ms, e le pagine qui sono
 |---|---|---|
 | font | 1 anno, immutable | non cambiano mai, il nome descrive il taglio |
 | CSS e JS | 1 anno, immutable | **solo grazie all'impronta** messa da `versiona.py` |
-| immagini, PDF | 30 giorni | nomi stabili: sostituirne uno con lo stesso nome deve restare possibile |
+| immagini | 30 giorni | nomi stabili: sostituirne uno con lo stesso nome deve restare possibile |
 | pagine HTML | revalidate | non hanno impronta nell'indirizzo |
 
 `_tools/versiona.py` appende lo sha1 del contenuto all'indirizzo (`styles.css?v=1f27331f`): contenuto

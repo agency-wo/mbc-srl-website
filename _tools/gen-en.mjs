@@ -76,7 +76,7 @@ const footer = `  <footer class="site-footer">
           <li><a href="/en/">Home</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/solutions/">Solutions</a></li><li><a href="/en/projects/">Projects</a></li><li><a href="/en/contact/">Contact</a></li>
         </ul></div>
         <div class="footer-col"><h3>Solutions</h3><ul>
-          <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/catalogue/">Bolla catalogue</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
+          <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
         </ul></div>
         <div class="footer-col footer-contact"><h3>Contact</h3><ul>
           <li><a href="tel:+393338641752">+39 333 864 1752</a></li><li><a href="https://wa.me/393338641752" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a></li><li><strong>Showroom</strong><br>Via Cascine Dighera 2, 10090 Vialfrè (TO)</li>
@@ -243,36 +243,6 @@ ${header("home")}
         <div class="step reveal" data-delay="3"><b></b><h3>Wellness</h3><p>Open the doors to your guests and offer unique experiences.</p></div>
       </div>
     </div></section>
-    <!-- ===================== CATALOGUE ===================== -->
-    <section class="section section--green catalogo" id="catalogo">
-      <div class="container">
-        <div class="split split--feature">
-          <div class="split__media reveal"><picture>
-            <source type="image/webp" srcset="/assets/img/catalogo-copertina-640.webp 640w, /assets/img/catalogo-copertina-1000.webp 1000w" sizes="(max-width:860px) 100vw, 46vw">
-            <img src="/assets/img/catalogo-copertina-640.jpg" srcset="/assets/img/catalogo-copertina-640.jpg 640w, /assets/img/catalogo-copertina-1000.jpg 1000w" sizes="(max-width:860px) 100vw, 46vw" width="1000" height="713" loading="lazy" decoding="async" alt="Cover of the MBC Bolla catalogue">
-          </picture></div>
-          <div class="split__body reveal" data-delay="1">
-            <span class="eyebrow">Catalogue</span>
-            <h2>Your outdoor space stops being a season</h2>
-            <p>Four models, from the 300&nbsp;UP for two people to the 600&nbsp;UP at 21&nbsp;m&sup2; seating thirty. With dimensions, capacities and photographs of installations already in use.</p>
-            <ul class="ticks">
-              <li>Seven use cases: dining, glamping, garden, office, spa, events, sport</li>
-              <li>The 600&nbsp;UP reaches roughly 500 covers a month across dinners, lunches and meetings</li>
-              <li>Anodised aluminium frame, sliding door, winter and summer covers</li>
-            </ul>
-            <div class="btn-row mt-2">
-              <a class="btn btn--primary" href="/en/catalogue/">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
-                Request the catalogue
-              </a>
-              <a class="btn btn--light" href="/en/contact/">Get a quote</a>
-            </div>
-            <p class="cat-note">PDF in Italian and English &middot; sent straight away</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-ora-blu", [800, 1200], "100vw", "", 1200, 1600, "Glamping dome at blue hour with an alpine peak behind", 'loading="lazy"')}</div>
       <div class="container"><h2 class="reveal">Ready to create something extraordinary?</h2>
         <p class="reveal" data-delay="1">Tell us your idea: from a single bubble to a wellness village, we'll find the right tailor-made solution.</p>
@@ -565,7 +535,6 @@ ${header("solutions")}
             <div class="btn-row mt-2">
               <a class="btn btn--primary" href="/en/contact/">Book a site visit</a>
               <a class="btn btn--ghost" href="/en/projects/">See the projects</a>
-              <a class="btn btn--ghost" href="/en/catalogue/">Download the catalogue</a>
             </div>
           </div>
         </div>
@@ -684,11 +653,11 @@ ${waFab("legal")}
 </body></html>`;
 }
 write("en/privacy/index.html", legal("privacy", "Privacy Policy", "/privacy/",
-  `<p class="foot-note">Last updated: 28 August 2026 · <em>Contact email address still to be confirmed.</em></p>
+  `<p class="foot-note">Last updated: 29 August 2026 · <em>Contact email address still to be confirmed.</em></p>
    <h2>1. Data controller</h2><p>The data controller is <strong>Manfredi Business Concept SRL</strong> (trading as MBC), VAT 13274090011, registered office at Via Vitaliano Donati 17, 10121 Turin (TO), Italy, showroom at Via Cascine Dighera 2, 10090 Vialfrè (TO), phone <a href="tel:+393338641752">+39 333 864 1752</a>, email <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</p>
-   <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. That form is static and stores nothing on our servers: it opens your own mail client.</p><p>The <strong>catalogue request form</strong> works differently. To send it we ask for your <strong>full name, email address and phone number</strong>, and optionally your line of work. Those details are transmitted to <strong>FormSubmit</strong>, which forwards them to our mailbox acting as a data processor. The catalogue itself is then downloaded directly by your browser.</p>
-   <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li><li>To send you the catalogue you requested and follow up about it (legal basis: your consent, Art. 6.1.a GDPR, which you may withdraw at any time).</li></ul>
-   <h2>4. Recipients</h2><p>For catalogue requests only, the data passes through <strong>FormSubmit</strong> (Ozzy Digital LLC), which delivers it to our mailbox and does not use it for its own purposes.</p><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>
+   <h2>2. Data we collect</h2><p>Through the contact form we only collect the data you voluntarily provide: name, email, phone (optional), subject and message. That form is static and stores nothing on our servers: it opens your own mail client.</p>
+   <h2>3. Purpose &amp; legal basis</h2><ul><li>To respond to your information and quote requests (Art. 6.1.b GDPR).</li></ul>
+   <h2>4. Recipients</h2><p>If you choose to contact us via <strong>WhatsApp</strong>, the conversation takes place on the infrastructure of WhatsApp Ireland Ltd. (Meta group), which processes the data as an autonomous controller under its own privacy policy. You can always use email or the phone instead.</p>
    <h2>5. Your rights</h2><p>You may exercise the rights under Arts. 15-22 GDPR (access, rectification, erasure, restriction, objection, portability) by writing to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>.</p>
    <h2>6. Cookies</h2><p>See our <a href="/en/cookie/">Cookie Policy</a>.</p>`));
 write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
@@ -700,107 +669,3 @@ write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
    <h2>4. Contact</h2><p>Questions? Write to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>. See also our <a href="/en/privacy/">Privacy Policy</a>.</p>`));
 
 console.log("wrote EN pages: /en/, /en/about/, /en/projects/ (" + ordered.length + " items), /en/contact/, /en/privacy/, /en/cookie/");
-
-
-/* ---------------- CATALOGUE (/en/catalogue/) ---------------- */
-write("en/catalogue/index.html", `${head({ title: "BOLLA catalogue 2026: glamping bubbles and domes | MBC", desc: "The BOLLA catalogue as a PDF: four models from 2 to 30 people, sizes and floor areas, seven use cases and real installations. Italian and English side by side.", path: "/en/catalogue/", itAlt: "/catalogo/" })}
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},
-    {"@type":"ListItem","position":2,"name":"Catalogue","item":"https://www.mbcsrl.it/en/catalogue/"}]}
-  </script>
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-${header("catalogue", { solid: true, itHref: "/catalogo/", enHref: "/en/catalogue/" })}
-  <main id="main">
-    <section class="page-header">
-      <div class="container">
-        <span class="eyebrow">BOLLA&reg; catalogue</span>
-        <h1>The space you close in October, open in January. Without building anything.</h1>
-        <p>Dimensions and capacities model by model, the winter and summer covers, and the bubbles already in use in hotels, resorts and beach clubs. As a PDF, Italian and English.</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="split split--feature">
-          <div class="split__media reveal"><picture>
-            <source type="image/webp" srcset="/assets/img/catalogo-copertina-640.webp 640w, /assets/img/catalogo-copertina-1000.webp 1000w" sizes="(max-width:860px) 100vw, 46vw">
-            <img src="/assets/img/catalogo-copertina-640.jpg" srcset="/assets/img/catalogo-copertina-640.jpg 640w, /assets/img/catalogo-copertina-1000.jpg 1000w" sizes="(max-width:860px) 100vw, 46vw" width="1000" height="713" loading="eager" fetchpriority="high" decoding="async" alt="Cover of the MBC BOLLA catalogue">
-          </picture></div>
-          <div class="split__body reveal" data-delay="1">
-            <h2>What is inside</h2>
-            <p>Not a leaflet. It is the document we work from with architects and operators when an idea turns into a quote.</p>
-            <ul class="ticks">
-              <li><strong>Four models</strong>, from the 300&nbsp;UP for 2-6 people to the 600&nbsp;UP at 21.22&nbsp;m&sup2; seating up to 30, each with dimensions and floor area</li>
-              <li><strong>Seven use cases</strong>: dining and hospitality, glamping, garden, offices and meeting rooms, spa, events, sports venues</li>
-              <li><strong>The number an operator cares about</strong>: in the 600&nbsp;UP configuration it reaches roughly 500 covers a month across dinners, lunches and meetings</li>
-              <li><strong>How it is built</strong>: anodised aluminium frame, sliding door, padlock closure. If you already have a cover, you can buy the frame alone</li>
-              <li><strong>Same frame, different cover</strong>: warm in winter, cool in summer, without dismantling anything</li>
-              <li><strong>Real installations</strong> photographed in hotels, resorts, mountain refuges, beach clubs and workplaces across Italy</li>
-            </ul>
-            <p class="foot-note">9.6&nbsp;MB PDF. Italian and English side by side, so you can pass it on to a client or a designer abroad.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tint" id="request">
-      <div class="container container--narrow">
-        <div class="section-head center reveal">
-          <span class="eyebrow">Request the catalogue</span>
-          <h2>Not sure which size fits your space?</h2>
-          <p>Leave us your name, email and phone: the catalogue starts straight away, with the dimensions of all four models. We write to you about this and to answer your questions, nothing else.</p>
-        </div>
-
-        <div class="form-success" aria-live="polite">
-          <strong>Done.</strong> Your download has started. If nothing happens,
-          <a href="/assets/pdf/mbc-catalogo-bolla-2026-a7f3d1.pdf" download>get it here</a>.
-        </div>
-
-        <form id="catalogo-form" novalidate>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="nome">Full name <span class="req">*</span></label>
-              <input type="text" id="nome" name="nome" autocomplete="name" required>
-              <span class="field-error">Please enter your full name.</span>
-            </div>
-            <div class="form-field">
-              <label for="email">Email <span class="req">*</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" required>
-              <span class="field-error">Please enter a valid email address.</span>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="telefono">Phone <span class="req">*</span></label>
-              <input type="tel" id="telefono" name="telefono" autocomplete="tel" required>
-              <span class="field-error">Please enter a phone number.</span>
-            </div>
-          </div>
-          <div class="hp" aria-hidden="true"><label>Do not fill<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-          <div class="form-field">
-            <label class="checkbox">
-              <input type="checkbox" name="privacy" required>
-              <span>I have read the <a href="/en/privacy/">privacy policy</a> and consent to my data being processed so you can send the catalogue and get back to me. <span class="req">*</span></span>
-            </label>
-            <span class="field-error">We need your consent to continue.</span>
-          </div>
-          <div class="btn-row mt-2">
-            <button class="btn btn--primary" type="submit">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
-              Download the catalogue
-            </button>
-          </div>
-          <p class="form-note">Fields marked <span class="req">*</span> are required. We never pass your details to anyone.</p>
-        </form>
-      </div>
-    </section>
-  </main>
-${footer}
-${waFab("legal")}  <script src="/assets/js/main.js"></script>
-  <script src="/assets/js/catalogo.js"></script>
-</body>
-</html>
-`);

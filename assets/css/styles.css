@@ -783,24 +783,10 @@ body.lb-open .wa-fab { display: none; }
   .wa-fab__label { transition: none; }
 }
 
-/* ---------- Catalogo Bolla ---------- */
-/* La copertina e' crema (#FDF6ED) quasi identica al --cream del sito: su una
-   sezione chiara sparirebbe nel fondo. Sul verde diventa un oggetto posato, e
-   l'ombra le da' lo spessore che il colore da solo non puo' dare. */
-.catalogo .split__media img {
-  /* .split__media img ritaglia le fotografie a 4/5 (e a 4/3 sotto gli 860px)
-     con object-fit: cover. Su una copertina quel ritaglio taglia via i bordi
-     della pagina: una copertina o si vede intera o non e' una copertina.
-     Qui comanda la proporzione vera del file, 1000x713. */
-  aspect-ratio: auto;
-  height: auto;
-  object-fit: fill;
-  border-radius: var(--radius-s);
-  box-shadow: 0 30px 60px -22px rgba(0,0,0,.55);
-}
-/* .ticks nasce per fondo chiaro: il suo #3f483f sul verde non si legge. */
+/* .ticks nasce per fondo chiaro: il suo #3f483f sul verde non si legge.
+   Sta qui e non nel blocco che l'ha vista nascere (il richiamo al catalogo,
+   rimosso) perche' non e' mai stata sua: vale per ogni .ticks su .section--green. */
 .section--green .ticks li { color: #dbe4db; }
-.catalogo .cat-note { margin-top: .9rem; font-size: .86rem; color: rgba(233,239,233,.72); }
 
 
 /* ---------- Aree di tocco (WCAG 2.2 SC 2.5.8) ---------- */

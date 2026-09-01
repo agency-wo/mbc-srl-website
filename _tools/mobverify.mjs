@@ -143,7 +143,7 @@ out.push(`desktop: nav CTA hidden: ${deskHidden} | lightbox full-size: ${deskLb}
 await p.close();
 
 /* 4) sweep di tutte le rotte a 320 + 768 + 900x700 + 844x390 (overflow/console/404) */
-const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/catalogo/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/catalogue/","/en/privacy/","/en/cookie/"];
+const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
 let problems = [];
 for (const path of pages) for (const w of [320, 768, 900, 844]) {
   const pg = await b.newPage(); await pg.setCacheEnabled(false);

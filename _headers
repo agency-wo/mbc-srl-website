@@ -31,11 +31,6 @@
 /assets/img/*
   Cache-Control: public, max-age=2592000
 
-# Il catalogo pesa 9,6 MB: chi lo ha gia' scaricato non deve rifarlo. Stessa
-# ragione delle immagini per il non-immutable, il cliente ne mandera' altre
-# edizioni con lo stesso nome.
-/assets/pdf/*
-  Cache-Control: public, max-age=2592000
 
 # Le pagine cambiano quando cambia il sito e non hanno impronta nell'indirizzo,
 # quindi vanno rivalidate. max-age=0 con must-revalidate vuol dire una richiesta

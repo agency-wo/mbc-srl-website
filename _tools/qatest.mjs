@@ -11,7 +11,20 @@ await p.goto("http://127.0.0.1:8099/", { waitUntil: "networkidle0" });
 await p.evaluate(() => scrollTo({ top: 400, behavior: "instant" }));
 await new Promise(r => setTimeout(r, 250));
 await p.click(".nav-toggle");
-await new Promise(r => setTimeout(r, 400));
+/* Si aspetta la CONDIZIONE, non un numero di millisecondi. Qui c'era
+   `setTimeout(400)`, ed e' esattamente la durata di
+   `transition: transform .4s, visibility .4s` (styles.css:505): un pareggio con
+   l'animazione. Il click cadeva su un elemento ancora `visibility: hidden` e
+   puppeteer rispondeva "Node is either not clickable". Passava per fortuna, e la
+   stessa sequenza fallisce tuttora sul sito pubblicato. Alzare l'attesa a 700ms
+   riduceva il problema senza toglierlo: sotto carico la macchina se li mangia.
+   Aspettare che il pannello sia fermo e visibile lo elimina, e il test diventa
+   piu' veloce quando l'animazione finisce prima. */
+await p.waitForFunction(() => {
+  const m = document.querySelector(".nav-menu");
+  const cs = getComputedStyle(m);
+  return cs.visibility === "visible" && (cs.transform === "none" || cs.transform === "matrix(1, 0, 0, 1, 0, 0)");
+}, { timeout: 5000 });
 const opened = await p.evaluate(() => document.body.classList.contains("nav-open"));
 await p.click(".nav-menu a");
 await new Promise(r => setTimeout(r, 300));

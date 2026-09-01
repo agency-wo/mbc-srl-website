@@ -107,7 +107,6 @@ const footer = `  <footer class="site-footer">
             <li><a href="/soluzioni/#bolle">Bolle per glamping</a></li>
             <li><a href="/soluzioni/#chiavi-in-mano">Chiavi in mano</a></li>
             <li><a href="/soluzioni/#bar-ristoranti">Bar e ristoranti</a></li>
-            <li><a href="/catalogo/">Catalogo Bolla</a></li>
             <li><a href="/soluzioni/#sauna">Saune &amp; grotte di sale</a></li>
             <li><a href="/soluzioni/#idromassaggio">Idromassaggio &amp; fitness</a></li>
           </ul>

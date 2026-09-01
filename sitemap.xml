@@ -26,12 +26,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it/progetti/"/>
   </url>
   <url>
-    <loc>https://www.mbcsrl.it/catalogo/</loc>
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.mbcsrl.it/catalogo/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.mbcsrl.it/en/catalogue/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it/catalogo/"/>
-  </url>
-  <url>
     <loc>https://www.mbcsrl.it/contatti/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.mbcsrl.it/contatti/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mbcsrl.it/en/contact/"/>
@@ -60,12 +54,6 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://www.mbcsrl.it/progetti/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mbcsrl.it/en/projects/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it/progetti/"/>
-  </url>
-  <url>
-    <loc>https://www.mbcsrl.it/en/catalogue/</loc>
-    <xhtml:link rel="alternate" hreflang="it" href="https://www.mbcsrl.it/catalogo/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.mbcsrl.it/en/catalogue/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it/catalogo/"/>
   </url>
   <url>
     <loc>https://www.mbcsrl.it/en/contact/</loc>
