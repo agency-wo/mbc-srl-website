@@ -1,9 +1,13 @@
-# Il www manda all'apex, che e' la forma canonica dichiarata in tutte le pagine.
-# Serve una regola esplicita: aggiungendo apex e www come domini personalizzati,
-# Cloudflare Pages li serve ENTRAMBI, non ne rimanda uno all'altro. Senza questa
-# riga sarebbero due indirizzi per lo stesso sito, e la canonical resterebbe da
-# sola a spiegarlo a Google.
-https://www.manfrediconcept.it/* https://manfrediconcept.it/:splat 301
+# Il rimando www -> apex NON sta qui, e non e' una dimenticanza.
+#
+# Questo file ha ospitato la riga `https://www.manfrediconcept.it/* ... 301`, che
+# non poteva funzionare: **Cloudflare Pages confronta solo il percorso, mai il
+# nome host**. Una "from" che comincia con https:// non corrisponde mai. E' una
+# funzione di Netlify, e la somiglianza dei due formati la fa sembrare giusta.
+# Verificato su flysystem.io, dove il www rispondeva 200 invece che 301.
+# Il rimando e' ora una Redirect Rule di zona su Cloudflare.
+#
+# Le regole qui sotto invece funzionano, perche' sono sul percorso.
 
 # Rimandi permanenti per le pagine che non esistono piu'.
 #
