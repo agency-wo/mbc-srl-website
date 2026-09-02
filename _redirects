@@ -1,3 +1,10 @@
+# Il www manda all'apex, che e' la forma canonica dichiarata in tutte le pagine.
+# Serve una regola esplicita: aggiungendo apex e www come domini personalizzati,
+# Cloudflare Pages li serve ENTRAMBI, non ne rimanda uno all'altro. Senza questa
+# riga sarebbero due indirizzi per lo stesso sito, e la canonical resterebbe da
+# sola a spiegarlo a Google.
+https://www.manfrediconcept.it/* https://manfrediconcept.it/:splat 301
+
 # Rimandi permanenti per le pagine che non esistono piu'.
 #
 # Il catalogo BOLLA e' uscito dal sito su richiesta del titolare. Senza queste
