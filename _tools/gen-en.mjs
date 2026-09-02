@@ -99,17 +99,17 @@ function head({ title, desc, path, itAlt }) {
   <script>document.documentElement.classList.add('js');</script>
   <title>${title}</title>
   <meta name="description" content="${desc}">
-  <link rel="canonical" href="https://www.mbcsrl.it${path}">
-  <link rel="alternate" hreflang="it" href="https://www.mbcsrl.it${itAlt}">
-  <link rel="alternate" hreflang="en" href="https://www.mbcsrl.it${path}">
-  <link rel="alternate" hreflang="x-default" href="https://www.mbcsrl.it${itAlt}">
+  <link rel="canonical" href="https://manfrediconcept.it${path}">
+  <link rel="alternate" hreflang="it" href="https://manfrediconcept.it${itAlt}">
+  <link rel="alternate" hreflang="en" href="https://manfrediconcept.it${path}">
+  <link rel="alternate" hreflang="x-default" href="https://manfrediconcept.it${itAlt}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MBC">
   <meta property="og:locale" content="en_US">
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${desc}">
-  <meta property="og:url" content="https://www.mbcsrl.it${path}">
-  <meta property="og:image" content="https://www.mbcsrl.it/assets/img/og-share.jpg">
+  <meta property="og:url" content="https://manfrediconcept.it${path}">
+  <meta property="og:image" content="https://manfrediconcept.it/assets/img/og-share.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/img/brand/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32">
@@ -129,17 +129,17 @@ const BUSINESS_LD = `  <script type="application/ld+json">
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://www.mbcsrl.it/#business",
+        "@id": "https://manfrediconcept.it/#business",
         "name": "MBC",
         "legalName": "Manfredi Business Concept SRL",
         "vatID": "IT13274090011",
         "taxID": "13274090011",
         "description": "Supply and installation of glamping bubbles and domes, outdoor dining domes for bars and restaurants, outdoor saunas, salt rooms, hot tubs and fitness equipment. Turnkey glamping projects including electrical, plumbing and climate control.",
-        "url": "https://www.mbcsrl.it/",
+        "url": "https://manfrediconcept.it/",
         "telephone": "+393338641752",
         "email": "info@manfrediconcept.it",
-        "image": "https://www.mbcsrl.it/assets/img/og-share.jpg",
-        "logo": "https://www.mbcsrl.it/assets/img/brand/logo-full-1200.png",
+        "image": "https://manfrediconcept.it/assets/img/og-share.jpg",
+        "logo": "https://manfrediconcept.it/assets/img/brand/logo-full-1200.png",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Via Vitaliano Donati 17",
@@ -157,12 +157,12 @@ const BUSINESS_LD = `  <script type="application/ld+json">
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://www.mbcsrl.it/#showroom",
+        "@id": "https://manfrediconcept.it/#showroom",
         "name": "MBC · Showroom",
-        "branchOf": {"@id": "https://www.mbcsrl.it/#business"},
+        "branchOf": {"@id": "https://manfrediconcept.it/#business"},
         "description": "MBC showroom: bubbles, domes and wellness installations on display.",
         "telephone": "+393338641752",
-        "url": "https://www.mbcsrl.it/contatti/",
+        "url": "https://manfrediconcept.it/contatti/",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Via Cascine Dighera 2",
@@ -290,7 +290,7 @@ function card(slug, title, text, alt, href = "/en/projects/", cta = "Discover", 
 
 /* ---------------- ABOUT ---------------- */
 write("en/about/index.html", `${head({ title: "About us | 30 years in wellness | MBC", desc: "MBC: thirty years in the wellness sector, today specialising in glamping bubbles and turnkey wellness paths. Discover our story and the two options.", path: "/en/about/", itAlt: "/chi-siamo/" })}
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"About","item":"https://www.mbcsrl.it/en/about/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://manfrediconcept.it/en/"},{"@type":"ListItem","position":2,"name":"About","item":"https://manfrediconcept.it/en/about/"}]}</script>
 </head>
 <body class="has-hero">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -374,7 +374,7 @@ const gItems = ordered.map(m => {
           <figcaption>${m.alt_en}</figcaption></figure>`; }).join("\n");
 const gFilters = fOrder.map((f, idx) => `        <button class="filter${idx===0?' is-active':''}" data-filter="${f}" aria-pressed="${idx===0}">${fLabel[f]}</button>`).join("\n");
 write("en/projects/index.html", `${head({ title: "Projects & installations | Glamping bubbles, saunas & hot tubs | MBC", desc: "MBC projects: glamping bubbles, hot tubs, outdoor saunas and salt rooms. Browse the gallery of our wellness installations.", path: "/en/projects/", itAlt: "/progetti/" })}
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://www.mbcsrl.it/en/projects/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://manfrediconcept.it/en/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://manfrediconcept.it/en/projects/"}]}</script>
 </head>
 <body class="has-hero">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -409,7 +409,7 @@ ${waFab("projects")}
 
 /* ---------------- CONTACT ---------------- */
 write("en/contact/index.html", `${head({ title: "Contact | Get a quote | MBC", desc: "Contact MBC for glamping bubbles, saunas, salt rooms and hot tubs. Request a quote for your supply or turnkey project.", path: "/en/contact/", itAlt: "/contatti/" })}
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://www.mbcsrl.it/en/contact/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://manfrediconcept.it/en/"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://manfrediconcept.it/en/contact/"}]}</script>
 </head>
 <body class="has-hero">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -500,16 +500,16 @@ write("en/solutions/index.html", `${head({ title: "Glamping bubbles &amp; domes 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
     {"@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.mbcsrl.it/en/"},
-      {"@type":"ListItem","position":2,"name":"Solutions","item":"https://www.mbcsrl.it/en/solutions/"}]},
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://manfrediconcept.it/en/"},
+      {"@type":"ListItem","position":2,"name":"Solutions","item":"https://manfrediconcept.it/en/solutions/"}]},
     {"@type":"ItemList","itemListElement":[
-      {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Glamping bubbles","url":"https://www.mbcsrl.it/en/solutions/#bolle","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Turnkey glamping","url":"https://www.mbcsrl.it/en/solutions/#chiavi-in-mano","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Dining domes for bars and restaurants","url":"https://www.mbcsrl.it/en/solutions/#bar-ristoranti","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Outdoor sauna","url":"https://www.mbcsrl.it/en/solutions/#sauna","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Salt room","url":"https://www.mbcsrl.it/en/solutions/#sale","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Outdoor hot tub","url":"https://www.mbcsrl.it/en/solutions/#idromassaggio","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}},
-      {"@type":"ListItem","position":7,"item":{"@type":"Service","name":"Professional gym equipment","url":"https://www.mbcsrl.it/en/solutions/#fitness","areaServed":"IT","provider":{"@id":"https://www.mbcsrl.it/#business"}}}]}
+      {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"Glamping bubbles","url":"https://manfrediconcept.it/en/solutions/#bolle","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}},
+      {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"Turnkey glamping","url":"https://manfrediconcept.it/en/solutions/#chiavi-in-mano","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}},
+      {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"Dining domes for bars and restaurants","url":"https://manfrediconcept.it/en/solutions/#bar-ristoranti","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}},
+      {"@type":"ListItem","position":4,"item":{"@type":"Service","name":"Outdoor sauna","url":"https://manfrediconcept.it/en/solutions/#sauna","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}},
+      {"@type":"ListItem","position":5,"item":{"@type":"Service","name":"Salt room","url":"https://manfrediconcept.it/en/solutions/#sale","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}},
+      {"@type":"ListItem","position":6,"item":{"@type":"Service","name":"Outdoor hot tub","url":"https://manfrediconcept.it/en/solutions/#idromassaggio","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}},
+      {"@type":"ListItem","position":7,"item":{"@type":"Service","name":"Professional gym equipment","url":"https://manfrediconcept.it/en/solutions/#fitness","areaServed":"IT","provider":{"@id":"https://manfrediconcept.it/#business"}}}]}
   ]}
   </script>
 </head>

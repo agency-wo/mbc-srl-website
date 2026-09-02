@@ -49,7 +49,7 @@ _tools/                script di generazione/QA (nel repo; node_modules e output
 Cerca questi valori e sostituiscili con quelli reali (sono ripetuti in tutte le pagine):
 | Placeholder | Dove | Sostituire con |
 |---|---|---|
-| `https://www.mbcsrl.it` | canonical, og, sitemap, JSON-LD | dominio definitivo |
+| `https://manfrediconcept.it` | canonical, og, sitemap, JSON-LD | dominio definitivo |
 | social `href="#"` (Instagram, Facebook) | footer | URL profili reali |
 | tagline / claim | hero home | eventuale claim scelto |
 
@@ -67,6 +67,26 @@ I **2 file HEIC** (`IMG_8301`, `IMG_8367`) non sono stati convertiti (manca il c
 riesportali in JPEG e aggiungili con la procedura sopra.
 
 ---
+
+## Produzione (Cloudflare Pages)
+Il sito è online su **https://manfrediconcept.it**. Il `www` fa 301 sull'apex.
+
+```bash
+STAGE=$(mktemp -d) && git archive HEAD | tar -x -C "$STAGE"   && rm -rf "$STAGE/_tools" "$STAGE/README.md" "$STAGE/.gitignore"   && npx wrangler pages deploy "$STAGE" --project-name=manfrediconcept --branch=main --commit-dirty=true
+```
+
+**L'unica differenza con il comando dell'anteprima è che qui NON si appende il `noindex`.** È anche
+l'errore più facile da non accorgersene: il sito resta online e sembra a posto, semplicemente non
+viene mai indicizzato. Il controllo è una riga:
+
+```bash
+curl -sI https://manfrediconcept.it/ | grep -i x-robots-tag   # non deve restituire nulla
+curl -sI https://mbc-srl-preview.pages.dev/ | grep -i x-robots-tag   # deve dire noindex
+```
+
+Il dominio sta sui nameserver Cloudflare e non su quelli di Hostinger perché l'apex nudo non è un
+CNAME valido nel DNS: solo il CNAME flattening di Cloudflare lo risolve. Se un giorno si tornasse
+al `www`, il vincolo cadrebbe.
 
 ## Anteprima cliente (Cloudflare Pages)
 Il sito è visibile in anteprima su **https://mbc-srl-preview.pages.dev** (non indicizzato dai motori
@@ -123,7 +143,7 @@ Se un giorno si toglie `versiona.py`, vanno tolte anche le due regole `immutable
 1. Crea un repository su GitHub e carica il contenuto di questa cartella (root del repo).
    Il file `.nojekyll` è già presente (evita che GitHub Pages ignori alcune cartelle).
 2. **Settings → Pages → Source: `main` / root**. Il sito sarà online su `https://<utente>.github.io/<repo>/`.
-3. **Dominio personalizzato**: crea un file `CNAME` nella root con il dominio (es. `www.mbcsrl.it`)
+3. **Dominio personalizzato**: crea un file `CNAME` nella root con il dominio (es. `manfrediconcept.it`)
    e imposta i DNS su **Cloudflare**:
    - record `CNAME www` → `<utente>.github.io` (proxy attivo)
    - SSL/TLS: **Full**, "Always Use HTTPS" attivo.

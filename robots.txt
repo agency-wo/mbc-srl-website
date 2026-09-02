@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mbcsrl.it/sitemap.xml
+Sitemap: https://manfrediconcept.it/sitemap.xml
