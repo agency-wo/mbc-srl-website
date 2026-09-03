@@ -9,25 +9,21 @@
 #
 # Le regole qui sotto invece funzionano, perche' sono sul percorso.
 
-# Rimandi permanenti per le pagine che non esistono piu'.
+# Nessun rimando sul percorso, al momento.
 #
-# Il catalogo BOLLA e' uscito dal sito su richiesta del titolare. Senza queste
-# due righe il vecchio indirizzo cade sul ripiego di Cloudflare Pages, che
-# risponde **200 con la home**: un soft 404. E' la risposta peggiore delle tre
-# possibili. Google la tratta peggio di un 301 perche' non gli dice che la
-# pagina e' sparita, e a chi arriva con il link vecchio - dal PDF gia' scaricato
-# o da una mail - non spiega niente: si ritrova altrove senza capire perche'.
+# Qui stavano sei regole che mandavano /catalogo* su /soluzioni/, scritte il
+# 1 settembre 2026 quando il catalogo era uscito dal sito (commit 3357968).
+# Il catalogo e' tornato, pubblico e in navigazione, quindi quelle regole
+# **ombreggiavano la rotta nuova** e vanno via: una regola di _redirects vince
+# sul file che esiste.
 #
-# La destinazione e' /soluzioni/ e non la home: e' la pagina che descrive gli
-# stessi prodotti che il catalogo elencava, quindi chi cercava il catalogo trova
-# comunque quello che voleva sapere.
-# Tre forme per rotta, e non e' pignoleria: Cloudflare Pages aggiunge lo slash
-# finale con un 308 solo alle rotte che ESISTONO ancora. Cancellata la cartella
-# non c'e' piu' niente contro cui normalizzare, quindi /catalogo senza slash non
-# arriva mai alla regola di sotto e cade sul ripiego. Verificato dal vivo.
-/catalogo        /soluzioni/       301
-/catalogo/       /soluzioni/       301
-/catalogo/*      /soluzioni/       301
-/en/catalogue    /en/solutions/    301
-/en/catalogue/   /en/solutions/    301
-/en/catalogue/*  /en/solutions/    301
+# Due cose imparate allora che restano vere e conviene non riscoprire:
+#
+# 1. Servivano TRE forme per rotta (/catalogo, /catalogo/, /catalogo/*) perche'
+#    Cloudflare Pages aggiunge lo slash finale con un 308 solo alle rotte che
+#    ESISTONO. Ora /catalogo/ esiste, quindi il 308 lo fa Pages da solo e la
+#    forma senza slash non ha piu' bisogno di una regola.
+# 2. Il 301 di allora e' stato servito con s-maxage=604800: puo' restare
+#    nell'edge fino a SETTE GIORNI dopo che la regola e' sparita. Dopo il deploy
+#    va fatto un purge della cache su /catalogo* e /en/catalogue*, altrimenti la
+#    pagina nuova sembra non esistere e si cerca il guasto nel posto sbagliato.

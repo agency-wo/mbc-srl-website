@@ -25,6 +25,13 @@
 /assets/js/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Il catalogo pesa 9,3 MB: chi lo ha gia' scaricato non deve rifarlo a ogni
+# visita, ed e' quello che succederebbe senza questa regola, perche' /* piu' in
+# basso dice max-age=0. Trenta giorni e non un anno, e soprattutto NON immutable:
+# il titolare mandera' altre edizioni con lo stesso nome di file.
+/assets/pdf/*
+  Cache-Control: public, max-age=2592000
+
 # Immagini: lunghe ma NON immutable. Qui i nomi sono parlanti e stabili, non
 # contengono un'impronta, quindi sostituire una fotografia tenendo lo stesso
 # nome deve restare possibile e deve arrivare ai visitatori senza rinominarla.

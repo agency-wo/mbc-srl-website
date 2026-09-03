@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 const B = "https://mbc-srl-preview.pages.dev";
-const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/contact/","/en/privacy/","/en/cookie/"];
+const pages = ["/","/chi-siamo/","/soluzioni/","/progetti/","/catalogo/","/contatti/","/privacy/","/cookie/","/en/","/en/about/","/en/solutions/","/en/projects/","/en/catalogue/","/en/contact/","/en/privacy/","/en/cookie/"];
 const b = await puppeteer.launch({ headless: "new", args: ["--no-sandbox"] });
 let problems = [];
 for (const path of pages) for (const w of [1440, 390]) {

@@ -57,10 +57,15 @@ Gia' inseriti e **non** piu' segnaposto: email `info@manfrediconcept.it` (footer
 contact.js e JSON-LD), P.IVA `13274090011`,
 sede legale e showroom, telefono `+39 333 864 1752`.
 
-> **Il sito non ha piu' nessun modulo con backend.** Il catalogo BOLLA e' stato rimosso su
-> richiesta del cliente, e con lui il cancello che passava da FormSubmit. Il modulo contatti apre
-> il client di posta dell'utente (`mailto:`, vedi `assets/js/contact.js`): non transita da nessun
-> servizio esterno e non ha niente da attivare.
+> **Il sito non ha piu' nessun modulo con backend.** Il modulo contatti apre il client di posta
+> dell'utente (`mailto:`, vedi `assets/js/contact.js`): non transita da nessun servizio esterno e
+> non ha niente da attivare.
+>
+> **Il catalogo e' tornato, ma senza cancello.** Il vecchio catalogo BOLLA era dietro un modulo che
+> passava da FormSubmit, e uscendo si e' portato via una base giuridica (art. 6.1.a, consenso) e un
+> responsabile esterno dalla privacy policy. Il catalogo 2026 su `/catalogo/` e' pubblico: link
+> diretto al PDF, nessun dato raccolto. **Non rimettere quelle clausole** e non rimettere un modulo
+> qui senza rifare prima l'informativa.
 
 
 I **2 file HEIC** (`IMG_8301`, `IMG_8367`) non sono stati convertiti (manca il codec HEVC): se servono,
@@ -105,7 +110,8 @@ cache. Con `>` le cancellerebbe.
 visitato il sito continuerebbe a vedere la versione in cache:
 
 ```bash
-node _tools/gen-en.mjs && node _tools/gen-progetti.mjs   # solo se hai toccato i generatori
+node _tools/gen-en.mjs && node _tools/gen-progetti.mjs && node _tools/gen-catalogo.mjs
+python _tools/rendi-catalogo.py --applica                # solo se cambia il PDF del catalogo
 python _tools/versiona.py                                # sempre, e sempre per ultimo
 ```
 
@@ -117,13 +123,14 @@ Quando arriverà il dominio definitivo basterà collegarlo allo stesso progetto 
 `_headers` (committato) dice a Cloudflare quanto tenere ogni cosa. Nasce da una misura: navigando
 dalla home a `/soluzioni/` con la cache calda arrivavano **quattro risposte 304**, cioè i due font, il
 CSS e il JS facevano un giro di rete completo solo per sentirsi dire "non è cambiato". I byte non si
-riscaricavano, ma su mobile un round trip costa 100-300 ms, e le pagine qui sono quattordici.
+riscaricavano, ma su mobile un round trip costa 100-300 ms, e le pagine qui sono sedici.
 
 | | durata | perché |
 |---|---|---|
 | font | 1 anno, immutable | non cambiano mai, il nome descrive il taglio |
 | CSS e JS | 1 anno, immutable | **solo grazie all'impronta** messa da `versiona.py` |
 | immagini | 30 giorni | nomi stabili: sostituirne uno con lo stesso nome deve restare possibile |
+| PDF | 30 giorni | il catalogo pesa 9,3 MB; non immutable, perche' le edizioni nuove tengono lo stesso nome |
 | pagine HTML | revalidate | non hanno impronta nell'indirizzo |
 
 `_tools/versiona.py` appende lo sha1 del contenuto all'indirizzo (`styles.css?v=1f27331f`): contenuto
@@ -176,3 +183,26 @@ nelle 5 pagine IT scritte a mano (`index`, `chi-siamo`, `soluzioni`, `privacy`, 
   galleria e menu navigabili da tastiera, testi alternativi su tutte le immagini.
 - **GDPR**: font ospitati localmente (nessuna chiamata a Google Fonts), nessun cookie di terze parti,
   pagine Privacy e Cookie incluse (da personalizzare con i dati del titolare).
+
+
+## Il catalogo 2026
+
+`/catalogo/` e `/en/catalogue/` sono **generate**, non scritte a mano, e vengono dalla stessa
+sorgente perche' le due lingue non possano dire numeri diversi:
+
+| file | cosa fa |
+|---|---|
+| `assets/pdf/mbc-catalogo-2026.pdf` | il documento, 26 pagine, 9,3 MB |
+| `_tools/rendi-catalogo.py --applica` | rende le 26 pagine in webp+jpg a 400/800/1400 e scrive `assets/img/catalogo/manifest.json` con le **altezze misurate** |
+| `_tools/dati-catalogo.mjs` | misure, capienze, testi IT/EN, categorie dei filtri. Unica fonte |
+| `_tools/gen-catalogo.mjs` | scrive `catalogo/index.html` |
+| `_tools/gen-en.mjs` | scrive anche `en/catalogue/index.html` |
+
+**Se arriva un catalogo nuovo:** sostituisci il PDF tenendo lo stesso nome, rilancia
+`rendi-catalogo.py --applica`, aggiorna i numeri in `dati-catalogo.mjs` leggendoli dalle pagine vere,
+poi i generatori e `versiona.py`. Se il numero di pagine cambia, aggiorna anche `PAGINE` e `PDF` in
+`dati-catalogo.mjs`: la galleria si costruisce da li', non contando i file.
+
+La galleria riusa `assets/js/gallery.js` senza modifiche. Il suo contratto e' rigido: **un solo**
+`[data-gallery]` per pagina, e il blocco `.lightbox` deve avere tutti e cinque i figli
+(`.lightbox__img`, `.lightbox__cap`, `.lb-close`, `.lb-prev`, `.lb-next`), altrimenti va in errore.

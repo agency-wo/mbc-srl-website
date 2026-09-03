@@ -573,7 +573,13 @@ p { max-width: 68ch; }
 
 /* ---------- Extras ---------- */
 .btn--sm { padding: .62em 1.2em; font-size: .9rem; }
-@media (max-width: 860px) { .header-cta { display: none; } }
+/* La CTA d'intestazione sparisce sotto i 1080px, non sotto gli 860.
+   Il motivo e' la sesta voce di menu (Catalogo): la banda 861-1080px stringeva
+   gia' i gap per far stare cinque voci, e la sesta non ci entrava. Togliere qui
+   il bottone "Preventivo" libera circa 120px esattamente dove servono, e non
+   costa niente: in quella fascia la stessa CTA resta come .nav-cta-item dentro
+   il menu, nel footer e nel corpo di ogni pagina. */
+@media (max-width: 1080px) { .header-cta { display: none; } }
 
 .preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.8rem, 2vw, 1.3rem); }
 .preview-grid a { display: block; border-radius: var(--radius-s); overflow: hidden; position: relative; aspect-ratio: 3/4; }
@@ -828,3 +834,104 @@ body.lb-open .wa-fab { display: none; }
    flex non scende sotto la propria dimensione naturale e l'overflow resta. */
 .site-footer .logo { max-width: 100%; }
 .site-footer .logo-word { min-width: 0; gap: 16px; }
+
+
+/* ---------- Catalogo 2026 ---------- */
+
+/* LA GRIGLIA DELLE 26 PAGINE.
+   Nessuna griglia esistente andava bene: .preview-grid e' 3/4 verticale e
+   .masonry e' a colonne CSS, mentre queste sono pagine A4 orizzontali.
+   La proporzione dichiarata e' 1400/990, cioe' la misura VERA dei file resi da
+   _tools/rendi-catalogo.py, non 842/595 del PDF. Differiscono di un millesimo, e
+   usare quella giusta e' la differenza fra un object-fit che non tocca niente e
+   uno che rosicchia un pelo di pagina sopra e sotto. */
+.cat-pages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: clamp(.7rem, 1.6vw, 1.2rem);
+}
+.cat-pages figure { margin: 0; cursor: zoom-in; }
+.cat-pages img {
+  width: 100%; height: auto;
+  aspect-ratio: 1400 / 990;
+  object-fit: cover;
+  background: var(--cream-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.cat-pages figure:hover img,
+.cat-pages figure:focus-visible img { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+
+/* Sotto la miniatura va il numero di pagina, non la descrizione: quella e' gia'
+   nell'alt, e gallery.js la riusa come didascalia della lightbox (gallery.js:46-47).
+   Ripeterla qui la farebbe leggere due volte a chi usa uno screen reader. */
+.cat-pages figcaption {
+  margin-top: .45rem; font-size: .72rem; letter-spacing: .14em;
+  color: var(--muted); font-variant-numeric: tabular-nums;
+}
+
+/* LE QUATTRO MISURE. Ogni tessera porta la sua pagina resa e, sotto, gli stessi
+   numeri come testo vero: e' l'unico modo perche' finiscano in un motore di
+   ricerca, in una selezione col mouse e in uno screen reader. */
+.misure { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2vw, 1.6rem); }
+.misura {
+  background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.misura > img { width: 100%; height: auto; aspect-ratio: 1400 / 990; object-fit: cover; display: block; }
+.misura__corpo { padding: clamp(1rem, 2vw, 1.35rem); display: flex; flex-direction: column; gap: .75rem; flex: 1; }
+.misura__sigla { font-family: var(--serif); font-size: 2.1rem; line-height: 1; color: var(--green); }
+.misura h3 { font-size: 1.02rem; line-height: 1.25; }
+.misura__dati { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem 1rem; margin: 0; font-size: .9rem; }
+.misura__dati dt { color: var(--muted); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+.misura__dati dd { margin: .1rem 0 0; font-variant-numeric: tabular-nums; }
+/* L'ingombro e' il dato che decide se la bolla entra nel giardino, e non lo
+   pubblica nessuno: sta in fondo ma su una riga sua, non in mezzo agli altri. */
+.misura__ingombro {
+  margin-top: auto; padding-top: .75rem; border-top: 1px solid var(--line);
+  font-size: .84rem; color: var(--muted);
+}
+.misura__ingombro b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* LA TABELLA. Il foglio di stile non ne conteneva nessuna: questa nasce qui, e
+   ricalca quella di pagina 9 del catalogo (barra verde, righe crema alternate,
+   angoli morbidi) perche' il PDF e' impaginato con gli stessi colori del sito.
+   min-width forza la barra di scorrimento invece di spremere sei colonne in
+   320px, ed e' per questo che il contenitore vuole role="group" e tabindex="0":
+   senza, axe segnala scrollable-region-focusable e chi naviga da tastiera non
+   puo' scorrerla. */
+.tab-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cat-tab { width: 100%; min-width: 620px; border-collapse: separate; border-spacing: 0 6px; font-size: .95rem; }
+.cat-tab caption { caption-side: top; text-align: left; color: var(--muted); font-size: .88rem; padding-bottom: .9rem; }
+.cat-tab th, .cat-tab td { padding: .8rem 1rem; text-align: left; }
+.cat-tab thead th {
+  background: var(--green); color: #fff; font-family: var(--sans);
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+}
+.cat-tab thead th:first-child { border-radius: var(--radius-s) 0 0 var(--radius-s); }
+.cat-tab thead th:last-child { border-radius: 0 var(--radius-s) var(--radius-s) 0; }
+.cat-tab tbody tr { background: var(--white); }
+.cat-tab tbody tr:nth-child(odd) { background: var(--cream-2); }
+.cat-tab tbody th {
+  font-family: var(--serif); font-size: 1.35rem; color: var(--terracotta-text);
+  border-radius: var(--radius-s) 0 0 var(--radius-s);
+}
+.cat-tab tbody td { font-variant-numeric: tabular-nums; }
+.cat-tab tbody td:last-child { border-radius: 0 var(--radius-s) var(--radius-s) 0; font-variant-numeric: normal; }
+
+/* IL BLOCCO DI SCARICO. Il peso sta in chiaro accanto al bottone e non in nota:
+   chi apre da telefono deve poter decidere prima di far partire 9,3 MB. E' la
+   lezione scritta in 07b5fe9, dove il conteggio delle pagine era stato tolto
+   perche' non diceva niente ma il peso era rimasto perche' invece serve. */
+.scarica { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(.9rem, 2.5vw, 1.8rem); }
+.scarica__meta { font-size: .88rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.section--green .scarica__meta { color: #c9d4cb; }
+
+@media (max-width: 1024px) { .misure { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+  .misure { grid-template-columns: 1fr; }
+  /* Due per riga invece di una: a tutta larghezza ventisei pagine sono uno
+     scorrimento infinito, e comunque per leggerle si apre la lightbox. */
+  .cat-pages { grid-template-columns: 1fr 1fr; }
+}

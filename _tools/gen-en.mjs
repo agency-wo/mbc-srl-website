@@ -1,16 +1,23 @@
-// Generates the English mirror under /en/ (home, about, projects, contact, privacy, cookie).
+// Generates the English mirror under /en/ (home, about, projects, catalogue, contact, privacy, cookie).
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const man = JSON.parse(readFileSync(join(ROOT, "assets", "img", "manifest.json"), "utf8"));
+/* Numeri e testi del catalogo: stessi identici della pagina italiana, cosi le
+   due lingue non possono divergere. Le altezze delle pagine rese si leggono
+   dal manifest scritto da rendi-catalogo.py, mai dedotte. */
+import { MISURE, PAGINE, FILTRI, CAPITOLI, PDF, NOTA_TABELLA } from "./dati-catalogo.mjs";
+const REND = JSON.parse(readFileSync(join(ROOT, "assets", "img", "catalogo", "manifest.json"), "utf8"));
+const altPag = (n) => REND.pagine.find((x) => x.n === n).dims;
 
 const nav = [
   { key: "home", it: "/", en: "/en/", label: "Home" },
   { key: "about", it: "/chi-siamo/", en: "/en/about/", label: "About" },
   { key: "solutions", it: "/soluzioni/", en: "/en/solutions/", label: "Solutions" },
   { key: "projects", it: "/progetti/", en: "/en/projects/", label: "Projects" },
+  { key: "catalogue", it: "/catalogo/", en: "/en/catalogue/", label: "Catalogue" },
   { key: "contact", it: "/contatti/", en: "/en/contact/", label: "Contact" },
 ];
 const LOGO = `<span class="logo-mark" aria-hidden="true"></span>`;
@@ -25,6 +32,7 @@ const WA_MSG = {
   projects: "Hello, I'm writing from your website. I'd like information about one of the projects I saw in your gallery.",
   legal: "Hello, I'm writing from your website. I'd like information about your wellness solutions.",
   solutions: "Hello, I'm writing from your website. I'd like information and a quote for a turnkey glamping project.",
+  catalogue: "Hello, I'm writing from your website. I have looked through your 2026 catalogue and would like to know more.",
 };
 // `src` = data-wa-source key; pass null to omit the button entirely (contact page)
 function waFab(src) {
@@ -73,7 +81,7 @@ const footer = `  <footer class="site-footer">
           </div>
         </div>
         <div class="footer-col"><h3>Navigate</h3><ul>
-          <li><a href="/en/">Home</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/solutions/">Solutions</a></li><li><a href="/en/projects/">Projects</a></li><li><a href="/en/contact/">Contact</a></li>
+          <li><a href="/en/">Home</a></li><li><a href="/en/about/">About</a></li><li><a href="/en/solutions/">Solutions</a></li><li><a href="/en/projects/">Projects</a></li><li><a href="/en/catalogue/">Catalogue</a></li><li><a href="/en/contact/">Contact</a></li>
         </ul></div>
         <div class="footer-col"><h3>Solutions</h3><ul>
           <li><a href="/en/solutions/#bolle">Glamping bubbles</a></li><li><a href="/en/solutions/#chiavi-in-mano">Turnkey glamping</a></li><li><a href="/en/solutions/#bar-ristoranti">Bars &amp; restaurants</a></li><li><a href="/en/solutions/#sauna">Saunas &amp; salt rooms</a></li><li><a href="/en/solutions/#idromassaggio">Hot tubs &amp; fitness</a></li>
@@ -273,7 +281,7 @@ ${header("home")}
     <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-ora-blu", [800, 1200], "100vw", "", 1200, 1600, "Glamping dome at blue hour with an alpine peak behind", 'loading="lazy"')}</div>
       <div class="container"><h2 class="reveal">Ready to create something extraordinary?</h2>
         <p class="reveal" data-delay="1">Tell us your idea: from a single bubble to a wellness village, we'll find the right tailor-made solution.</p>
-        <div class="btn-row reveal" data-delay="2" style="justify-content:center"><a class="btn btn--primary" href="/en/contact/">Get a quote</a><a class="btn btn--light" href="tel:+393338641752">Call +39 333 864 1752</a></div>
+        <div class="btn-row reveal" data-delay="2" style="justify-content:center"><a class="btn btn--primary" href="/en/contact/">Get a quote</a><a class="btn btn--light" href="/en/catalogue/">Browse the catalogue</a><a class="btn btn--light" href="tel:+393338641752">Call +39 333 864 1752</a></div>
       </div></section>
   </main>
 ${footer}
@@ -660,7 +668,7 @@ ${solSection("fitness", "", "06 &middot; Fitness", "Professional gym equipment, 
         <p class="reveal" data-delay="1">Tell us where you want the bubbles: we'll price the whole thing turnkey, services included.</p>
         <div class="btn-row reveal" data-delay="2" style="justify-content:center">
           <a class="btn btn--primary" href="/en/contact/">Get a quote</a>
-          <a class="btn btn--light" href="tel:+393338641752">Call +39 333 864 1752</a>
+          <a class="btn btn--light" href="/en/catalogue/">Browse the catalogue</a><a class="btn btn--light" href="tel:+393338641752">Call +39 333 864 1752</a>
         </div>
       </div>
     </section>
@@ -703,4 +711,222 @@ write("en/cookie/index.html", legal("cookie", "Cookie Policy", "/cookie/",
    <h2>3. Future services</h2><p>If tools such as maps, video or analytics are added, this policy will be updated and a consent banner shown as required by law.</p>
    <h2>4. Contact</h2><p>Questions? Write to <a href="mailto:info@manfrediconcept.it">info@manfrediconcept.it</a>. See also our <a href="/en/privacy/">Privacy Policy</a>.</p>`));
 
-console.log("wrote EN pages: /en/, /en/about/, /en/projects/ (" + ordered.length + " items), /en/contact/, /en/privacy/, /en/cookie/");
+/* ---------------- CATALOGUE (/en/catalogue/) ----------------
+   Stessa pagina dell'italiana, stessi numeri: vengono entrambe da
+   dati-catalogo.mjs, quindi non possono divergere.
+
+   IL PDF E' IN ITALIANO E LA PAGINA LO DICE. E' l'unico punto in cui le due
+   lingue non sono equivalenti: la pagina inglese e' tradotta per intero, ma il
+   documento che scarichi no. Dirlo accanto al bottone costa una riga; non dirlo
+   fa scaricare 9,3 MB a chi si aspettava l'inglese. Le misure, i disegni quotati
+   e le fotografie restano leggibili in qualsiasi lingua, ed e' per questo che il
+   catalogo si offre lo stesso invece di nasconderlo. */
+const catPic = (n, sizes, alt) => {
+  const b = `/assets/img/catalogo/catalogo-p${String(n).padStart(2, "0")}`;
+  return `<picture>
+          <source type="image/webp" srcset="${b}-400.webp 400w, ${b}-800.webp 800w" sizes="${sizes}">
+          <img src="${b}-800.jpg" srcset="${b}-400.jpg 400w, ${b}-800.jpg 800w" sizes="${sizes}" width="800" height="${altPag(n)["800"]}" loading="lazy" decoding="async" alt="${alt}">
+        </picture>`;
+};
+
+const SZ_MIS_EN = "(max-width:560px) 92vw, (max-width:1024px) 46vw, 280px";
+const SZ_PAG_EN = "(max-width:560px) 46vw, (max-width:1024px) 30vw, 240px";
+
+const misureEN = MISURE.map((m) => `          <article class="misura reveal">
+        ${catPic(m.pagina, SZ_MIS_EN, `Catalogue page for size ${m.sigla}`)}
+            <div class="misura__corpo">
+              <p class="misura__sigla">${m.sigla}</p>
+              <h3>${m.titolo_en}</h3>
+              <dl class="misura__dati">
+                <div><dt>Diameter</dt><dd>&Oslash; ${m.diametro} m</dd></div>
+                <div><dt>Height</dt><dd>${m.altezza} m</dd></div>
+                <div><dt>Floor area</dt><dd>${m.superficie} m&sup2;</dd></div>
+                <div><dt>Indicative capacity</dt><dd>${m.capienza_en || m.capienza}</dd></div>
+              </dl>
+              <p class="misura__ingombro">Indicative overall footprint <b>${m.ingombro} m</b></p>
+            </div>
+          </article>`).join("\n");
+
+const righeEN = MISURE.map((m) => `              <tr>
+                <th scope="row">${m.sigla}</th>
+                <td>${m.diametro} m</td>
+                <td>${m.superficie} m&sup2;</td>
+                <td>${m.altezza} m</td>
+                <td>${m.capienza_en || m.capienza}</td>
+                <td>${m.ingombro} m</td>
+                <td>${m.uso_en}</td>
+              </tr>`).join("\n");
+
+const filtriEN = FILTRI.map((f, i) =>
+  `          <button class="filter${i === 0 ? " is-active" : ""}" data-filter="${f.v}" aria-pressed="${i === 0}">${f.en}</button>`
+).join("\n");
+
+const pagineEN = PAGINE.map((p) => {
+  const b = `/assets/img/catalogo/catalogo-p${String(p.n).padStart(2, "0")}`;
+  return `          <figure class="gallery-item" data-cat="${p.cat}" data-full="${b}-1400.jpg" data-full-m="${b}-800.jpg">
+            <picture>
+              <source type="image/webp" srcset="${b}-400.webp 400w, ${b}-800.webp 800w" sizes="${SZ_PAG_EN}">
+              <img src="${b}-400.jpg" srcset="${b}-400.jpg 400w, ${b}-800.jpg 800w" sizes="${SZ_PAG_EN}" width="400" height="${altPag(p.n)["400"]}" loading="lazy" decoding="async" alt="${p.en}">
+            </picture>
+            <figcaption>Page ${String(p.n).padStart(2, "0")}</figcaption>
+          </figure>`;
+}).join("\n");
+
+const ticksEN = CAPITOLI.map((c) => `            <li>${c.en}</li>`).join("\n");
+
+/* Stessi dati strutturati dell'italiana, tradotti. Gli @id non ci sono di
+   proposito: questi Product non sono entita' globali del sito, sono l'elenco di
+   questa pagina, e due elenchi con lo stesso @id in due lingue si fonderebbero. */
+const prodottiEN = MISURE.map((m, i) => ({
+  "@type": "ListItem", position: i + 1,
+  item: {
+    "@type": "Product",
+    name: `Bubble ${m.sigla}`,
+    description: `${m.titolo_en} Floor area ${m.superficie} m2, indicative capacity ${m.capienza_en || m.capienza} people.`,
+    brand: { "@type": "Brand", name: "MBC" },
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Diameter", value: m.n_diametro, unitCode: "MTR" },
+      { "@type": "PropertyValue", name: "Height", value: m.n_altezza, unitCode: "MTR" },
+      { "@type": "PropertyValue", name: "Indicative capacity", value: m.capienza_en || m.capienza },
+    ],
+  },
+}));
+
+const LD_CAT_EN = `  <script type="application/ld+json">
+${JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://manfrediconcept.it/en/" },
+      { "@type": "ListItem", position: 2, name: "Catalogue", item: "https://manfrediconcept.it/en/catalogue/" }] },
+    { "@type": "ItemList", name: "MBC Bubble collection", itemListElement: prodottiEN },
+  ],
+}, null, 2).split("\n").map((r) => "  " + r).join("\n")}
+  </script>`;
+
+write("en/catalogue/index.html", `${head({
+  title: "2026 Catalogue: glamping bubbles and hospitality | MBC",
+  desc: "The MBC 2026 catalogue as a PDF: four bubble sizes with diameter, floor area and capacity, turnkey glamping, wellness and hospitality. Browse it or download it.",
+  path: "/en/catalogue/", itAlt: "/catalogo/",
+})}
+  <link rel="preload" as="image" type="image/webp" fetchpriority="high"
+    href="/assets/img/bolla-glamping-ora-blu-1200.webp"
+    imagesrcset="/assets/img/bolla-glamping-ora-blu-800.webp 800w, /assets/img/bolla-glamping-ora-blu-1200.webp 1200w"
+    imagesizes="100vw">
+${LD_CAT_EN}
+</head>
+<body class="has-hero">
+  <a class="skip-link" href="#main">Skip to content</a>
+${header("catalogue")}
+  <main id="main">
+    <section class="hero hero--short">
+      <div class="hero__media">${pic("bolla-glamping-ora-blu", [800, 1200], "100vw", "", 1200, 1600, "Glamping bubble at blue hour with an alpine peak behind", 'fetchpriority="high" style="object-position:50% 42%"')}</div>
+      <div class="container hero__inner">
+        <span class="eyebrow" style="color:#dfa781">2026 Catalogue</span>
+        <h1 class="hero__title">Projects that turn a space into an experience</h1>
+        <p class="hero__sub">Turnkey glamping, dining and hospitality, six wellness lines. Twenty-six pages: browse them below, or take them with you.</p>
+        <div class="hero__btns btn-row">
+          <a class="btn btn--primary" href="${PDF.href}" download="${PDF.nome}">Download the PDF</a>
+          <a class="btn btn--light" href="#browse">Browse the ${PDF.pagine} pages</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Bubble collection</p>
+          <h2>Four sizes. Pick the scale.</h2>
+          <p class="lead">From an intimate room to a panoramic dining room seating thirty. Here are the figures that tell you straight away which one fits your space.</p>
+        </div>
+        <div class="misure">
+${misureEN}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Side by side</p>
+          <h2>All four, one row each</h2>
+        </div>
+        <div class="tab-scroll" role="group" aria-label="Comparison table of the four sizes, scrolls horizontally" tabindex="0">
+          <table class="cat-tab">
+            <caption>Sizes and capacities of the Bubble collection, as published in the 2026 catalogue.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">Diameter</th>
+                <th scope="col">Floor area</th>
+                <th scope="col">Height</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Footprint</th>
+                <th scope="col">Typical use</th>
+              </tr>
+            </thead>
+            <tbody>
+${righeEN}
+            </tbody>
+          </table>
+        </div>
+        <p class="foot-note mt-2">${NOTA_TABELLA.en}</p>
+      </div>
+    </section>
+
+    <section class="section" id="browse">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Browse</p>
+          <h2>The catalogue, page by page</h2>
+          <p class="lead">Tap a page to see it large. No form, no email. The pages below are in Italian, and so is the PDF &mdash; the drawings, dimensions and photographs read in any language.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter the catalogue pages">
+${filtriEN}
+        </div>
+        <div class="cat-pages reveal" data-gallery>
+${pagineEN}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--green">
+      <div class="container">
+        <div class="split">
+          <div class="split__body">
+            <p class="eyebrow">What is inside</p>
+            <h2>Six chapters, not a leaflet</h2>
+            <ul class="ticks">
+${ticksEN}
+            </ul>
+          </div>
+          <div class="split__body">
+            <h3>Take it with you</h3>
+            <p>It is the document we work from with architects and operators when an idea turns into a quote.</p>
+            <div class="scarica mt-2">
+              <a class="btn btn--primary" href="${PDF.href}" download="${PDF.nome}">Download the catalogue</a>
+              <span class="scarica__meta">PDF &middot; ${PDF.pagine} pages &middot; ${PDF.peso} &middot; in Italian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band"><div class="cta-band__media">${pic("bolla-glamping-luce-notturna", [800, 1200], "100vw", "", 1200, 1600, "Transparent glamping bubble lit at night among the mountains", 'loading="lazy"')}</div>
+      <div class="container"><h2 class="reveal">Found the size that fits?</h2><p class="reveal" data-delay="1">Tell us about the space: where it is, who it is for, and how many people it has to hold. We take it from there.</p>
+        <div class="btn-row reveal" data-delay="2" style="justify-content:center"><a class="btn btn--primary" href="/en/contact/">Get a quote</a><a class="btn btn--light" href="tel:+393338641752">Call +39 333 864 1752</a></div></div></section>
+  </main>
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Catalogue 2026 pages">
+    <button class="lb-btn lb-close" type="button" aria-label="Close the gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lb-btn lb-prev" type="button" aria-label="Previous page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <img class="lightbox__img" src="" alt="">
+    <button class="lb-btn lb-next" type="button" aria-label="Next page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    <p class="lightbox__cap"></p>
+  </div>
+${footer}
+${waFab("catalogue")}
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/gallery.js" defer></script>
+</body></html>`);
+
+console.log("wrote EN pages: /en/, /en/about/, /en/projects/ (" + ordered.length + " items), /en/catalogue/ (" + PAGINE.length + " pages), /en/contact/, /en/privacy/, /en/cookie/");

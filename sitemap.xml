@@ -61,6 +61,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://manfrediconcept.it/en/contact/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://manfrediconcept.it/contatti/"/>
   </url>
+  <url>
+    <loc>https://manfrediconcept.it/catalogo/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://manfrediconcept.it/catalogo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://manfrediconcept.it/en/catalogue/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://manfrediconcept.it/catalogo/"/>
+  </url>
+  <url>
+    <loc>https://manfrediconcept.it/en/catalogue/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://manfrediconcept.it/catalogo/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://manfrediconcept.it/en/catalogue/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://manfrediconcept.it/catalogo/"/>
+  </url>
   <url><loc>https://manfrediconcept.it/privacy/</loc></url>
   <url><loc>https://manfrediconcept.it/cookie/</loc></url>
   <url><loc>https://manfrediconcept.it/en/privacy/</loc></url>

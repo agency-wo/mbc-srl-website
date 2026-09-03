@@ -69,6 +69,7 @@ const header = `  <header class="site-header">
           <li><a href="/chi-siamo/">Chi siamo</a></li>
             <li><a href="/soluzioni/">Soluzioni</a></li>
           <li><a href="/progetti/" aria-current="page">Progetti</a></li>
+          <li><a href="/catalogo/">Catalogo</a></li>
           <li><a href="/contatti/">Contatti</a></li>
           <li class="nav-cta-item"><a class="btn" href="/contatti/">Richiedi un preventivo</a></li>
         </ul>
@@ -103,6 +104,7 @@ const footer = `  <footer class="site-footer">
             <li><a href="/chi-siamo/">Chi siamo</a></li>
             <li><a href="/soluzioni/">Soluzioni</a></li>
             <li><a href="/progetti/">Progetti</a></li>
+            <li><a href="/catalogo/">Catalogo</a></li>
             <li><a href="/contatti/">Contatti</a></li>
           </ul>
         </div>
