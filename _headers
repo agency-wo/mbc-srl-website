@@ -39,8 +39,28 @@
   Cache-Control: public, max-age=2592000
 
 
-# Le pagine cambiano quando cambia il sito e non hanno impronta nell'indirizzo,
-# quindi vanno rivalidate. max-age=0 con must-revalidate vuol dire una richiesta
-# condizionale che di norma torna 304 senza corpo, non un download.
-/*
-  Cache-Control: public, max-age=0, must-revalidate
+# NIENTE REGOLA /*, ED E' DELIBERATO.
+#
+# Qui c'era `/*  Cache-Control: public, max-age=0, must-revalidate`, per le
+# pagine HTML, che non hanno un'impronta nell'indirizzo e vanno rivalidate.
+# Sembrava innocua e non lo era: **Cloudflare Pages applica TUTTE le regole che
+# combaciano, non la piu' specifica**. Ogni asset riceveva quindi la sua regola
+# _e_ questa, concatenate in una intestazione sola:
+#
+#   Cache-Control: public, max-age=31536000, immutable, public, max-age=0, must-revalidate
+#
+# Due max-age nella stessa intestazione sono comportamento indefinito: a seconda
+# del browser vince il primo o il piu' restrittivo, e nel secondo caso l'anno di
+# cache su CSS e JS - cioe' tutto il senso dell'impronta di versiona.py - non
+# esiste piu'. Il difetto c'era da sempre ed era nascosto dal Browser Cache TTL
+# della zona, fissato a 4 ore, che riscriveva tutto a 14400 prima di uscire.
+# Sistemato quello (Caching -> Respect Existing Headers), e' venuto a galla.
+#
+# Togliere la riga non lascia le pagine scoperte: **Cloudflare Pages serve gia'
+# di suo `public, max-age=0, must-revalidate` per l'HTML**. Verificato su un
+# deploy di ramo, non dedotto: con la regola e senza, `/`, `/catalogo/` e
+# `/soluzioni/` rispondono lo stesso identico valore, e gli asset smettono di
+# portarsi dietro la seconda meta'.
+#
+# Se un giorno serve un'intestazione su tutte le pagine, si scrive `/*.html` e
+# `/` come fa flysystem.io, non `/*`.
