@@ -34,8 +34,28 @@ const M = [
     it: "Bolla glamping al crepuscolo con montagne blu", en: "Glamping bubble at dusk with blue mountains" },
   { slug: "bolla-glamping-tramonto-letto", src: "IMG_8379.PNG", cat: "bolle",
     it: "Bolla su pedana in legno con letto al tramonto", en: "Bubble on a wooden deck with bed at sunset" },
-  { slug: "bolla-glamping-insegna-spa", src: "IMG_8380.PNG", cat: "bolle",
+  // MOBILE HERO. Client regrade (2026-09) of the same frame as IMG_8380.PNG:
+  // same angle and sign, but golden light on the rock face instead of flat
+  // dusk. Native 1086px, so the ladder stops there -- 1000 is kept because
+  // /chi-siamo/ and /progetti/ already request that rung.
+  // q below default: this is the mobile LCP image and the frame is dense with
+  // grass and foliage, so it encodes far heavier than the dark night photo it
+  // replaces (160 KB at the default 72 against that one's 30). Measured across
+  // the ladder, 58 gives 132 KB with no visible loss at phone size; going to
+  // 40 only reaches 100 KB and starts to show.
+  { slug: "bolla-glamping-insegna-spa", src: "bolla-glamping-insegna-spa.jpeg", cat: "bolle",
+    widths: [1086, 1000, 800, 640, 360], q: { webp: 58, jpeg: 74 },
     it: "Bolla glamping con insegna Glamping & Spa", en: "Glamping bubble with a Glamping & Spa sign" },
+  // NEW 2026-09. A private-garden installation, which the library had none of:
+  // every other bolla shot is the alpine site. Native 1086px.
+  { slug: "bolla-glamping-giardino-tramonto", src: "bolla-glamping-giardino-tramonto.jpeg", cat: "bolle",
+    widths: [1086, 1000, 800, 640, 360], q: { webp: 60, jpeg: 76 },
+    it: "Bolla glamping su pedana in legno al tramonto in un giardino",
+    en: "Glamping bubble on a wooden deck at sunset in a garden" },
+  { slug: "bolla-glamping-giardino-giorno", src: "bolla-glamping-giardino-giorno.jpeg", cat: "bolle",
+    widths: [1086, 1000, 640, 360], q: { webp: 60, jpeg: 76 },
+    it: "Bolla glamping in giardino con tavolino, ombrellone e ortensie",
+    en: "Glamping bubble in a garden with a bistro table, parasol and hydrangeas" },
   { slug: "bolla-glamping-giorno-bosco", src: "WhatsApp Image 2026-07-22 at 19.00.31 (3).jpeg", cat: "bolle",
     it: "Bolla glamping di giorno immersa nel bosco alpino", en: "Glamping bubble by day set in the alpine forest" },
   { slug: "bolla-glamping-insegna-notte", src: "DSC09492.JPG.jpeg", cat: "bolle",
@@ -62,6 +82,12 @@ const M = [
     it: "Tavolo apparecchiato con vino all'interno della bolla", en: "Table set with wine inside the bubble" },
   { slug: "bolla-interni-aperitivo", src: "WhatsApp Image 2026-07-22 at 19.00.33 (2).jpeg", cat: "interni",
     it: "Aperitivo servito nella bolla con tende chiare", en: "Aperitif served in the bubble with light curtains" },
+  // NEW 2026-09. The warmest interior in the library: made bed, floral
+  // headboard, towels and candlelight.
+  { slug: "bolla-interni-letto-fiori", src: "bolla-interni-letto-fiori.jpeg", cat: "interni",
+    widths: [1086, 1000, 640, 360], q: { webp: 60, jpeg: 76 },
+    it: "Interno della bolla con letto, testiera a fiori e asciugamani",
+    en: "Bubble interior with bed, floral headboard and towels" },
   { slug: "dettaglio-lavabo-pietra", src: "DSC09438.JPG.jpeg", cat: "interni",
     it: "Dettaglio del lavabo in pietra con candela", en: "Detail of the stone washbasin with a candle" },
   { slug: "dettaglio-candele-comodino", src: "DSC09447.JPG.jpeg", cat: "interni",
@@ -71,7 +97,11 @@ const M = [
   // ---- IDROMASSAGGIO (hot tubs) ----
   { slug: "vasca-idromassaggio-tramonto-montagne", src: "IMG_8372.PNG", cat: "idromassaggio", hero: true,
     it: "Vasca idromassaggio da esterno con lettini al tramonto sulle Alpi", en: "Outdoor hot tub with sun loungers at sunset over the Alps" },
-  { slug: "vasca-idromassaggio-luci-crepuscolo", src: "WhatsApp Image 2026-07-22 at 19.00.33.jpeg", cat: "idromassaggio", hero: true,
+  // Client regrade (2026-09) of the same frame as the July source.
+  { slug: "vasca-idromassaggio-luci-crepuscolo", src: "vasca-idromassaggio-luci-crepuscolo.jpeg", cat: "idromassaggio", hero: true,
+    // HERO_W collapses to [800,360] against a 1086px source, and the
+    // homepage card needs 640/1000 -- declared by hand instead.
+    widths: [1086, 1000, 800, 640, 360], q: { webp: 60, jpeg: 76 },
     it: "Vasca idromassaggio con luci e saune a botte al crepuscolo", en: "Hot tub with string lights and barrel saunas at dusk" },
   { slug: "vasca-idromassaggio-notte", src: "DSC09463.JPG.jpeg", cat: "idromassaggio",
     it: "Vasca idromassaggio illuminata di notte con sauna a botte", en: "Hot tub lit at night with a barrel sauna" },

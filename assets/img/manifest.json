@@ -146,6 +146,55 @@
     "cat": "bolle",
     "hero": false,
     "widths": [
+      1086,
+      1000,
+      800,
+      640,
+      360
+    ],
+    "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "800": 1067,
+      "1000": 1333,
+      "1086": 1448
+    },
+    "w": 1086,
+    "h": 1448,
+    "alt_it": "Bolla glamping con insegna Glamping & Spa",
+    "alt_en": "Glamping bubble with a Glamping & Spa sign"
+  },
+  {
+    "slug": "bolla-glamping-giardino-tramonto",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1086,
+      1000,
+      800,
+      640,
+      360
+    ],
+    "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "800": 1067,
+      "1000": 1333,
+      "1086": 1448
+    },
+    "w": 1086,
+    "h": 1448,
+    "alt_it": "Bolla glamping su pedana in legno al tramonto in un giardino",
+    "alt_en": "Glamping bubble on a wooden deck at sunset in a garden"
+  },
+  {
+    "slug": "bolla-glamping-giardino-giorno",
+    "cat": "bolle",
+    "hero": false,
+    "widths": [
+      1086,
       1000,
       640,
       360
@@ -154,12 +203,13 @@
     "dims": {
       "360": 480,
       "640": 853,
-      "1000": 1333
+      "1000": 1333,
+      "1086": 1448
     },
-    "w": 1000,
-    "h": 1333,
-    "alt_it": "Bolla glamping con insegna Glamping & Spa",
-    "alt_en": "Glamping bubble with a Glamping & Spa sign"
+    "w": 1086,
+    "h": 1448,
+    "alt_it": "Bolla glamping in giardino con tavolino, ombrellone e ortensie",
+    "alt_en": "Glamping bubble in a garden with a bistro table, parasol and hydrangeas"
   },
   {
     "slug": "bolla-glamping-giorno-bosco",
@@ -372,6 +422,28 @@
     "alt_en": "Aperitif served in the bubble with light curtains"
   },
   {
+    "slug": "bolla-interni-letto-fiori",
+    "cat": "interni",
+    "hero": false,
+    "widths": [
+      1086,
+      1000,
+      640,
+      360
+    ],
+    "gallery": true,
+    "dims": {
+      "360": 480,
+      "640": 853,
+      "1000": 1333,
+      "1086": 1448
+    },
+    "w": 1086,
+    "h": 1448,
+    "alt_it": "Interno della bolla con letto, testiera a fiori e asciugamani",
+    "alt_en": "Bubble interior with bed, floral headboard and towels"
+  },
+  {
     "slug": "dettaglio-lavabo-pietra",
     "cat": "interni",
     "hero": false,
@@ -460,16 +532,22 @@
     "cat": "idromassaggio",
     "hero": true,
     "widths": [
+      1086,
+      1000,
       800,
+      640,
       360
     ],
     "gallery": true,
     "dims": {
       "360": 480,
-      "800": 1067
+      "640": 853,
+      "800": 1067,
+      "1000": 1333,
+      "1086": 1448
     },
-    "w": 800,
-    "h": 1067,
+    "w": 1086,
+    "h": 1448,
     "alt_it": "Vasca idromassaggio con luci e saune a botte al crepuscolo",
     "alt_en": "Hot tub with string lights and barrel saunas at dusk"
   },

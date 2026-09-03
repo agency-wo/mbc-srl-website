@@ -202,8 +202,8 @@ ${header("home")}
   <main id="main">
     <section class="hero">
       <div class="hero__media"><picture>
-        <source media="(max-width: 700px)" type="image/webp" srcset="/assets/img/bolla-glamping-luce-notturna-800.webp 800w, /assets/img/bolla-glamping-luce-notturna-1200.webp 1200w" sizes="100vw">
-        <source media="(max-width: 700px)" type="image/jpeg" srcset="/assets/img/bolla-glamping-luce-notturna-800.jpg 800w, /assets/img/bolla-glamping-luce-notturna-1200.jpg 1200w" sizes="100vw">
+        <source media="(max-width: 700px)" type="image/webp" srcset="/assets/img/bolla-glamping-insegna-spa-640.webp 640w, /assets/img/bolla-glamping-insegna-spa-800.webp 800w, /assets/img/bolla-glamping-insegna-spa-1086.webp 1086w" sizes="100vw">
+        <source media="(max-width: 700px)" type="image/jpeg" srcset="/assets/img/bolla-glamping-insegna-spa-640.jpg 640w, /assets/img/bolla-glamping-insegna-spa-800.jpg 800w, /assets/img/bolla-glamping-insegna-spa-1086.jpg 1086w" sizes="100vw">
         <source type="image/webp" srcset="/assets/img/bolla-glamping-notte-montagne-1200.webp 1200w, /assets/img/bolla-glamping-notte-montagne-1800.webp 1800w, /assets/img/bolla-glamping-notte-montagne-2400.webp 2400w" sizes="100vw">
         <img src="/assets/img/bolla-glamping-notte-montagne-1800.jpg" srcset="/assets/img/bolla-glamping-notte-montagne-1200.jpg 1200w, /assets/img/bolla-glamping-notte-montagne-1800.jpg 1800w, /assets/img/bolla-glamping-notte-montagne-2400.jpg 2400w" sizes="100vw" width="1800" height="2700" fetchpriority="high" decoding="async" alt="Illuminated glamping dome at night in front of the Alps">
       </picture></div>
@@ -231,7 +231,7 @@ ${header("home")}
         ${card("vasca-idromassaggio-sauna-giorno", "Turnkey glamping", "Complete wellness paths, with the electrics, climate control and plumbing included.", "Hot tub and barrel sauna on a deck with mountain view", "/en/solutions/#chiavi-in-mano", "What it covers", "What the turnkey option covers")}
         ${card("sauna-botte-ingresso", "Outdoor saunas", "Wooden barrel saunas, built in our own workshop, for regenerating heat even at high altitude.", "Entrance of the wooden barrel sauna", "/en/solutions/#sauna", "Discover", "Discover the outdoor saunas")}
         ${card("grotta-sale-lampada", "Outdoor salt rooms", "Salt-clad rooms to breathe wellness, also as a barrel version installed on a deck.", "Salt lamp in a wooden wellness room", "/en/solutions/#sale", "Discover", "Discover the salt rooms")}
-        ${card("vasca-idromassaggio-notte", "Hot tubs", "Panoramic outdoor hot tubs to relax immersed in the landscape, by day and under the stars.", "Hot tub lit at night with a barrel sauna", "/en/solutions/#idromassaggio", "Discover", "Discover the outdoor hot tubs")}
+        ${card("vasca-idromassaggio-luci-crepuscolo", "Hot tubs", "Panoramic outdoor hot tubs to relax immersed in the landscape, by day and under the stars.", "Hot tub with string lights and barrel saunas at dusk", "/en/solutions/#idromassaggio", "Discover", "Discover the outdoor hot tubs")}
         ${card("attrezzature-fitness-pergola", "Fitness equipment", "Treadmills, bikes and professional gym equipment, also in an outdoor set-up on decking.", "Professional treadmill on a pergola deck", "/en/solutions/#fitness", "Discover", "Discover the fitness equipment")}
       </div>
     </div></section>
