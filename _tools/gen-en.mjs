@@ -148,6 +148,7 @@ const BUSINESS_LD = `  <script type="application/ld+json">
         "email": "info@manfrediconcept.it",
         "image": "https://manfrediconcept.it/assets/img/og-share.jpg",
         "logo": "https://manfrediconcept.it/assets/img/brand/logo-full-1200.png",
+        "founder": {"@type": "Person", "name": "Massimo Manfredi"},
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Via Vitaliano Donati 17",
@@ -309,7 +310,6 @@ ${header("about")}
         <p class="hero__sub">From beauty centres to glamping domes: our story is a journey of care, craftsmanship and passion for wellbeing.</p></div></section>
     <section class="section"><div class="container"><div class="split">
       <div class="split__media media-stack reveal">${pic("grotta-sale-lampada", [640, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1250, "Salt lamp in a wooden wellness room", 'loading="lazy"')}
-        <div class="media-stack__inset">${pic("mbc-sopralluogo-tenuta", [360, 640], "(max-width:860px) 58vw, 20vw", "", 640, 853, "A site visit at an estate with a stone tower", 'loading="lazy"')}</div>
       </div>
       <div class="split__body reveal" data-delay="1"><span class="eyebrow">Our origins</span><h2>Born in the world of wellness</h2>
         <p>For over thirty years we've worked in the wellness sector: wellness centres, solariums and professional supplies for beauty. A journey that taught us what it truly means to care for people and spaces.</p>
@@ -323,6 +323,14 @@ ${header("about")}
         <p>We turned our wellness experience into a new specialisation: <strong>glamping bubbles</strong> and complete wellness paths. Transparent domes that become rooms immersed in nature, together with saunas, salt rooms and hot tubs.</p>
         <ul class="ticks"><li>Equipment supply only, for those who already have a project</li><li>Complete turnkey builds, from A to Z</li><li>Craftsmanship in every detail, inside and outside the bubble</li></ul></div>
     </div></div></section>
+<!-- founder - media-stack without an inset: it is there to keep 4/5 below 860px -->
+<section class="section"><div class="container"><div class="split">
+<div class="split__media media-stack reveal">${pic("massimo-manfredi-sopralluogo", [360, 640, 800, 1000], "(max-width:860px) 100vw, 46vw", "", 1000, 1333, "Massimo Manfredi during a site visit at an estate with a stone tower", 'loading="lazy"')}
+</div>
+<div class="split__body reveal" data-delay="1"><span class="eyebrow">The founder</span><h2>Massimo Manfredi</h2>
+<p>Thirty years in the wellness sector: first beauty centres, solariums and professional supplies for beauty, today glamping domes and turnkey wellness projects.</p>
+<p>The company carries his name.</p></div>
+</div></div></section>
     <section class="section section--green">
       <div class="container">
         <div class="section-head reveal">

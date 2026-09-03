@@ -1002,21 +1002,25 @@
     "alt_en": "Outdoor fitness equipment with an Alpine view"
   },
   {
-    "slug": "mbc-sopralluogo-tenuta",
+    "slug": "massimo-manfredi-sopralluogo",
     "cat": "azienda",
     "hero": false,
     "widths": [
+      1000,
+      800,
       640,
       360
     ],
     "gallery": false,
     "dims": {
       "360": 480,
-      "640": 853
+      "640": 853,
+      "800": 1067,
+      "1000": 1333
     },
-    "w": 640,
-    "h": 853,
-    "alt_it": "Sopralluogo in una tenuta con torre in pietra",
-    "alt_en": "A site visit at an estate with a stone tower"
+    "w": 1000,
+    "h": 1333,
+    "alt_it": "Massimo Manfredi durante un sopralluogo in una tenuta con torre in pietra",
+    "alt_en": "Massimo Manfredi during a site visit at an estate with a stone tower"
   }
 ]

@@ -155,13 +155,17 @@ const M = [
   // ---- Fuori galleria ----
   // `gallery: false`: il file serve su chi-siamo, ma non e' portfolio. La `cat`
   // non arriva mai ai filtri, perche' il filtro per gallery scatta prima.
-  // Niente 768: l'inserto e' 236x314 CSS, quindi a 2x chiede 640 e non arriva
-  // mai al 768 - erano 377 KB di binari mai referenziati.
-  // `q` piu' basso perche' e' uno scatto ad alta entropia (erba, fogliame) che a
+  // Da inserto decorativo a ritratto del fondatore (2026-09-04). E' la stessa
+  // fotografia di prima, presa dalla sorgente piu' grande che ha mandato Essi:
+  // 1086x1448 contro 768x1024. Promossa a immagine principale di uno split, e
+  // per questo la scala arriva a 1000 - a 46vw su desktop e 100vw sotto gli
+  // 860px il 640 non basta piu'. Il 1600 lo scarta comunque il filtro w <= srcW.
+  // `q` resta basso: e' uno scatto ad alta entropia (erba, fogliame) che a
   // qualita' standard usciva a 0,236 byte/pixel, il file piu' pesante del sito
-  // contro una mediana di 0,134, e per un inserto decorativo non ha senso.
-  { slug: "mbc-sopralluogo-tenuta", src: "mbc-sopralluogo-tenuta.jpeg", cat: "azienda", gallery: false, widths: [640, 360], q: { webp: 62, jpeg: 68 },
-    it: "Sopralluogo in una tenuta con torre in pietra", en: "A site visit at an estate with a stone tower" },
+  // contro una mediana di 0,134. Ora rende al doppio della larghezza, quindi
+  // quel conto pesa di piu', non di meno.
+  { slug: "massimo-manfredi-sopralluogo", src: "massimo-manfredi-sopralluogo.jpeg", cat: "azienda", gallery: false, widths: [1000, 800, 640, 360], q: { webp: 56, jpeg: 68 },
+    it: "Massimo Manfredi durante un sopralluogo in una tenuta con torre in pietra", en: "Massimo Manfredi during a site visit at an estate with a stone tower" },
 ];
 
 async function run() {
